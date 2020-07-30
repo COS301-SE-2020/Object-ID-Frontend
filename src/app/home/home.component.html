@@ -30,12 +30,13 @@
         </span>
         <span>
             <div class="dropdown">
-                    <select [(ngModel)]="selectedOption">
+                    <select id="select" [(ngModel)]="selectedOption">
+                        <option disabled selected [value]="Filter" >Filter by:</option>
                         <option *ngFor="let order of selectedFilter;" [value]="order.name">
                             {{order.name}}
                           </option>
                     </select>
-                   <button type="submit" (click)="filter()">Submit</button>
+                   <button id="sub" type="submit" *ngIf="selectedOption != null && selectedOption != 'Filter'" (click)="filter()">Submit</button>
 
                    </div>
 
@@ -88,48 +89,6 @@
                     <th>Duplicate</th>
                 </tr>
                 <tr id="box0" class="box" *ngFor='let i of answer.payload'> 
-                    <td class="numPlate" >{{i.license_plate}}</td>
-                    <td class="color">{{i.color}}</td>
-                    <td class="make">{{i.make}}</td>
-                    <td class="model">{{i.model}}</td>
-                    <td class="flag">{{i.saps_flagged}}</td>
-                    <td class="duplicate">{{i.license_plate_duplicate}}</td>
-                </tr>
-                </table> 
-
-        </div>
-        <div class="box_container">
-            <table  style="width:60% " *ngIf='answer2 != null'>
-                <tr>
-                    <th>License Plate</th>
-                    <th>Color</th>
-                    <th>Make</th>
-                    <th>Model</th>
-                    <th>SAPS Flagged</th>
-                    <th>Duplicate</th>
-                </tr>
-                <tr id="box0" class="box" *ngFor='let i of answer2.payload'> 
-                    <td class="numPlate" >{{i.license_plate}}</td>
-                    <td class="color">{{i.color}}</td>
-                    <td class="make">{{i.make}}</td>
-                    <td class="model">{{i.model}}</td>
-                    <td class="flag">{{i.saps_flagged}}</td>
-                    <td class="duplicate">{{i.license_plate_duplicate}}</td>
-                </tr>
-                </table> 
-
-        </div>
-        <div class="box_container">
-            <table  align="center" style="width:60% " *ngIf='answer3 != null'>
-                <tr>
-                    <th>License Plate</th>
-                    <th>Color</th>
-                    <th>Make</th>
-                    <th>Model</th>
-                    <th>SAPS Flagged</th>
-                    <th>Duplicate</th>
-                </tr>
-                <tr id="box0" class="box" *ngFor='let i of answer3.payload'> 
                     <td class="numPlate" >{{i.license_plate}}</td>
                     <td class="color">{{i.color}}</td>
                     <td class="make">{{i.make}}</td>

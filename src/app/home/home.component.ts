@@ -14,8 +14,6 @@ export class HomeComponent implements OnInit {
   public Fform:FormGroup;  
   
    answer:any=null;
-   answer2:any=null;
-   answer3:any=null;
    temporary:any=[];
    selectedOption;
    selectedFilter = [{name: "Flagged"},{ name:"Duplicate"}]
@@ -59,32 +57,41 @@ export class HomeComponent implements OnInit {
    
   }
 
+  //-----------------------Searches---------------------------------------------- 
   search(){
     // console.log(this.form.value.numPlate);
-    this.api.search(this.form.value.numPlate).subscribe((data)=>{
-      this.answer=data;
+    this.api.search(this.form.value.numPlate).subscribe((Searchdata)=>{
+      this.answer=Searchdata;
     });
    
   }
 
   Dsearch(){
     console.log(this.Dform.value.numplate, this.Dform.value.color, this.Dform.value.make, this.Dform.value.model, this.Dform.value.flag);
-    this.api.Dsearch(this.Dform.value.numplate, this.Dform.value.color, this.Dform.value.make, this.Dform.value.model, this.Dform.value.flag).subscribe((data2)=>{
-      this.answer2=data2;
+    this.api.Dsearch(this.Dform.value.numplate, this.Dform.value.color, this.Dform.value.make, this.Dform.value.model, this.Dform.value.flag).subscribe((DSearchData)=>{
+      this.answer=DSearchData;
     });
   }
 
+  //-----------------------Filters---------------------------------------------- 
   filter(){
     console.log(this.selectedOption);
+    //filter by flagged
     if(this.selectedOption == "Flagged"){
-      this.api.filterFlagged(this.selectedOption).subscribe((data3)=>{
-        this.answer3=data3;
+      this.api.filterFlagged(this.selectedOption).subscribe((FilterData)=>{
+        this.answer=FilterData;
       });
     }
+    //filter by duplicates
+    else if(this.selectedOption == "Duplicate"){
+    this.api.filterDuplicate(this.selectedOption).subscribe((FilterData)=>{
+      this.answer=FilterData;
+    });
+  }
     
   }
 
-
+//-----------------------Logout---------------------------------------------- 
   logout(){
     this.api.removeToken();
     this.router.navigate(['']);

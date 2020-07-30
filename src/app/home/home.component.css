@@ -194,6 +194,14 @@ input #numplate{
     outline: 0;
 
 } */
+
+#sub{
+    background-color: #2d476e;
+    color: #FFF;
+    outline: 0;
+    border: none;
+    border-radius: 3px;
+}
   
 
   .dropdown {

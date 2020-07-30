@@ -11,8 +11,7 @@ export class ApiService {
 
   constructor(private http:HttpClient) { }
 
-//-------------------------------------------------------------
-  //login
+ //-----------------------Login---------------------------------------------- 
   submitLogin(username, password){
     return this.http.post("http://127.0.0.1:8000/api-auth/", {
       "username": username,
@@ -38,7 +37,7 @@ export class ApiService {
     return true;
   }
 
- // Searches  
+ //-----------------------Searches---------------------------------------------- 
   search(numberPlate){
      const httpOptions = {
       headers: new HttpHeaders({ 
@@ -46,17 +45,14 @@ export class ApiService {
         'Authorization': "Token " + this.getToken()
       })
     };
+
     return this.http.post("http://127.0.0.1:8000/api/v1/vehicle/search", {
       "search": numberPlate
     },httpOptions );
-  
-  
-
    }
 
 
    Dsearch(numberplate, color, make, model, flag){
-
     const httpOptions = {
       headers: new HttpHeaders({ 
         'Content-Type': 'application/json',
@@ -74,13 +70,11 @@ export class ApiService {
         "saps_flagged": flag
       }
     },httpOptions );
-  
    }
 
-// Filters
+ //-----------------------Filters---------------------------------------------- 
 
    filterFlagged(filter){
-
     const httpOptions = {
       headers: new HttpHeaders({ 
         'Content-Type': 'application/json',
@@ -89,6 +83,19 @@ export class ApiService {
     };
 
     return this.http.get("http://127.0.0.1:8000/api/v1/vehicle/get_saps_flagged",
+    httpOptions );
+
+   }
+
+   filterDuplicate(filter){
+    const httpOptions = {
+      headers: new HttpHeaders({ 
+        'Content-Type': 'application/json',
+        'Authorization': "Token " + this.getToken()
+      })
+    };
+
+    return this.http.get("http://127.0.0.1:8000/api/v1/vehicle/get_duplicates",
     httpOptions );
 
    }
