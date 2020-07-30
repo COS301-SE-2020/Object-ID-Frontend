@@ -31,7 +31,7 @@
         <span>
             <div class="dropdown">
                     <select id="select" [(ngModel)]="selectedOption">
-                        <option disabled selected [value]="Filter" >Filter by:</option>
+                        <option disabled selected [value]="filterPlaceholder" >Filter by:</option>
                         <option *ngFor="let order of selectedFilter;" [value]="order.name">
                             {{order.name}}
                           </option>

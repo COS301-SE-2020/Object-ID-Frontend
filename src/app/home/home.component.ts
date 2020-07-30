@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit {
    answer:any=null;
    temporary:any=[];
    selectedOption;
+   filterPlaceholder;
    selectedFilter = [{name: "Flagged"},{ name:"Duplicate"}]
   constructor(private api:ApiService, private fb:FormBuilder,private router:Router) { 
     this.form = this.fb.group({
