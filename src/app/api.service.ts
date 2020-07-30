@@ -38,4 +38,59 @@ export class ApiService {
     return true;
   }
 
+ // Searches  
+  search(numberPlate){
+     const httpOptions = {
+      headers: new HttpHeaders({ 
+        'Content-Type': 'application/json',
+        'Authorization': "Token " + this.getToken()
+      })
+    };
+    return this.http.post("http://127.0.0.1:8000/api/v1/vehicle/search", {
+      "search": numberPlate
+    },httpOptions );
+  
+  
+
+   }
+
+
+   Dsearch(numberplate, color, make, model, flag){
+
+    const httpOptions = {
+      headers: new HttpHeaders({ 
+        'Content-Type': 'application/json',
+        'Authorization': "Token " + this.getToken()
+      })
+    };
+    
+    return this.http.post("http://127.0.0.1:8000/api/v1/vehicle/search_advanced", {
+    "type": "and",
+    "filters":{
+        "license_plate": numberplate,
+        "color": color,
+        "make": make,
+        "model": model,
+        "saps_flagged": flag
+      }
+    },httpOptions );
+  
+   }
+
+// Filters
+
+   filterFlagged(filter){
+
+    const httpOptions = {
+      headers: new HttpHeaders({ 
+        'Content-Type': 'application/json',
+        'Authorization': "Token " + this.getToken()
+      })
+    };
+
+    return this.http.get("http://127.0.0.1:8000/api/v1/vehicle/get_saps_flagged",
+    httpOptions );
+
+   }
+
 }
