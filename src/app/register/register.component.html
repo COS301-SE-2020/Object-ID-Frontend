@@ -13,32 +13,29 @@
 </head>
 
 <body>
-
-    <div class="cent">
-        <img class="logo" src="../../assets/logo.png"/>
-    </div>
-    <div>
-    <div class="loginContainer">
-        <div class="logReg">
-        </div>
-        <div>
-            <form class="form-group" (submit)="submitRegister()" [formGroup]="form"> 
-            <br><input placeholder="Username" id="uname" type="text" class="form-control" formControlName="username" name="username">
-            
-            <br><input placeholder="Email" id="email" type="text" class="form-control" formControlName="email" name="email">
-            
-            <br><input placeholder="Password" class="form-control" formControlName="password" id="password" type="password" name="password">
-            <br><input placeholder="Confirm Password" class="form-control" formControlName="cpassword" id="cpassword" type="password" name="password">
-            <div id="input">
-                <button id="submit"> <i class="fa fa-sign-in"></i>  Register</button>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+              <div class="card card-signin my-5 shadow">
+                  <div class="card-header">
+                        <img class="logo" src="../../assets/logo.png"/>
+                  </div>
+                <div class="card-body">
+                        <form class="form-group" (submit)="submitRegister()" [formGroup]="form"> 
+                        <br><input placeholder="Username" id="uname" type="text" class="form-control" formControlName="username" name="username">
+                        
+                        <br><input placeholder="Email" id="email" type="text" class="form-control" formControlName="email" name="email">
+                        
+                        <br><input placeholder="Password" class="form-control" formControlName="password" id="password" type="password" name="password">
+                        <br><input placeholder="Confirm Password" class="form-control" formControlName="cpassword" id="cpassword" type="password" name="password">
+                        <div id="input">
+                            <button id="submit"> <i class="fa fa-sign-in"></i>  Register</button>
+                        </div>
+                        </form>
+                </div>
+              </div>
             </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-
-
+        </div></div>
 </body>
 
 </html>
