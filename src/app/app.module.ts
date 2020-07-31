@@ -8,12 +8,16 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { CanActivateRouteGuard } from './can-activate-route.guard';
+import { TopMenuComponent } from './top-menu/top-menu.component';
+import { UploadComponent } from './upload/upload.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    TopMenuComponent,
+    UploadComponent
   ],
   imports: [
     BrowserModule,
