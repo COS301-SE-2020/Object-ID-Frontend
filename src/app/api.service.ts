@@ -100,4 +100,17 @@ export class ApiService {
 
    }
 
+   submitUpload(FormData){
+    const httpOptions = {
+      headers: new HttpHeaders({ 
+        'Authorization': "Token " + this.getToken()
+      })
+    };
+
+    return this.http.post("http://127.0.0.1:8000/api/v1/vehicle/file_recognize",FormData,
+    httpOptions );
+
+
+   }
+
 }

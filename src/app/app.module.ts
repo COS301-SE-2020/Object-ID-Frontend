@@ -10,6 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { CanActivateRouteGuard } from './can-activate-route.guard';
 import { TopMenuComponent } from './top-menu/top-menu.component';
 import { UploadComponent } from './upload/upload.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { UploadComponent } from './upload/upload.component';
     HomeComponent,
     LoginComponent,
     TopMenuComponent,
-    UploadComponent
+    UploadComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
