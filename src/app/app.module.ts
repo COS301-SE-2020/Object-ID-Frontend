@@ -8,12 +8,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { CanActivateRouteGuard } from './can-activate-route.guard';
+import { RegisterComponent } from './register/register.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -21,6 +24,7 @@ import { CanActivateRouteGuard } from './can-activate-route.guard';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    NgbModule,
   ],
   providers: [
     CanActivateRouteGuard],

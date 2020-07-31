@@ -1,144 +1,4 @@
-.search-div {
-    padding-top: 2px;
-    text-align: center;
-}
-
-.search-container {
-    border-style: none;
-    position: relative;
-    width: 30%;
-    border-radius: 25px;
-    border-width: 2px;
-    border-color: #2d476e;
-    border-style: solid;
-    padding: 3px 10px 3px 10px;
-    margin: auto;
-}
-.form-group {
-    background-color: transparent;
-    outline: none;
-    border-radius: 25px;
-    height: 20px;
-    font-size: 15px;
-    border: 0;
-    width: 100%;
-    
- 
-    
-}
-
-.detail-search{
- 
-    text-emphasis: center;
-   
-}
-
-input{
-    outline: none !important;
-    box-shadow: none !important;
-    border-style: none;
-}
-
-input #numplate{
-    font: 15px;
-    border-radius: 20px;
-}
-
-#numPlate {
-    border-style: none;
-    position: relative;
-    width: 10%;
-    border-radius: 25px;
-    border-width: 2px;
-    border-color: #2d476e;
-    border-style: solid;
-    padding:3px 10px 3px 10px;
-    font-size: 20px;
-    float: left;
-    padding-top: 2px;
-    text-align: center;
-    height: 45px !important;
-    margin-right: 5px;
-    margin-left: 280px;
-    
-}
-#color {
-    border-style: none;
-    position: relative;
-    width: 10%;
-    border-radius: 25px;
-    border-width: 2px;
-    border-color: #2d476e;
-    border-style: solid;
-    padding:3px 10px 3px 10px;
-    font-size: 20px;
-    float: left;
-    padding-top: 2px;
-    text-align: center;
-    height: 45px !important;
-    margin-right: 5px;
-}
-#model {
-    border-style: none;
-    position: relative;
-    width: 10%;
-    border-radius: 25px;
-    border-width: 2px;
-    border-color: #2d476e;
-    border-style: solid;
-    padding:3px 10px 3px 10px;
-    font-size: 20px;
-    float: left;
-    padding-top: 2px;
-    text-align: center;
-    height: 45px !important;
-    margin-right: 5px;
-}
-#make {
-    border-style: none;
-    position: relative;
-    width: 10%;
-    border-radius: 25px;
-    border-width: 2px;
-    border-color: #2d476e;
-    border-style: solid;
-    padding:3px 10px 3px 10px;
-    font-size: 20px;
-    float: left;
-    padding-top: 2px;
-    text-align: center;
-    height: 45px !important;
-    margin-right: 5px;
-}
-#flag {
-    border-style: none;
-    position: relative;
-    width: 10%;
-    border-radius: 25px;
-    border-width: 2px;
-    border-color: #2d476e;
-    border-style: solid;
-    padding:3px 10px 3px 10px;
-    font-size: 20px;
-    float: left;
-    padding-top: 2px;
-    text-align: center;
-    height: 45px !important;
-    margin-right: 5px;
-}
-
-.search-button {
-    position: absolute;
-    right: 4px;
-    top: 4px;
-    background-color: #2d476e;
-    border-radius: 25px;
-    border: 0;
-    color: #FFF;
-    width: 35px;
-    height: 35px;
-    outline: 0;
-}
+.card {display:inline-block;}
 
 .Dsearch-button {
     right: 4px;
@@ -160,61 +20,42 @@ input #numplate{
     padding-bottom: 5px;
 }
 
-.box_Container {
-    margin-left:auto; 
-    margin-right:auto;
-}
-
-.logout{
-    position: absolute;
-    right: 4px;
-    top: 4px;
-    background-color: #2d476e;
-    border-radius: 25px;
-    border: 0;
-    color: #FFF;
-    max-height: 46px;
-    max-width:100px;
-    min-width:100px;
-    outline: 0;
-
-}
-
-/* .register{
-    position: absolute;
-    right: 110px;
-    top: 4px;
-    background-color: #2d476e;
-    border-radius: 25px;
-    border: 0;
-    color: #FFF;
-    max-height: 46px;
-    max-width:100px;
-    min-width:100px;
-    outline: 0;
-
-} */
-
-#sub{
-    background-color: #2d476e;
-    color: #FFF;
-    outline: 0;
-    border: none;
-    border-radius: 3px;
-}
-  
-
-  .dropdown {
-    position: absolute;
-    right: 330px;
-    top: 223px;
+   .dropdown {
     border-radius: 25px;
     border: 0;
     max-height: 50px;
     max-width:100px;
     min-width:100px;
     outline: 0;
+    margin-left:5px;
   }
-
-
-  
+input{
+    margin-right:10px;
+    margin-bottom:5px;
+}
+.form-group{
+    text-align: center;
+}
+.search-button {
+    background-color: #2d476e;
+    border-radius: 25px;
+    border: 0;
+    color: #FFF;
+    width: 35px;
+    height: 35px;
+    outline: 0;
+}
+.card {
+    margin:10px;
+}
+.box_Container {
+    margin-left:auto; 
+    margin-right:auto;
+}
+.card-img-top {
+    height: 15rem;
+    object-fit: cover;
+}
+.center{
+    justify-content: center;
+}

@@ -37,6 +37,22 @@ export class ApiService {
     return true;
   }
 
+  //-----------------------Register---------------------------------------------- 
+  submitRegister(username, email, password, cpassword){
+    const httpOptions = {
+      headers: new HttpHeaders({ 
+        'Content-Type': 'application/json',
+        'Authorization': "Token " + this.getToken()
+      })
+    };
+    return this.http.post("http://127.0.0.1:8000/api/v1/user/register_user/", {
+      "username": username,
+      "email": email,
+      "password1": password,
+      "password2": cpassword
+    },httpOptions);
+  }
+
  //-----------------------Searches---------------------------------------------- 
   search(numberPlate){
      const httpOptions = {
@@ -46,7 +62,7 @@ export class ApiService {
       })
     };
 
-    return this.http.post("http://127.0.0.1:8000/api/v1/vehicle/search", {
+    return this.http.post("http://127.0.0.1:8000/api/v1/vehicle/search/", {
       "search": numberPlate
     },httpOptions );
    }
@@ -60,7 +76,7 @@ export class ApiService {
       })
     };
     
-    return this.http.post("http://127.0.0.1:8000/api/v1/vehicle/search_advanced", {
+    return this.http.post("http://127.0.0.1:8000/api/v1/vehicle/search_advanced/", {
     "type": "and",
     "filters":{
         "license_plate": numberplate,
@@ -82,7 +98,7 @@ export class ApiService {
       })
     };
 
-    return this.http.get("http://127.0.0.1:8000/api/v1/vehicle/get_saps_flagged",
+    return this.http.get("http://127.0.0.1:8000/api/v1/vehicle/get_saps_flagged/",
     httpOptions );
 
    }
@@ -95,7 +111,7 @@ export class ApiService {
       })
     };
 
-    return this.http.get("http://127.0.0.1:8000/api/v1/vehicle/get_duplicates",
+    return this.http.get("http://127.0.0.1:8000/api/v1/vehicle/get_duplicates/",
     httpOptions );
 
    }

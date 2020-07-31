@@ -13,29 +13,25 @@
 </head>
 
 <body>
-
-    <div class="cent">
-        <img class="logo" src="../../assets/logo.png"/>
-    </div>
-    <div>
-    <div class="loginContainer">
-        <div class="logReg">
-        </div>
-        <div>
-            <form class="form-group" (submit)="submitLogin()" [formGroup]="form"> 
-            <br><input placeholder="Username" id="uname" type="text" class="form-control" formControlName="username" name="username">
-            <br>
-            <br><input placeholder="Password" class="form-control" formControlName="password" id="password" type="password" name="password"><br>
-            <div id="input">
-                <button id="submit"> <i class="fa fa-sign-in"></i>  Login</button>
+    <div class="container">
+    <div class="row">
+        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+          <div class="card card-signin my-5 shadow">
+              <div class="card-header">
+                    <img class="logo" src="../../assets/logo.png"/>
+              </div>
+            <div class="card-body">
+              <form class="form-group" (submit)="submitLogin()" [formGroup]="form"> 
+                <input placeholder="Username" id="uname" type="text" class="form-control" formControlName="username" name="username">
+                <br><input placeholder="Password" class="form-control" formControlName="password" id="password" type="password" name="password">
+                <div id="input">
+                    <button class="btn" id="submit"> <i class="fa fa-sign-in"></i>  Login</button>
+                </div>
+                </form>
             </div>
-            </form>
+          </div>
         </div>
-    </div>
-</div>
-
-
-
+    </div></div>
 </body>
 
 </html>

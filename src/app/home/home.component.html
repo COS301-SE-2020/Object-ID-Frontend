@@ -1,111 +1,174 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
+   <head>
+      <title>Object ID Home</title>
+      <!-- Bootstrap -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+      <!-- Bootstrap -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
+   </head>
+   <body>
+      <div class="container">
+         <div class="jumbotron">
+            <img class="mx-auto d-block" src="../../assets/logo.png"/>
+            <ng-template #content let-modal>
+               <div class="modal-header">
+                  <h4 class="modal-title" id="modal-basic-title">Basic Search</h4>
+                  <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                  <span aria-hidden="true">&times;</span>
+                  </button>
+               </div>
+               <div class="modal-body">
+                  <div class="form-inline center">
 
-<head>
-    <title>Object ID Home</title>
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
-
-
-</head>
-
-<body>
-    
-    <div class="logo-div">
-        <img class="logo" src="../../assets/logo.png"/>
-
-    </div>
-    <div class="search-div">
-        <span>
-        <div class="search-container">
-            <form class="form-group" (submit)="search()"[formGroup]="form"> 
-                <input type="text" id="search-field" class="form-control" formControlName="numPlate" placeholder="Enter a keyword" required>
-                <button type="submit" class="search-button" id="search-btn"><i class="fa fa-search"></i></button>
-
-            </form>
-        </div>
-        </span>
-        <span>
-            <div class="dropdown">
-                    <select id="select" [(ngModel)]="selectedOption">
+                  <form class="form-group" (submit)="search()"[formGroup]="form"> 
+                     <input type="text" id="search-field" class="form-control" formControlName="numPlate" placeholder="Enter a keyword" required>
+                     <button type="submit" class="search-button" id="search-btn"><i class="fa fa-search"></i></button>
+                  </form><br>
+                  <div class="dropdown">
+                     <select id="select" [(ngModel)]="selectedOption">
                         <option disabled selected [value]="filterPlaceholder" >Filter by:</option>
-                        <option *ngFor="let order of selectedFilter;" [value]="order.name">
+                        <option *ngFor="let order of selectedFilter;" (click)="filter()" [value]="order.name">
                             {{order.name}}
-                          </option>
-                    </select>
-                   <button id="sub" type="submit" *ngIf="selectedOption != null && selectedOption != 'Filter'" (click)="filter()">Submit</button>
+                        </option>
+                     </select>
+                  </div>
+                </div>
 
-                   </div>
+                  <hr>
+                  <div class="box_container">
+                     <table  class="table table-striped"*ngIf='answer != null'>
+                        <thead>
+                           <tr>
+                              <th scope="col">License Plate</th>
+                              <th scope="col">Color</th>
+                              <th scope="col">Make</th>
+                              <th scope="col">Model</th>
+                              <th scope="col">SAPS Flagged</th>
+                              <th scope="col">Duplicate</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr id="box0" class="box" *ngFor='let i of answer.payload'>
+                              <td class="numPlate" >{{i.license_plate}}</td>
+                              <td class="color">{{i.color}}</td>
+                              <td class="make">{{i.make}}</td>
+                              <td class="model">{{i.model}}</td>
+                              <td class="flag">{{i.saps_flagged}}</td>
+                              <td class="duplicate">{{i.license_plate_duplicate}}</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Close</button>
+               </div>
+            </ng-template>
+            <!-- Second Modal -->
+            <ng-template #contentTwo let-modal>
+               <div class="modal-header">
+                  <h4 class="modal-title" id="modal-basic-title">Detailed Search</h4>
+                  <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                  <span aria-hidden="true">&times;</span>
+                  </button>
+               </div>
+               <div class="modal-body">
+                  <form class="form-group"  (submit)="Dsearch()" [formGroup]="Dform"> 
+                      <div class="row center">
+                        <div class="form-inline">
+                            <input type="text" id="search-field" class="form-control" formControlName="numplate" placeholder="License">
+                            <input type="text" id="search-field" class="form-control" formControlName="color" placeholder="Color" >
+                            <input type="text" id="search-field" class="form-control" formControlName="make" placeholder="Make">
+                        </div>       
+                      </div>
+                      <div class="row center">
+                          <div class="form-inline">
+                        <input type="text" id="search-field" class="form-control" formControlName="model" placeholder="Model">
+                        <input type="text" id="search-field" class="form-control" formControlName="flag" placeholder="SAPS flag">
+                        <button type="submit" class="Dsearch-button" id="search-btn"><i class="fa fa-search"></i></button>
+                      </div>
+                    </div>
+                  </form>
+                  <hr>
+                  <div class="box_container">
+                     <table  class="table table-striped"*ngIf='answer != null'>
+                        <thead>
+                           <tr>
+                              <th scope="col">License Plate</th>
+                              <th scope="col">Color</th>
+                              <th scope="col">Make</th>
+                              <th scope="col">Model</th>
+                              <th scope="col">SAPS Flagged</th>
+                              <th scope="col">Duplicate</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr id="box0" class="box" *ngFor='let i of answer.payload'>
+                              <td class="numPlate" >{{i.license_plate}}</td>
+                              <td class="color">{{i.color}}</td>
+                              <td class="make">{{i.make}}</td>
+                              <td class="model">{{i.model}}</td>
+                              <td class="flag">{{i.saps_flagged}}</td>
+                              <td class="duplicate">{{i.license_plate_duplicate}}</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Close</button>
+               </div>
+            </ng-template>
+         </div>
+         <!-- The stuff -->
+         <div class="center d-flex">
+        <div class="card" style="width: 18rem;">
+                  <img src="../../assets/carone.jpeg"
+                    class="card-img-top" alt="">
+            <div class="card-body">
+                  <p><strong>Search</strong></p>
+                  <p>Do a generic search. Enter a keyword and get results based on that keyword</p>
+                <button class="btn btn-primary" (click)="open(content)">Basic Search</button>
 
-        </span>
-        <br>
- 
-    </div>
-    <div class="detail-search">
-        <h3 style="text-align: center;">Detailed search: </h3>
-        <div>
-            <form class="form-group"  (submit)="Dsearch()" [formGroup]="Dform"> 
-                <span id="numPlate"> 
-                    <input type="text" id="search-field" class="form-control" formControlName="numplate" placeholder="License">
-                </span>
-                <span id="color"> 
-                    <input type="text" id="search-field" class="form-control" formControlName="color" placeholder="Color" >
-                </span>
-                <span id="make"> 
-                    <input type="text" id="search-field" class="form-control" formControlName="make" placeholder="Make">
-                </span>
-                <span id="model"> 
-                    <input type="text" id="search-field" class="form-control" formControlName="model" placeholder="Model">
-                </span>
-                <span id="flag"> 
-                    <input type="text" id="search-field" class="form-control" formControlName="flag" placeholder="SAPS flag">
-                </span>
-                <span>
-                    <button type="submit" class="Dsearch-button" id="search-btn"><i class="fa fa-search"></i></button>
-                </span>
-               
-            </form>
-        </div>
-       
-    </div>
+            </div>
+              </div>
+              <div class="card" style="width: 18rem;">
+                <img src="../../assets/carone.jpeg"
+                  class="card-img-top" alt="">
+          <div class="card-body">
+                <p><strong>Search</strong></p>
+                <p>Do a generic search. Enter a keyword and get results based on that keyword</p>
+              <button class="btn btn-primary" (click)="open(content)">Basic Search</button>
 
-    <br>
-    <div class="container" id="main-content">
+          </div>
+            </div>
+            <div class="card" style="width: 18rem;">
+                <img src="../../assets/carone.jpeg"
+                  class="card-img-top" alt="">
+          <div class="card-body">
+                <p><strong>Search</strong></p>
+                <p>Do a generic search. Enter a keyword and get results based on that keyword</p>
+              <button class="btn btn-primary" (click)="open(content)">Basic Search</button>
 
-        <hr class="mt-2 mb-5">
+          </div>
+            </div>
         
 
-        <div class="box_container">
-            <table  align="center" style="width:60% " *ngIf='answer != null'>
-                <tr>
-                    <th>License Plate</th>
-                    <th>Color</th>
-                    <th>Make</th>
-                    <th>Model</th>
-                    <th>SAPS Flagged</th>
-                    <th>Duplicate</th>
-                </tr>
-                <tr id="box0" class="box" *ngFor='let i of answer.payload'> 
-                    <td class="numPlate" >{{i.license_plate}}</td>
-                    <td class="color">{{i.color}}</td>
-                    <td class="make">{{i.make}}</td>
-                    <td class="model">{{i.model}}</td>
-                    <td class="flag">{{i.saps_flagged}}</td>
-                    <td class="duplicate">{{i.license_plate_duplicate}}</td>
-                </tr>
-                </table> 
-
+          <div class="card" style="width: 18rem;">
+              <img src="../../assets/carThree.jpeg"
+                class="card-img-top" alt="">
+                <div class="card-body">
+              <p><strong>Detailed search</strong></p>
+              <p>Do a detailed search with different parameters based on a list of keywords</p>
+            <button class="btn btn-primary" (click)="open(contentTwo)">Detailed Search</button>
+            </div>
+          </div>
+      </div>
         </div>
-    </div>
-    <form class="form-group" (submit)="logout()"> 
-        <button type="submit" class="logout" >Logout</button>
-    </form>
-    <!--<form class="form-group" (submit)="register()"> 
-        <button type="submit" class="register" >Register</button>
-
-    </form> -->
-</body>
+   </body>
 </html>
+

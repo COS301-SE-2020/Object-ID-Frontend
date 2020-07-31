@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -12,13 +13,14 @@ export class HomeComponent implements OnInit {
   public form: FormGroup;
   public Dform: FormGroup;
   public Fform:FormGroup;  
-  
+
+  closeResult:any;
    answer:any=null;
    temporary:any=[];
    selectedOption;
    filterPlaceholder;
    selectedFilter = [{name: "Flagged"},{ name:"Duplicate"}]
-  constructor(private api:ApiService, private fb:FormBuilder,private router:Router) { 
+  constructor(private api:ApiService, private fb:FormBuilder,private router:Router,private modalService: NgbModal) { 
     this.form = this.fb.group({
       numPlate:[null, {
         validators:[
@@ -58,6 +60,23 @@ export class HomeComponent implements OnInit {
    
   }
 
+  open(content) {
+    this.answer = null;
+    this.modalService.open(content, { size: 'lg',ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
+  }
   //-----------------------Searches---------------------------------------------- 
   search(){
     // console.log(this.form.value.numPlate);
