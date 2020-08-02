@@ -12,7 +12,6 @@ import { RegisterComponent } from './register/register.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TopMenuComponent } from './top-menu/top-menu.component';
 import { UploadComponent } from './upload/upload.component';
-import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [

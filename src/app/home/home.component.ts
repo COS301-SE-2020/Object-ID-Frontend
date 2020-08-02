@@ -183,6 +183,8 @@ export class HomeComponent implements OnInit {
   //-----------------------Searches---------------------------------------------- 
   search(){
     // console.log(this.form.value.numPlate);
+    this.message=null;
+    this.type=null;
     this.api.search(this.form.value.numPlate).subscribe((Searchdata)=>{
       this.answer=Searchdata;
     });
@@ -190,6 +192,9 @@ export class HomeComponent implements OnInit {
   }
 
   Dsearch(){
+
+    this.message=null;
+    this.type=null;
     this.api.Dsearch(this.Dform.value.numplate, this.Dform.value.color, this.Dform.value.make, this.Dform.value.model, this.Dform.value.flag).subscribe((DSearchData)=>{
       this.answer=DSearchData;
     });
@@ -198,6 +203,9 @@ export class HomeComponent implements OnInit {
   //-----------------------Filters---------------------------------------------- 
   filter(){
     //filter by flagged
+
+    this.message=null;
+    this.type=null;
     if(this.selectedOption == "Flagged"){
       this.api.filterFlagged(this.selectedOption).subscribe((FilterData)=>{
         this.answer=FilterData;

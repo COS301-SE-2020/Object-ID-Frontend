@@ -15,6 +15,7 @@ const routes: Routes = [
   },
   { path: 'register', 
     component: RegisterComponent,
+    canActivate: [CanActivateRouteGuard]},
   { path: 'upload', 
     component: UploadComponent,
     canActivate: [CanActivateRouteGuard]  
