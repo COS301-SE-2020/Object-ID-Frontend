@@ -21,6 +21,9 @@
                     <img class="logo" src="../../assets/logo.png"/>
               </div>
             <div class="card-body">
+              <div *ngIf="answer != null" class ='alert alert-danger'>
+               {{answer}}
+        </div>
               <form class="form-group" (submit)="submitLogin()" [formGroup]="form"> 
                 <input placeholder="Username" id="uname" type="text" class="form-control" formControlName="username" name="username">
                 <br><input placeholder="Password" class="form-control" formControlName="password" id="password" type="password" name="password">

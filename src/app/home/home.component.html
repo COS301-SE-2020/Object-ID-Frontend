@@ -77,8 +77,8 @@
                                  <input type="text" id="search-field" class="form-control" formControlName="license_plate" [(ngModel)]='vehicle.license_plate'>
                                  <input type="text" id="search-field" class="form-control" formControlName="saps_flagged" [(ngModel)]='vehicle.saps_flagged'>
                                  <input type="text" id="search-field" class="form-control" formControlName="license_plate_duplicate" [(ngModel)]='vehicle.license_plate_duplicate'>                              
-                             </div>  </div>   
-                             <button type="submit" class="Dsearch-button" id="search-btn"><i class="fa fa-search"></i></button>  
+                             </div> <button type="submit" class="btn btn-primary" id="search-btn">Update</button>  </div>   
+                             
                            </div>
                        </form>
                        
@@ -242,7 +242,7 @@
                   </button>
                </div>
                <div class="modal-body">
-                  <form class="form-group" [formGroup]="formUpload" (ngSubmit)="submitUploadVideo()">
+                  <form class="form-group" [formGroup]="formUpload" (ngSubmit)="submitUpload('video')">
                      <div class="form-group">
                          <input type="file" #uploadFile class="form-control" formControlName="uploadFile" name="uploadFile" (change)="fileProgress(uploadFile)"  />
                      </div>
@@ -263,7 +263,7 @@
                   </button>
                </div>
                <div class="modal-body">
-                  <form class="form-group" [formGroup]="formUpload" (ngSubmit)="submitUploadImage()">
+                  <form class="form-group" [formGroup]="formUpload" (ngSubmit)="submitUpload('image')">
                      <div class="form-group">
                          <input type="file" #uploadFile class="form-control" formControlName="uploadFile" name="uploadFile" (change)="fileProgress(uploadFile)"  />
                      </div>
@@ -271,6 +271,23 @@
                          <button class="btn btn-primary">Submit</button>
                      </div>
                  </form>
+               </div>
+               <div class="modal-body">
+                  <div class="form-inline center">
+                     <table  class="table table-striped" *ngIf='answer != null'>
+                        <thead>
+                           <tr>
+                              <th scope="col">License Plate</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr id="box0" class="box" *ngFor='let i of answer'>
+                              <td class="numPlate" >{{i.payload.license_plate}}</td>
+                              </tr>
+                        </tbody>
+                     </table>
+                  
+                </div>
                </div>
                <div class="modal-footer">
                   <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Close</button>
@@ -280,43 +297,43 @@
          <!-- The stuff -->
          <div class="center d-flex">
         <div class="card" style="width: 18rem;">
-                  <img src="../../assets/carone.jpeg"
+                  <img src="../../assets/search.png"
                     class="card-img-top" alt="">
             <div class="card-body">
                   <p><strong>Search</strong></p>
                   <p>Do a generic search. Enter a keyword and get results based on that keyword</p>
-                <button class="btn btn-primary" (click)="open(content)">Quick Search</button>
+                <button class="btn btn-primary" (click)="open(content,'lg')">Quick Search</button>
 
             </div>
               </div>
               <div class="card" style="width: 18rem;">
-               <img src="../../assets/carThree.jpeg"
+               <img src="../../assets/detailed.png"
                  class="card-img-top" alt="">
                  <div class="card-body">
                <p><strong>Detailed search</strong></p>
                <p>Do a detailed search with different parameters based on a list of keywords</p>
-             <button class="btn btn-primary" (click)="open(contentTwo)">Detailed Search</button>
+             <button class="btn btn-primary" (click)="open(contentTwo,'lg')">Detailed Search</button>
              </div>
            </div>
               <div class="card" style="width: 18rem;">
-                <img src="../../assets/carone.jpeg"
+                <img src="../../assets/flag.png"
                   class="card-img-top" alt="">
           <div class="card-body">
                 <p><strong>Marked Vehicles</strong></p>
                 <p>Flag/Unflag a suspicious vehicle using the vehicle's license plate. Or return a list of vehicles that have been marked</p>
-              <button class="btn btn-primary" (click)="open(contentThree)">Mark Vehicle</button><br>
-              <button class="btn btn-primary" (click)="open(contentFour)">Remove Marked Vehicle</button><br>
+              <button class="btn btn-primary" (click)="open(contentThree,'lg')">Mark Vehicle</button><br>
+              <button class="btn btn-primary" (click)="open(contentFour,'lg')">Remove Marked Vehicle</button><br>
               <button class="btn btn-primary" (click)="openSearched(contentFive)">View Marked Vehicles</button>
             </div>
             </div>
             <div class="card" style="width: 18rem;">
-                <img src="../../assets/carone.jpeg"
+                <img src="../../assets/upload.png"
                   class="card-img-top" alt="">
           <div class="card-body">
                 <p><strong>Upload</strong></p>
                 <p>Upload an image and retrieve the license plate or a video and detects cars </p>
-              <button class="btn btn-primary" (click)="open(contentSix)">Upload Image</button>
-              <button class="btn btn-primary" (click)="open(contentSeven)">Upload Video</button>
+              <button class="btn btn-primary" (click)="open(contentSix,'sm')">Upload Image</button>
+              <button class="btn btn-primary" (click)="open(contentSeven,'sm')">Upload Video</button>
 
 
           </div>

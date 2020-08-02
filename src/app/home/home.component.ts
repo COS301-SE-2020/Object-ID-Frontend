@@ -24,6 +24,7 @@ import {
 })
 export class HomeComponent implements OnInit {
 
+  // Variables
   public form: FormGroup;
   public Dform: FormGroup;
   public Fform: FormGroup;
@@ -32,9 +33,7 @@ export class HomeComponent implements OnInit {
   public vehicleForm: FormGroup;
   public formUpload: FormGroup;
 
-  closeResult: any;
   answer: any = null;
-  temporary: any = [];
   fileData: File = null;
   selectedOption;
   message = null;
@@ -121,37 +120,32 @@ export class HomeComponent implements OnInit {
 
   }
 
-  fileProgress(fileInput: any) {
-      this.fileData = fileInput.files[0];
-  }
-
-  submitUploadImage() {
-      const formData = new FormData();
-      formData.append('file', this.fileData);
-      this.api.submitUploadImage(formData).subscribe((data) => {
-          this.answer = data;
-          console.log(this.answer);
-      });
-  }
-  submitUploadVideo() {
+// Image or video uploading
+  submitUpload(type) {
     const formData = new FormData();
     formData.append('file', this.fileData);
-    this.api.submitUploadVideo(formData).subscribe((data) => {
-    });
-}
-
-  open(content) {
-      this.answer = null;
-      this.vehicles = null;
-      this.message = null;
-      this.modalService.open(content, {
-          size: 'lg',
-          ariaLabelledBy: 'modal-basic-title'
-      }).result.then((result) => {
-          this.closeResult = `Closed with: ${result}`;
-      }, (reason) => {
-          this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    switch(type){
+      case "video":
+        this.api.submitUploadVideo(formData).subscribe((data) => {
+        });
+      default:
+        this.api.submitUploadImage(formData).subscribe((data) => {
+          this.answer = [data];
+          console.log(this.answer);
       });
+    }
+  }
+  fileProgress(fileInput: any) {
+    this.fileData = fileInput.files[0];
+}
+// Modal opening
+  open(content, sizeOfContent) {
+    this.clearVariables();
+
+      this.modalService.open(content, {
+          size: sizeOfContent,
+          ariaLabelledBy: 'modal-basic-title'
+      })
   }
   openSearched(content) {
       this.retrieveMarkedVehicles();
@@ -159,27 +153,14 @@ export class HomeComponent implements OnInit {
       this.modalService.open(content, {
           size: 'lg',
           ariaLabelledBy: 'modal-basic-title'
-      }).result.then((result) => {
-          this.closeResult = `Closed with: ${result}`;
-      }, (reason) => {
-          this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-      });
+      })
   }
   openEdit(vehicle) {
       this.vehicles = [vehicle];
       this.answer = null;
   }
-  private getDismissReason(reason: any): string {
-      if (reason === ModalDismissReasons.ESC) {
-          return 'by pressing ESC';
-      } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-          return 'by clicking on a backdrop';
-      } else {
-          return `with: ${reason}`;
-      }
-  }
+// Edit vehicle values
   editVehicle() {
-      console.log(this.vehicleForm.value);
       this.api.updateVehicle(this.vehicleForm.value).subscribe(data => {
           console.log(data);
           if (data["success"] == true) {
@@ -192,10 +173,10 @@ export class HomeComponent implements OnInit {
           this.vehicles = null;
       });
   }
-
+// Vehicle marking and unmarking
   markVehicle() {
-      this.message = null;
-      this.type = null;
+    this.clearVariables();
+
       this.api.markVehicle(this.MarkAddForm.value.numPlateMarked).subscribe((markData) => {
           if (markData["success"] == true) {
               this.type = true;
@@ -208,9 +189,8 @@ export class HomeComponent implements OnInit {
   }
 
   removeMarkVehicle() {
+    this.clearVariables();
 
-      this.message = null;
-      this.type = null;
       this.api.removeMarked(this.MarkRemoveForm.value.numPlateRemove).subscribe(data => {
 
           if (data["success"] == true) {
@@ -223,6 +203,7 @@ export class HomeComponent implements OnInit {
       });
   }
 
+
   retrieveMarkedVehicles() {
       this.api.getMarkedVehicles().subscribe(data => {
           this.answer = data;
@@ -230,9 +211,7 @@ export class HomeComponent implements OnInit {
   }
   //-----------------------Searches---------------------------------------------- 
   search() {
-      // console.log(this.form.value.numPlate);
-      this.message = null;
-      this.type = null;
+      this.clearVariables();
       this.api.search(this.form.value.numPlate).subscribe((Searchdata) => {
           this.answer = Searchdata;
       });
@@ -240,9 +219,8 @@ export class HomeComponent implements OnInit {
   }
 
   Dsearch() {
+    this.clearVariables();
 
-      this.message = null;
-      this.type = null;
       this.api.Dsearch(this.Dform.value.numplate, this.Dform.value.color, this.Dform.value.make, this.Dform.value.model, this.Dform.value.flag).subscribe((DSearchData) => {
           this.answer = DSearchData;
       });
@@ -251,9 +229,8 @@ export class HomeComponent implements OnInit {
   //-----------------------Filters---------------------------------------------- 
   filter() {
       //filter by flagged
+      this.clearVariables();
 
-      this.message = null;
-      this.type = null;
       if (this.selectedOption == "Flagged") {
           this.api.filterFlagged(this.selectedOption).subscribe((FilterData) => {
               this.answer = FilterData;
@@ -268,5 +245,11 @@ export class HomeComponent implements OnInit {
 
   }
 
+  clearVariables(){
+    this.message = null;
+    this.type = null;
+    this.answer = null;
+    this.vehicles = null;
+  }
 
 }

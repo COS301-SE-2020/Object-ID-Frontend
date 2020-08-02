@@ -44,8 +44,13 @@ export class RegisterComponent implements OnInit {
   submitRegister(){
     this.api.submitRegister(this.form.value.username, this.form.value.email, this.form.value.password, this.form.value.cpassword)
     .subscribe( (data)=>{
-      this.answer=[data];
-      this.router.navigate['home'];
+      if(data['success']==true)
+      {
+        this.router.navigate(['home']);
+      }
+      else{
+        this.answer = [data['payload']];
+      }
     });
 
   }

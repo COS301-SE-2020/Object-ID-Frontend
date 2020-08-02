@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
   public form: FormGroup;
 
   token:any=null;
+  answer:any=null;
 
   constructor(private api:ApiService, private fb:FormBuilder,private router: Router) { 
     this.form = this.fb.group({
@@ -41,6 +42,9 @@ export class LoginComponent implements OnInit {
       this.token=[data];
       this.api.setToken(this.token);
       this.router.navigate(['home']);
+    }, err =>
+    {
+      this.answer = "Login credidentials provided are incorrect";
     });
 
   }
