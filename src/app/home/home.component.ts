@@ -212,10 +212,5 @@ export class HomeComponent implements OnInit {
     
   }
 
-//-----------------------Logout---------------------------------------------- 
-  logout(){
-    this.api.removeToken();
-    this.router.navigate(['']);
-  }
 
 }

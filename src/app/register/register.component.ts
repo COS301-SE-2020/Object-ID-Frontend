@@ -41,6 +41,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
   }
 
+<<<<<<< HEAD
   submitRegister(){
     this.api.submitRegister(this.form.value.username, this.form.value.email, this.form.value.password, this.form.value.cpassword)
     .subscribe( (data)=>{
@@ -50,4 +51,6 @@ export class RegisterComponent implements OnInit {
 
   }
 
+=======
+>>>>>>> upload
 }

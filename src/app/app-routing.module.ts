@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { CanActivateRouteGuard } from './can-activate-route.guard';
 import { RegisterComponent } from './register/register.component';
+import { UploadComponent } from './upload/upload.component';
 
 
 const routes: Routes = [
@@ -14,6 +15,8 @@ const routes: Routes = [
   },
   { path: 'register', 
     component: RegisterComponent,
+  { path: 'upload', 
+    component: UploadComponent,
     canActivate: [CanActivateRouteGuard]  
   }
 ];
