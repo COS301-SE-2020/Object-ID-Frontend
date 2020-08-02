@@ -67,6 +67,23 @@ export class ApiService {
     };
     return this.http.post("http://127.0.0.1:8000/api/v1/vehicle/get_marked_vehicles",{},httpOptions);
   }
+  updateVehicle(vehicle){
+    const httpOptions = {
+      headers: new HttpHeaders({ 
+        'Content-Type': 'application/json',
+        'Authorization': "Token " + this.getToken()
+      })
+    };
+    return this.http.post("http://127.0.0.1:8000/api/v1/vehicle/edit_vehicle",{
+      "vehicle_id":vehicle.vehicle_id,
+      "make":vehicle.make,
+      "model":vehicle.model,
+      "license_plate":vehicle.license_plate,
+      "color":vehicle.color,
+      "license_plate_duplicate":vehicle.license_plate_duplicate,
+      "saps_flagged":vehicle.saps_fagged
+    },httpOptions);
+  }
   //-----------------------Register---------------------------------------------- 
   submitRegister(username, email, password, cpassword){
     const httpOptions = {

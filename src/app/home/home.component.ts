@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit {
   public Fform:FormGroup;  
   public MarkAddForm:FormGroup;
   public MarkRemoveForm:FormGroup;
+  public vehicleForm:FormGroup;
 
   closeResult:any;
    answer:any=null;
@@ -22,11 +23,27 @@ export class HomeComponent implements OnInit {
    selectedOption;
    message=null;
    type:any;
+   vehicles:any;
    filterPlaceholder;
    selectedFilter = [{name: "Flagged"},{ name:"Duplicate"}]
   constructor(private api:ApiService, private fb:FormBuilder,private router:Router,private modalService: NgbModal) { 
     this.form = this.fb.group({
       numPlate:[null, {
+        validators:[
+          Validators.required
+        ]
+      }]
+    });
+    this.vehicleForm = this.fb.group({
+      model:[null, {
+      }]
+      ,make:[null, {
+      }],color:[null, {
+      }],license_plate:[null, {
+      }],saps_flagged:[null, {
+      }],license_plate_duplicate:[null, {
+      }]
+      ,vehicle_id:[null,{
         validators:[
           Validators.required
         ]
@@ -80,6 +97,7 @@ export class HomeComponent implements OnInit {
 
   open(content) {
     this.answer = null;
+    this.vehicles = null;
     this.message = null;
     this.modalService.open(content, { size: 'lg',ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
@@ -96,6 +114,10 @@ export class HomeComponent implements OnInit {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
   }
+  openEdit(vehicle){
+    this.vehicles = [vehicle];
+    this.answer=null;
+  }
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
@@ -104,6 +126,21 @@ export class HomeComponent implements OnInit {
     } else {
       return `with: ${reason}`;
     }
+  }
+  editVehicle(){
+    console.log(this.vehicleForm.value);
+    this.api.updateVehicle(this.vehicleForm.value).subscribe(data=>{
+      console.log(data);
+      if(data["success"] == true){
+        this.type = true;
+       this.message = "Vehicle was successfully updated";
+      }
+      else{
+        this.type = false;
+        this.message ="Error occurred";
+      }
+      this.vehicles = null;
+    });
   }
 
   markVehicle(){

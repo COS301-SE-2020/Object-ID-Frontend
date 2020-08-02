@@ -24,7 +24,7 @@
                <div class="modal-body">
                   <div class="form-inline center">
 
-                  <form class="form-group" (submit)="search()"[formGroup]="form"> 
+                  <form class="form-group" (submit)="search()" [formGroup]="form"> 
                      <input type="text" id="search-field" class="form-control" formControlName="numPlate" placeholder="Enter a keyword" required>
                      <button type="submit" class="search-button" id="search-btn"><i class="fa fa-search"></i></button>
                   </form><br>
@@ -49,20 +49,47 @@
                               <th scope="col">Model</th>
                               <th scope="col">SAPS Flagged</th>
                               <th scope="col">Duplicate</th>
-                              <!-- <th scope="col">Custom Flagged</th> -->
+                              <th scope="col"></th>
                            </tr>
                         </thead>
                         <tbody>
                            <tr id="box0" class="box" *ngFor='let i of answer.payload'>
-                              <td class="numPlate" >{{i.license_plate}}</td>
+                              <td class="numPlate">{{i.license_plate}}</td>
                               <td class="color">{{i.color}}</td>
                               <td class="make">{{i.make}}</td>
                               <td class="model">{{i.model}}</td>
                               <td class="flag">{{i.saps_flagged}}</td>
                               <td class="duplicate">{{i.license_plate_duplicate}}</td>
+                              <td class="edit"><button class="btn btn-primary" (click)="openEdit(i)">Edit</button></td>
                            </tr>
                         </tbody>
                      </table>
+                     <div *ngIf="vehicles != null">
+                        <form class="form-group" *ngFor="let vehicle of vehicles"  (submit)="editVehicle()" [formGroup]="vehicleForm"> 
+                           <div class="row center">
+                             <div class="form-inline center">
+                              <input type="hidden" id="search-field" class="form-control" formControlName="vehicle_id" [(ngModel)]='vehicle.id'>
+                                 <input type="text" id="search-field" class="form-control" formControlName="make" [(ngModel)]='vehicle.make'>
+                                 <input type="text" id="search-field" class="form-control" formControlName="color" [(ngModel)]='vehicle.color'>
+                                 <input type="text" id="search-field" class="form-control" formControlName="model" [(ngModel)]='vehicle.model'>
+                             </div>
+                             <div class="row center">
+                                 <div class="form-inline center">
+                                 <input type="text" id="search-field" class="form-control" formControlName="license_plate" [(ngModel)]='vehicle.license_plate'>
+                                 <input type="text" id="search-field" class="form-control" formControlName="saps_flagged" [(ngModel)]='vehicle.saps_flagged'>
+                                 <input type="text" id="search-field" class="form-control" formControlName="license_plate_duplicate" [(ngModel)]='vehicle.license_plate_duplicate'>                              
+                             </div>  </div>   
+                             <button type="submit" class="Dsearch-button" id="search-btn"><i class="fa fa-search"></i></button>  
+                           </div>
+                       </form>
+                       
+                     </div>
+                     <div *ngIf="message != null && type==true" class="alert alert-success" role="alert">
+                        <p>{{message}}</p>
+                     </div>
+                     <div *ngIf="message != null && type==false" class="alert alert-danger" role="alert">
+                        <p>{{message}}</p>
+                     </div>
                   </div>
                </div>
                <div class="modal-footer">
@@ -80,7 +107,7 @@
                <div class="modal-body">
                   <form class="form-group"  (submit)="Dsearch()" [formGroup]="Dform"> 
                       <div class="row center">
-                        <div class="form-inline">
+                        <div class="form-inline center">
                             <input type="text" id="search-field" class="form-control" formControlName="numplate" placeholder="License">
                             <input type="text" id="search-field" class="form-control" formControlName="color" placeholder="Color" >
                             <input type="text" id="search-field" class="form-control" formControlName="make" placeholder="Make">
@@ -222,13 +249,22 @@
             </div>
               </div>
               <div class="card" style="width: 18rem;">
+               <img src="../../assets/carThree.jpeg"
+                 class="card-img-top" alt="">
+                 <div class="card-body">
+               <p><strong>Detailed search</strong></p>
+               <p>Do a detailed search with different parameters based on a list of keywords</p>
+             <button class="btn btn-primary" (click)="open(contentTwo)">Detailed Search</button>
+             </div>
+           </div>
+              <div class="card" style="width: 18rem;">
                 <img src="../../assets/carone.jpeg"
                   class="card-img-top" alt="">
           <div class="card-body">
                 <p><strong>Marked Vehicles</strong></p>
                 <p>Flag/Unflag a suspicious vehicle using the vehicle's license plate. Or return a list of vehicles that have been marked</p>
-              <button class="btn btn-primary" (click)="open(contentThree)">Mark Vehicle</button>
-              <button class="btn btn-primary" (click)="open(contentFour)">Remove Marked Vehicle</button>
+              <button class="btn btn-primary" (click)="open(contentThree)">Mark Vehicle</button><br>
+              <button class="btn btn-primary" (click)="open(contentFour)">Remove Marked Vehicle</button><br>
               <button class="btn btn-primary" (click)="openSearched(contentFive)">View Marked Vehicles</button>
             </div>
             </div>
@@ -243,16 +279,6 @@
           </div>
             </div>
         
-
-          <div class="card" style="width: 18rem;">
-              <img src="../../assets/carThree.jpeg"
-                class="card-img-top" alt="">
-                <div class="card-body">
-              <p><strong>Detailed search</strong></p>
-              <p>Do a detailed search with different parameters based on a list of keywords</p>
-            <button class="btn btn-primary" (click)="open(contentTwo)">Detailed Search</button>
-            </div>
-          </div>
       </div>
         </div>
    </body>
