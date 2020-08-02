@@ -36,7 +36,37 @@ export class ApiService {
     }
     return true;
   }
-
+  markVehicle(numPlate){
+    const httpOptions = {
+      headers: new HttpHeaders({ 
+        'Content-Type': 'application/json',
+        'Authorization': "Token " + this.getToken()
+      })
+    };
+    return this.http.post("http://127.0.0.1:8000/api/v1/vehicle/add_marked_vehicle/",{
+      'license_plate': numPlate
+    }, httpOptions);
+  }
+  removeMarked(numPlate){
+    const httpOptions = {
+      headers: new HttpHeaders({ 
+        'Content-Type': 'application/json',
+        'Authorization': "Token " + this.getToken()
+      })
+    };
+    return this.http.post("http://127.0.0.1:8000/api/v1/vehicle/remove_marked_vehicle/",{
+      'license_plate': numPlate
+    }, httpOptions);
+  }
+  getMarkedVehicles(){
+    const httpOptions = {
+      headers: new HttpHeaders({ 
+        'Content-Type': 'application/json',
+        'Authorization': "Token " + this.getToken()
+      })
+    };
+    return this.http.post("http://127.0.0.1:8000/api/v1/vehicle/get_marked_vehicles",{},httpOptions);
+  }
   //-----------------------Register---------------------------------------------- 
   submitRegister(username, email, password, cpassword){
     const httpOptions = {

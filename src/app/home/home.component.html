@@ -16,7 +16,7 @@
             <img class="mx-auto d-block" src="../../assets/logo.png"/>
             <ng-template #content let-modal>
                <div class="modal-header">
-                  <h4 class="modal-title" id="modal-basic-title">Basic Search</h4>
+                  <h4 class="modal-title" id="modal-basic-title">Quick Search</h4>
                   <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
                   <span aria-hidden="true">&times;</span>
                   </button>
@@ -49,6 +49,7 @@
                               <th scope="col">Model</th>
                               <th scope="col">SAPS Flagged</th>
                               <th scope="col">Duplicate</th>
+                              <!-- <th scope="col">Custom Flagged</th> -->
                            </tr>
                         </thead>
                         <tbody>
@@ -104,6 +105,7 @@
                               <th scope="col">Model</th>
                               <th scope="col">SAPS Flagged</th>
                               <th scope="col">Duplicate</th>
+                              <!-- <th scope="col">Custom Flagged</th> -->
                            </tr>
                         </thead>
                         <tbody>
@@ -114,10 +116,93 @@
                               <td class="model">{{i.model}}</td>
                               <td class="flag">{{i.saps_flagged}}</td>
                               <td class="duplicate">{{i.license_plate_duplicate}}</td>
+                              <!-- <td class="customFlag">{{i.</td> -->
                            </tr>
                         </tbody>
                      </table>
                   </div>
+               </div>
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Close</button>
+               </div>
+            </ng-template>
+            <ng-template #contentThree let-modal>
+               <div class="modal-header">
+                  <h4 class="modal-title" id="modal-basic-title">Mark Vehicle</h4>
+                  <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                  <span aria-hidden="true">&times;</span>
+                  </button>
+               </div>
+               <div class="modal-body">
+                  <div class="form-inline center">
+
+                  <form class="form-group" (submit)="markVehicle()"[formGroup]="MarkAddForm"> 
+                     <input type="text" id="search-field" class="form-control" formControlName="numPlateMarked" placeholder="Enter the license plate number" required>
+                     <button type="submit" class="btn btn-primary" >Mark</button>
+                  </form><br>                
+                </div>
+                <div *ngIf="message != null && type==true" class="alert alert-success" role="alert">
+                  <p>{{message}}</p>
+               </div>
+               <div *ngIf="message != null && type==false" class="alert alert-danger" role="alert">
+                  <p>{{message}}</p>
+               </div>
+               </div>
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Close</button>
+               </div>
+            </ng-template>
+            <ng-template #contentFour let-modal>
+               <div class="modal-header">
+                  <h4 class="modal-title" id="modal-basic-title">Remove Marked Vehicle</h4>
+                  <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                  <span aria-hidden="true">&times;</span>
+                  </button>
+               </div>
+               <div class="modal-body">
+                  <div class="form-inline center">
+
+                  <form class="form-group" (submit)="removeMarkVehicle()"[formGroup]="MarkRemoveForm"> 
+                     <input type="text" id="search-field" class="form-control" formControlName="numPlateRemove" placeholder="Enter the license plate number" required>
+                     <button type="submit" class="btn btn-primary">Mark</button>
+                  </form><br>
+                </div>
+                <div *ngIf="message != null && type==true" class="alert alert-success" role="alert">
+                  <p>{{message}}</p>
+               </div>
+               <div *ngIf="message != null && type==false" class="alert alert-danger" role="alert">
+                  <p>{{message}}</p>
+               </div>
+               </div>
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Close</button>
+               </div>
+            </ng-template>
+            <ng-template #contentFive let-modal>
+               <div class="modal-header">
+                  <h4 class="modal-title" id="modal-basic-title">Marked Vehicles</h4>
+                  <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                  <span aria-hidden="true">&times;</span>
+                  </button>
+               </div>
+               <div class="modal-body">
+                  <div class="form-inline center">
+                     <table  class="table table-striped" *ngIf='answer != null'>
+                        <thead>
+                           <tr>
+                              <th scope="col">License Plate</th>
+                              <th scope="col">Marked By</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr id="box0" class="box" *ngFor='let i of answer.payload'>
+                              <td class="numPlate" >{{i.license_plate}}</td>
+                              <td class="color">{{i.marked_by}}</td>
+                              </tr>
+                        </tbody>
+                     </table>
+                  
+                </div>
                </div>
                <div class="modal-footer">
                   <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Close</button>
@@ -132,7 +217,7 @@
             <div class="card-body">
                   <p><strong>Search</strong></p>
                   <p>Do a generic search. Enter a keyword and get results based on that keyword</p>
-                <button class="btn btn-primary" (click)="open(content)">Basic Search</button>
+                <button class="btn btn-primary" (click)="open(content)">Quick Search</button>
 
             </div>
               </div>
@@ -140,11 +225,12 @@
                 <img src="../../assets/carone.jpeg"
                   class="card-img-top" alt="">
           <div class="card-body">
-                <p><strong>Search</strong></p>
-                <p>Do a generic search. Enter a keyword and get results based on that keyword</p>
-              <button class="btn btn-primary" (click)="open(content)">Basic Search</button>
-
-          </div>
+                <p><strong>Marked Vehicles</strong></p>
+                <p>Flag/Unflag a suspicious vehicle using the vehicle's license plate. Or return a list of vehicles that have been marked</p>
+              <button class="btn btn-primary" (click)="open(contentThree)">Mark Vehicle</button>
+              <button class="btn btn-primary" (click)="open(contentFour)">Remove Marked Vehicle</button>
+              <button class="btn btn-primary" (click)="openSearched(contentFive)">View Marked Vehicles</button>
+            </div>
             </div>
             <div class="card" style="width: 18rem;">
                 <img src="../../assets/carone.jpeg"

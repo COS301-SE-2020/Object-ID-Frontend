@@ -13,16 +13,34 @@ export class HomeComponent implements OnInit {
   public form: FormGroup;
   public Dform: FormGroup;
   public Fform:FormGroup;  
+  public MarkAddForm:FormGroup;
+  public MarkRemoveForm:FormGroup;
 
   closeResult:any;
    answer:any=null;
    temporary:any=[];
    selectedOption;
+   message=null;
+   type:any;
    filterPlaceholder;
    selectedFilter = [{name: "Flagged"},{ name:"Duplicate"}]
   constructor(private api:ApiService, private fb:FormBuilder,private router:Router,private modalService: NgbModal) { 
     this.form = this.fb.group({
       numPlate:[null, {
+        validators:[
+          Validators.required
+        ]
+      }]
+    });
+    this.MarkRemoveForm = this.fb.group({
+      numPlateRemove:[null, {
+        validators:[
+          Validators.required
+        ]
+      }]
+    });
+    this.MarkAddForm = this.fb.group({
+      numPlateMarked:[null, {
         validators:[
           Validators.required
         ]
@@ -62,6 +80,16 @@ export class HomeComponent implements OnInit {
 
   open(content) {
     this.answer = null;
+    this.message = null;
+    this.modalService.open(content, { size: 'lg',ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+  openSearched(content) {
+    this.retrieveMarkedVehicles();
+    this.message=null;
     this.modalService.open(content, { size: 'lg',ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
@@ -77,6 +105,44 @@ export class HomeComponent implements OnInit {
       return `with: ${reason}`;
     }
   }
+
+  markVehicle(){
+    this.message=null;
+    this.type=null;
+    this.api.markVehicle(this.MarkAddForm.value.numPlateMarked).subscribe((markData)=>{
+      if(markData["success"] == true){
+        this.type = true;
+       this.message = "Vehicle was successfully marked";
+      }
+      else{
+        this.type = false;
+        this.message ="Error occurred";
+      }
+    });
+  }
+
+  removeMarkVehicle(){
+
+    this.message=null;
+    this.type=null;
+    this.api.removeMarked(this.MarkRemoveForm.value.numPlateRemove).subscribe(data =>{
+
+      if(data["success"] == true){
+        this.type = true;
+       this.message = "Vehicle was successfully removed";
+      }
+      else{
+        this.type = false;
+        this.message ="Error occurred";
+      }
+    });
+  }
+
+  retrieveMarkedVehicles(){
+    this.api.getMarkedVehicles().subscribe(data=> {
+      this.answer = data;
+    });
+  }
   //-----------------------Searches---------------------------------------------- 
   search(){
     // console.log(this.form.value.numPlate);
@@ -87,7 +153,6 @@ export class HomeComponent implements OnInit {
   }
 
   Dsearch(){
-    console.log(this.Dform.value.numplate, this.Dform.value.color, this.Dform.value.make, this.Dform.value.model, this.Dform.value.flag);
     this.api.Dsearch(this.Dform.value.numplate, this.Dform.value.color, this.Dform.value.make, this.Dform.value.model, this.Dform.value.flag).subscribe((DSearchData)=>{
       this.answer=DSearchData;
     });
@@ -95,7 +160,6 @@ export class HomeComponent implements OnInit {
 
   //-----------------------Filters---------------------------------------------- 
   filter(){
-    console.log(this.selectedOption);
     //filter by flagged
     if(this.selectedOption == "Flagged"){
       this.api.filterFlagged(this.selectedOption).subscribe((FilterData)=>{
