@@ -234,6 +234,48 @@
                   <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Close</button>
                </div>
             </ng-template>
+            <ng-template #contentSeven let-modal>
+               <div class="modal-header">
+                  <h4 class="modal-title" id="modal-basic-title">Upload Video</h4>
+                  <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                  <span aria-hidden="true">&times;</span>
+                  </button>
+               </div>
+               <div class="modal-body">
+                  <form class="form-group" [formGroup]="formUpload" (ngSubmit)="submitUploadVideo()">
+                     <div class="form-group">
+                         <input type="file" #uploadFile class="form-control" formControlName="uploadFile" name="uploadFile" (change)="fileProgress(uploadFile)"  />
+                     </div>
+                     <div class="form-group">
+                         <button class="btn btn-primary">Submit</button>
+                     </div>
+                 </form>
+               </div>
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Close</button>
+               </div>
+            </ng-template>
+            <ng-template #contentSix let-modal>
+               <div class="modal-header">
+                  <h4 class="modal-title" id="modal-basic-title">Upload Image</h4>
+                  <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                  <span aria-hidden="true">&times;</span>
+                  </button>
+               </div>
+               <div class="modal-body">
+                  <form class="form-group" [formGroup]="formUpload" (ngSubmit)="submitUploadImage()">
+                     <div class="form-group">
+                         <input type="file" #uploadFile class="form-control" formControlName="uploadFile" name="uploadFile" (change)="fileProgress(uploadFile)"  />
+                     </div>
+                     <div class="form-group">
+                         <button class="btn btn-primary">Submit</button>
+                     </div>
+                 </form>
+               </div>
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Close</button>
+               </div>
+            </ng-template>
          </div>
          <!-- The stuff -->
          <div class="center d-flex">
@@ -271,9 +313,11 @@
                 <img src="../../assets/carone.jpeg"
                   class="card-img-top" alt="">
           <div class="card-body">
-                <p><strong>Search</strong></p>
-                <p>Do a generic search. Enter a keyword and get results based on that keyword</p>
-              <button class="btn btn-primary" (click)="open(content)">Basic Search</button>
+                <p><strong>Upload</strong></p>
+                <p>Upload an image and retrieve the license plate or a video and detects cars </p>
+              <button class="btn btn-primary" (click)="open(contentSix)">Upload Image</button>
+              <button class="btn btn-primary" (click)="open(contentSeven)">Upload Video</button>
+
 
           </div>
             </div>

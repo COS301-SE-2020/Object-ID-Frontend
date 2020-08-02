@@ -50,10 +50,10 @@ export class UploadComponent implements OnInit {
     //this.fileData = <File>(this.form.value.uploadFile).target.files[0];
     const formData = new FormData();
     formData.append('file', this.fileData);
-    this.api.submitUpload(formData).subscribe((data)=>{
-      this.answer=data;
-      console.log(this.answer);
-    });
+    // this.api.submitUpload(formData).subscribe((data)=>{
+    //   this.answer=data;
+    //   console.log(this.answer);
+    // });
   }
 
 }
