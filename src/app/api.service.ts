@@ -5,10 +5,7 @@ import {
   HttpClient,
   HttpHeaders,
   HttpClientModule
-} from '@angular/common/http';
-
-//add token to header
-
+} from '@angular/common/http'
 
 @Injectable({
   providedIn: 'root'
@@ -42,19 +39,25 @@ export class ApiService {
       }
       return true;
   }
+
+//-----------------------Mark---------------------------------------------- 
   markVehicle(numPlate) {
       return this.http.post("http://127.0.0.1:8000/api/v1/vehicle/add_marked_vehicle/", {
           'license_plate': numPlate
       }, this.getHeaders());
   }
+
   removeMarked(numPlate) {
       return this.http.post("http://127.0.0.1:8000/api/v1/vehicle/remove_marked_vehicle/", {
           'license_plate': numPlate
       }, this.getHeaders());
   }
+
   getMarkedVehicles() {
       return this.http.post("http://127.0.0.1:8000/api/v1/vehicle/get_marked_vehicles", {}, this.getHeaders());
   }
+
+ //-----------------------Update---------------------------------------------- 
   updateVehicle(vehicle) {
       return this.http.post("http://127.0.0.1:8000/api/v1/vehicle/edit_vehicle", {
           "vehicle_id": vehicle.vehicle_id,
@@ -66,9 +69,9 @@ export class ApiService {
           "saps_flagged": vehicle.saps_fagged
       }, this.getHeaders());
   }
+
   //-----------------------Register---------------------------------------------- 
   submitRegister(username, email, password, cpassword) {
-
       return this.http.post("http://127.0.0.1:8000/api/v1/user/register_user/", {
           "username": username,
           "email": email,
@@ -79,17 +82,12 @@ export class ApiService {
 
   //-----------------------Searches---------------------------------------------- 
   search(numberPlate) {
-
-
       return this.http.post("http://127.0.0.1:8000/api/v1/vehicle/search/", {
           "search": numberPlate
       }, this.getHeaders());
   }
 
-
   Dsearch(numberplate, color, make, model, flag) {
-
-
       return this.http.post("http://127.0.0.1:8000/api/v1/vehicle/search_advanced/", {
           "type": "and",
           "filters": {
@@ -103,38 +101,28 @@ export class ApiService {
   }
 
   //-----------------------Filters---------------------------------------------- 
-
   filterFlagged(filter) {
-
-
       return this.http.get("http://127.0.0.1:8000/api/v1/vehicle/get_saps_flagged/",
           this.getHeaders());
-
   }
 
   filterDuplicate(filter) {
-
       return this.http.get("http://127.0.0.1:8000/api/v1/vehicle/get_duplicates/",
           this.getHeaders());
-
   }
 
+//-----------------------Upload---------------------------------------------- 
   submitUploadImage(FormData) {
-
-
-      return this.http.post("http://127.0.0.1:8000/api/v1/vehicle/file_recognize", FormData,
+      return this.http.post("http://127.0.0.1:8000/api/v1/vehicle/file_recognize/", FormData,
           this.getHeaders());
-
-
   }
+
   submitUploadVideo(FormData) {
-
-
-      return this.http.post("http://127.0.0.1:8000/api/v1/vehicle/detect", FormData,
+      return this.http.post("http://127.0.0.1:8000/api/v1/vehicle/detect/", FormData,
           this.getHeaders());
-
   }
 
+//-----------------------Header---------------------------------------------- 
   getHeaders() {
       return {
           headers: new HttpHeaders({

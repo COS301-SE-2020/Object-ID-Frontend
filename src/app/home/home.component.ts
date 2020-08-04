@@ -24,7 +24,7 @@ import {
 })
 export class HomeComponent implements OnInit {
 
-  // Variables
+  //-----------------------Variables---------------------------------------------- 
   public form: FormGroup;
   public Dform: FormGroup;
   public Fform: FormGroup;
@@ -40,6 +40,7 @@ export class HomeComponent implements OnInit {
   type: any;
   vehicles: any;
   filterPlaceholder;
+  imgURL:any;
   selectedFilter = [{
       name: "Flagged"
   }, {
@@ -120,7 +121,7 @@ export class HomeComponent implements OnInit {
 
   }
 
-// Image or video uploading
+  //-----------------------Upload---------------------------------------------- 
   submitUpload(type) {
     const formData = new FormData();
     formData.append('file', this.fileData);
@@ -137,8 +138,16 @@ export class HomeComponent implements OnInit {
   }
   fileProgress(fileInput: any) {
     this.fileData = fileInput.files[0];
+    var reader = new FileReader();
+    reader.readAsDataURL(this.fileData);
+    reader.onload = (_event) => {
+        this.imgURL = reader.result;
+    }
+
+
 }
-// Modal opening
+
+ //-----------------------Modal opening---------------------------------------------- 
   open(content, sizeOfContent) {
     this.clearVariables();
 
@@ -159,7 +168,8 @@ export class HomeComponent implements OnInit {
       this.vehicles = [vehicle];
       this.answer = null;
   }
-// Edit vehicle values
+
+  //-----------------------Edit---------------------------------------------- 
   editVehicle() {
       this.api.updateVehicle(this.vehicleForm.value).subscribe(data => {
           console.log(data);
@@ -173,7 +183,8 @@ export class HomeComponent implements OnInit {
           this.vehicles = null;
       });
   }
-// Vehicle marking and unmarking
+
+  //-----------------------Mark---------------------------------------------- 
   markVehicle() {
     this.clearVariables();
 
@@ -209,13 +220,13 @@ export class HomeComponent implements OnInit {
           this.answer = data;
       });
   }
+
   //-----------------------Searches---------------------------------------------- 
   search() {
       this.clearVariables();
       this.api.search(this.form.value.numPlate).subscribe((Searchdata) => {
           this.answer = Searchdata;
       });
-
   }
 
   Dsearch() {

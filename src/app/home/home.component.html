@@ -152,6 +152,7 @@
                   <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Close</button>
                </div>
             </ng-template>
+             <!-- Mark -->
             <ng-template #contentThree let-modal>
                <div class="modal-header">
                   <h4 class="modal-title" id="modal-basic-title">Mark Vehicle</h4>
@@ -178,6 +179,7 @@
                   <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Close</button>
                </div>
             </ng-template>
+             <!-- Remove mark -->
             <ng-template #contentFour let-modal>
                <div class="modal-header">
                   <h4 class="modal-title" id="modal-basic-title">Remove Marked Vehicle</h4>
@@ -190,7 +192,7 @@
 
                   <form class="form-group" (submit)="removeMarkVehicle()"[formGroup]="MarkRemoveForm"> 
                      <input type="text" id="search-field" class="form-control" formControlName="numPlateRemove" placeholder="Enter the license plate number" required>
-                     <button type="submit" class="btn btn-primary">Mark</button>
+                     <button type="submit" class="btn btn-primary">Unmark</button>
                   </form><br>
                 </div>
                 <div *ngIf="message != null && type==true" class="alert alert-success" role="alert">
@@ -204,6 +206,7 @@
                   <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Close</button>
                </div>
             </ng-template>
+             <!-- View marked -->
             <ng-template #contentFive let-modal>
                <div class="modal-header">
                   <h4 class="modal-title" id="modal-basic-title">Marked Vehicles</h4>
@@ -234,6 +237,7 @@
                   <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Close</button>
                </div>
             </ng-template>
+               <!-- Upload video -->
             <ng-template #contentSeven let-modal>
                <div class="modal-header">
                   <h4 class="modal-title" id="modal-basic-title">Upload Video</h4>
@@ -255,6 +259,22 @@
                   <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Close</button>
                </div>
             </ng-template>
+               <!-- Upload -->
+            <ng-template #contentEight let-modal>
+                <div class="modal-header">
+                   <h4 class="modal-title" id="modal-basic-title">Upload</h4>
+                   <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                   <span aria-hidden="true">&times;</span>
+                   </button>
+                </div>
+                <button id="up1" class="btn btn-primary" (click)="open(contentSix,'sm')">Upload Image</button>
+                <button id="up" class="btn btn-primary" (click)="open(contentSeven,'sm')">Upload Video</button>
+                
+                <div class="modal-footer">
+                   <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Close</button>
+                </div>
+             </ng-template>
+                <!-- Upload image -->
             <ng-template #contentSix let-modal>
                <div class="modal-header">
                   <h4 class="modal-title" id="modal-basic-title">Upload Image</h4>
@@ -284,17 +304,39 @@
                            <tr id="box0" class="box" *ngFor='let i of answer'>
                               <td class="numPlate" >{{i.payload.license_plate}}</td>
                               </tr>
+                              <tr id="box0" class="box" *ngFor='let i of answer'>
+                                <td class="image" >
+                                    <img [src] = "imgURL" height="150" *ngIf="imgURL">
+                                </td>
+                                </tr>
                         </tbody>
                      </table>
-                  
+
                 </div>
                </div>
                <div class="modal-footer">
                   <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Close</button>
                </div>
             </ng-template>
+               <!-- Mark -->
+               <ng-template #contentNine let-modal>
+                <div class="modal-header">
+                   <h4 class="modal-title" id="modal-basic-title">Mark/Unmark Vehicles</h4>
+                   <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                   <span aria-hidden="true">&times;</span>
+                   </button>
+                </div>
+                <button id="mark" class="btn btn-primary" (click)="open(contentThree,'lg')">Mark Vehicle</button><br>
+              <button id="mark1" class="btn btn-primary" (click)="open(contentFour,'lg')">Remove Marked Vehicle</button><br>
+              <button id="mark2" class="btn btn-primary" (click)="openSearched(contentFive)">View Marked Vehicles</button>
+                
+                <div class="modal-footer">
+                   <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Close</button>
+                </div>
+             </ng-template>
          </div>
-         <!-- The stuff -->
+
+         <!-- The Function containers -->
          <div class="center d-flex">
         <div class="card" style="width: 18rem;">
                   <img src="../../assets/search.png"
@@ -320,10 +362,8 @@
                   class="card-img-top" alt="">
           <div class="card-body">
                 <p><strong>Marked Vehicles</strong></p>
-                <p>Flag/Unflag a suspicious vehicle using the vehicle's license plate. Or return a list of vehicles that have been marked</p>
-              <button class="btn btn-primary" (click)="open(contentThree,'lg')">Mark Vehicle</button><br>
-              <button class="btn btn-primary" (click)="open(contentFour,'lg')">Remove Marked Vehicle</button><br>
-              <button class="btn btn-primary" (click)="openSearched(contentFive)">View Marked Vehicles</button>
+                <p>Flag/Unflag a suspicious vehicle using the vehicle's license plate or see all marked vehicles</p>
+              <button class="btn btn-primary" (click)="open(contentNine,'lg')">Mark/Unmark Vehicles</button><br>
             </div>
             </div>
             <div class="card" style="width: 18rem;">
@@ -332,13 +372,9 @@
           <div class="card-body">
                 <p><strong>Upload</strong></p>
                 <p>Upload an image and retrieve the license plate or a video and detects cars </p>
-              <button class="btn btn-primary" (click)="open(contentSix,'sm')">Upload Image</button>
-              <button class="btn btn-primary" (click)="open(contentSeven,'sm')">Upload Video</button>
-
-
+              <button class="btn btn-primary" (click)="open(contentEight,'lg')">Upload</button>
           </div>
             </div>
-        
       </div>
         </div>
 </body>

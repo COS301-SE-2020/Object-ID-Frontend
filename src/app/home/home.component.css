@@ -64,6 +64,23 @@ input{
     margin-bottom: 5px;
 }
 
-.alert {
-
+#up{
+    max-width: 250px;
+    margin-left: 240px;
+}
+#up1{
+    max-width: 250px;
+    margin-left: 240px;
+}
+#mark{
+    max-width: 250px;
+    margin-left: 240px;
+}
+#mark1{
+    max-width: 250px;
+    margin-left: 240px;
+}
+#mark2{
+    max-width: 250px;
+    margin-left: 240px;
 }
