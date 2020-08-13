@@ -1,4 +1,14 @@
 <app-top-menu></app-top-menu>
+<google-map>
+   <!-- <map-marker
+     *ngFor="let marker of markers"
+     [position]="marker.position"
+     [label]="marker.label"
+     [title]="marker.title"
+     [options]="marker.options"
+   >
+   </map-marker> -->
+ </google-map>
 <!DOCTYPE html>
 <html lang="en">
    <head>
@@ -8,6 +18,11 @@
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
       <!-- Bootstrap -->
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
+       <!-- Google Maps API -->
+      <script defer
+         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2DVYqE_ArNIMpKPr1MU16wKB8mJjhseg">
+      </script>
+
    </head>
    <body>
       <div class="container">
@@ -334,6 +349,22 @@
                    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Close</button>
                 </div>
              </ng-template>
+              <!-- Map -->
+              <ng-template #contentTen let-modal>
+               <div class="modal-header">
+                  <h4 class="modal-title" id="modal-basic-title">Map View</h4>
+                  <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                  <span aria-hidden="true">&times;</span>
+                  </button>
+               </div>
+               <!-- <button id="mark" class="btn btn-primary" (click)="open(contentThree,'lg')">Mark Vehicle</button><br>
+             <button id="mark1" class="btn btn-primary" (click)="open(contentFour,'lg')">Remove Marked Vehicle</button><br>
+             <button id="mark2" class="btn btn-primary" (click)="openSearched(contentFive)">View Marked Vehicles</button> -->
+         
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Close</button>
+               </div>
+            </ng-template>
          </div>
 
          <!-- The Function containers -->
@@ -374,9 +405,19 @@
                 <p>Upload an image and retrieve the license plate or a video and detects cars </p>
               <button class="btn btn-primary" (click)="open(contentEight,'lg')">Upload</button>
           </div>
+         </div>
+          <div class="card" style="width: 18rem;">
+            <img src="../../assets/detailed.png"
+              class="card-img-top" alt="">
+              <div class="card-body">
+            <p><strong>Map View</strong></p>
+            <p>See pins on a map of where a vehicle has travelled by entering the license plate</p>
+          <button class="btn btn-primary" (click)="open(contentTen,'lg')">Map View</button>
+          </div>
             </div>
       </div>
         </div>
+      
 </body>
 </html>
 

@@ -1,6 +1,7 @@
+/// <reference types="@types/googlemaps" />
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { GoogleMapsModule } from '@angular/google-maps';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -29,6 +30,7 @@ import { UploadComponent } from './upload/upload.component';
     ReactiveFormsModule,
     FormsModule,
     NgbModule,
+    GoogleMapsModule,
   ],
   providers: [
     CanActivateRouteGuard],
