@@ -164,6 +164,7 @@ export class HomeComponent implements OnInit {
       });
     }
   }
+
   fileProgress(fileInput: any) {
     this.fileData = fileInput.files[0];
     var reader = new FileReader();
@@ -171,9 +172,7 @@ export class HomeComponent implements OnInit {
     reader.onload = (_event) => {
         this.imgURL = reader.result;
     }
-
-
-}
+    }
 
  //-----------------------Modal opening---------------------------------------------- 
   open(content, sizeOfContent) {
@@ -242,7 +241,6 @@ export class HomeComponent implements OnInit {
       });
   }
 
-
   retrieveMarkedVehicles() {
       this.api.getMarkedVehicles().subscribe(data => {
           this.answer = data;
@@ -281,7 +279,6 @@ export class HomeComponent implements OnInit {
               this.answer = FilterData;
           });
       }
-
   }
 
   clearVariables(){
