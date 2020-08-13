@@ -6,6 +6,10 @@ import Icon from 'ol/style/Icon';
 import OSM from 'ol/source/OSM';
 import * as olProj from 'ol/proj';
 import TileLayer from 'ol/layer/Tile';
+import {
+    Control, 
+    defaults as defaultControls
+} from 'ol/control';
 
 import {
   Component,
