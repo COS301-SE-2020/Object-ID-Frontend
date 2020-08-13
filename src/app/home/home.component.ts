@@ -45,7 +45,6 @@ export class HomeComponent implements OnInit {
   public vehicleForm: FormGroup;
   public formUpload: FormGroup;
 
-  map:any;
   answer: any = null;
   fileData: File = null;
   selectedOption;
