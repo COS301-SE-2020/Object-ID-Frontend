@@ -1,11 +1,13 @@
 import Map from 'ol/Map';
 import View from 'ol/View';
+import Feature from 'ol/Feature';
 import VectorLayer from 'ol/layer/Vector';
 import Style from 'ol/style/Style';
 import Icon from 'ol/style/Icon';
 import OSM from 'ol/source/OSM';
 import * as olProj from 'ol/proj';
 import TileLayer from 'ol/layer/Tile';
+import Point from 'ol/geom/Point'
 import {
     Control, 
     defaults as defaultControls
@@ -30,6 +32,7 @@ import {
   NgbModal,
   ModalDismissReasons
 } from '@ng-bootstrap/ng-bootstrap';
+import { features } from 'process';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -49,6 +52,8 @@ export class HomeComponent implements OnInit {
   public vehicleForm: FormGroup;
   public formUpload: FormGroup;
 
+  marker1:any;
+  fromLonLat:any;
   answer: any = null;
   fileData: File = null;
   selectedOption;
@@ -138,6 +143,11 @@ export class HomeComponent implements OnInit {
 
  //-----------------------Map---------------------------------------------- 
   map(){
+
+    // this.marker1 = new Feature({
+    //     geometry: new Point(this.fromLonLat([7.0785, 51.4614]))
+    // });
+
     this.map = new Map({
         target: 'map',
         layers: [
