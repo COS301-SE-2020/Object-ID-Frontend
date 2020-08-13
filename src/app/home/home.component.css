@@ -13,6 +13,7 @@
     outline: 0;
     float: left;
 }
+
 #map {
     height: 350px;
     width: 90%;
@@ -25,22 +26,25 @@
     padding-bottom: 5px;
 }
 
-   .dropdown {
-    border-radius: 25px;
-    border: 0;
-    max-height: 50px;
-    max-width:100px;
-    min-width:100px;
-    outline: 0;
-    margin-left:5px;
-  }
+.dropdown {
+border-radius: 25px;
+border: 0;
+max-height: 50px;
+max-width:100px;
+min-width:100px;
+outline: 0;
+margin-left:5px;
+}
+
 input{
     margin-right:10px;
     margin-bottom:5px;
 }
+
 .form-group{
     text-align: center;
 }
+
 .search-button {
     background-color: #2d476e;
     border-radius: 25px;
@@ -50,17 +54,21 @@ input{
     height: 35px;
     outline: 0;
 }
+
 .card {
     margin:10px;
 }
+
 .box_Container {
     margin-left:auto; 
     margin-right:auto;
 }
+
 .card-img-top {
     height: 10rem;
     object-fit: contain;
 }
+
 .center{
     justify-content: center;
 }
@@ -73,18 +81,22 @@ input{
     max-width: 250px;
     margin-left: 240px;
 }
+
 #up1{
     max-width: 250px;
     margin-left: 240px;
 }
+
 #mark{
     max-width: 250px;
     margin-left: 240px;
 }
+
 #mark1{
     max-width: 250px;
     margin-left: 240px;
 }
+
 #mark2{
     max-width: 250px;
     margin-left: 240px;
