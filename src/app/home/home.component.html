@@ -1,14 +1,4 @@
 <app-top-menu></app-top-menu>
-<google-map>
-   <!-- <map-marker
-     *ngFor="let marker of markers"
-     [position]="marker.position"
-     [label]="marker.label"
-     [title]="marker.title"
-     [options]="marker.options"
-   >
-   </map-marker> -->
- </google-map>
 <!DOCTYPE html>
 <html lang="en">
    <head>
@@ -18,10 +8,7 @@
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
       <!-- Bootstrap -->
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
-       <!-- Google Maps API -->
-      <script defer
-         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2DVYqE_ArNIMpKPr1MU16wKB8mJjhseg">
-      </script>
+   
 
    </head>
    <body>
@@ -360,7 +347,10 @@
                <!-- <button id="mark" class="btn btn-primary" (click)="open(contentThree,'lg')">Mark Vehicle</button><br>
              <button id="mark1" class="btn btn-primary" (click)="open(contentFour,'lg')">Remove Marked Vehicle</button><br>
              <button id="mark2" class="btn btn-primary" (click)="openSearched(contentFive)">View Marked Vehicles</button> -->
-         
+             <button id="mark" class="btn btn-primary" (click)="map()">Show</button>
+                     <div class="row">
+                        <div id="map"></div>
+                  </div>
                <div class="modal-footer">
                   <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Close</button>
                </div>

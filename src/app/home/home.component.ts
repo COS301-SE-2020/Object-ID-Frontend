@@ -1,3 +1,12 @@
+import Map from 'ol/Map';
+import View from 'ol/View';
+import VectorLayer from 'ol/layer/Vector';
+import Style from 'ol/style/Style';
+import Icon from 'ol/style/Icon';
+import OSM from 'ol/source/OSM';
+import * as olProj from 'ol/proj';
+import TileLayer from 'ol/layer/Tile';
+
 import {
   Component,
   OnInit
@@ -22,19 +31,12 @@ import {
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
+
+
 export class HomeComponent implements OnInit {
 
   //-----------------------Variables---------------------------------------------- 
-//   zoom = 12
-//   center: google.maps.LatLngLiteral
-//   options: google.maps.MapOptions = {
-//     mapTypeId: 'hybrid',
-//     zoomControl: false,
-//     scrollwheel: false,
-//     disableDoubleClickZoom: true,
-//     maxZoom: 15,
-//     minZoom: 8,
-//   }
+
   public form: FormGroup;
   public Dform: FormGroup;
   public Fform: FormGroup;
@@ -43,7 +45,7 @@ export class HomeComponent implements OnInit {
   public vehicleForm: FormGroup;
   public formUpload: FormGroup;
 
-  markers:any;
+  map:any;
   answer: any = null;
   fileData: File = null;
   selectedOption;
@@ -129,38 +131,24 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // navigator.geolocation.getCurrentPosition(position => {
-    //     this.center = {
-    //       lat: position.coords.latitude,
-    //       lng: position.coords.longitude,
-    //     }
-    //   })
-
   }
 
  //-----------------------Map---------------------------------------------- 
-//  addMarker() {
-//     this.markers.push({
-//       position: {
-//         lat: this.center.lat + ((Math.random() - 0.5) * 2) / 10,
-//         lng: this.center.lng + ((Math.random() - 0.5) * 2) / 10,
-//       },
-//       label: {
-//         color: 'red',
-//         text: 'Marker label ' + (this.markers.length + 1),
-//       },
-//       title: 'Marker title ' + (this.markers.length + 1),
-//       options: { animation: google.maps.Animation.BOUNCE },
-//     })
-//   }
-
-//   zoomIn() {
-//     if (this.zoom < this.options.maxZoom) this.zoom++
-//   }
-
-//   zoomOut() {
-//     if (this.zoom > this.options.minZoom) this.zoom--
-//   }
+  map(){
+    this.map = new Map({
+        target: 'map',
+        layers: [
+          new TileLayer({
+            source: new OSM()
+          })
+        ],
+        view: new View({
+          center: olProj.fromLonLat([7.0785, 51.4614]),
+          zoom: 5
+        })
+      });
+       
+  }
 
   //-----------------------Upload---------------------------------------------- 
   submitUpload(type) {
