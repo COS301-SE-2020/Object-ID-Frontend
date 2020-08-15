@@ -13,28 +13,46 @@
 </head>
 
 <body>
-    <div class="container">
-    <div class="row">
-        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-          <div class="card card-signin my-5 shadow">
-              <div class="card-header">
-                    <img class="logo" src="../../assets/logo.png"/>
-              </div>
-            <div class="card-body">
-              <div *ngIf="answer != null" class ='alert alert-danger'>
-               {{answer}}
+	<img class="wave" [src]="wave">
+	<div class="container">
+		<div class="img">
+			<img [src]="pImage">
+		</div>
+		<div class="login-content">
+			<div class="card-body">
+				<div *ngIf="answer != null" class ='alert alert-danger'>
+				 {{answer}}
+		  </div>
+			<form (submit)="submitLogin()" [formGroup]="form">
+				<img [src]="oLogo">
+				<h2 class="title">Welcome</h2>
+           		<div class="input-div one">
+           		   <div class="i">
+           		   		<i class="fas fa-user"></i>
+           		   </div>
+           		   <div class="div">
+           		   		<h5>Username</h5>
+						<input id="userN" type="text" class="input" formControlName="username" name="username">
+           		   </div>
+           		</div>
+           		<div class="input-div pass">
+           		   <div class="i"> 
+           		    	<i class="fas fa-lock"></i>
+           		   </div>
+           		   <div class="div">
+           		    	<h5>Password</h5>
+           		    	<input class="form-control" formControlName="password" id="passW" type="password" name="password">
+            	   </div>
+            	</div>
+            	<a href="#">Forgot Password?</a>
+            	<input type="submit" class="btn" value="Login">
+            </form>
         </div>
-              <form class="form-group" (submit)="submitLogin()" [formGroup]="form"> 
-                <input placeholder="Username" id="uname" type="text" class="form-control" formControlName="username" name="username">
-                <br><input placeholder="Password" class="form-control" formControlName="password" id="password" type="password" name="password">
-                <div id="input">
-                    <button class="btn" id="submit"> <i class="fa fa-sign-in"></i>  Login</button>
-                </div>
-                </form>
-            </div>
-          </div>
-        </div>
-    </div></div>
+    </div>
+	</div>
+	
 </body>
+
+
 
 </html>

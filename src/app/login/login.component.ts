@@ -3,14 +3,16 @@ import { ApiService } from '../api.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  wave:string = "../assets/wave.png";
+  pImage:string = "../assets/programming.svg";
+  oLogo:string = "../assets/obd.png";
+ 
   public form: FormGroup;
 
   token:any=null;
@@ -31,7 +33,6 @@ export class LoginComponent implements OnInit {
     });
 
   };
-   
 
   ngOnInit(): void {
   }
@@ -46,7 +47,5 @@ export class LoginComponent implements OnInit {
     {
       this.answer = "The login credentials provided are incorrect";
     });
-
-  }
-
+}
 }
