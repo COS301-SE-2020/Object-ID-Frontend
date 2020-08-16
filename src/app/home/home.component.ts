@@ -302,4 +302,9 @@ export class HomeComponent implements OnInit {
     this.vehicles = null;
   }
 
+  logout(){
+    this.api.removeToken();
+    this.router.navigate(['']);
+  }
+
 }
