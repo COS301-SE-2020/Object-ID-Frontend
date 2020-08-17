@@ -4,6 +4,9 @@ import Feature from 'ol/Feature';
 import VectorLayer from 'ol/layer/Vector';
 import VectorSource from 'ol/source/Vector';
 import Style from 'ol/style/Style';
+import Fill from 'ol/style/Fill';
+import Stroke from 'ol/style/Stroke';
+import Text from 'ol/style/Text';
 import Icon from 'ol/style/Icon';
 import OSM from 'ol/source/OSM';
 import * as olProj from 'ol/proj';
@@ -54,6 +57,7 @@ export class HomeComponent implements OnInit {
   public formUpload: FormGroup;
   public mapView: FormGroup;
 
+  mapP
   marker1=[];
   answer: any = null;
   fileData: File = null;
@@ -158,51 +162,33 @@ export class HomeComponent implements OnInit {
   map(){
     let i =0;
     this.api.map(this.mapView.value.license_plate).subscribe((mData) => {
-        if(mData["success"]=="true"){
-        this.mapPayload["payload"].array.forEach(element => {
+       
+        if(mData["success"]==true){
+        mData["payload"].forEach(element => {
+            console.log(element?.tracking[0]["long"]);
+    
             this.marker1.push(new Feature({
-                    geometry: new Point(olProj.fromLonLat([element["tracking"]["long"], element["tracking"]["lat"]]))
+                    geometry: new Point(olProj.fromLonLat([element?.tracking[0]["long"], element?.tracking[0]["lat"]]))
                 })
             );
             this.marker1[i].setStyle(new Style({
-                image: new Style.Icon(/** @type {olx.style.IconOptions} */ ({
+                image: new Icon(/** @type {olx.style.IconOptions} */ ({
                   anchor: [0.5, 46],
                   anchorXUnits: 'fraction',
                   anchorYUnits: 'pixels',
                   opacity: 0.75,
-                  src: 'http://openlayers.org/en/v3.6.0/examples/data/icon.png'
+                  src: '../../assets/pin.png'
                 })),
-                text: new Style.Text({
-                    text: 'The label',
-                    fill: new Style.Fill({color: 'black'}),
-                    stroke: new Style.Stroke({color: 'yellow', width: 1}),
+                text: new Text({
+                    text:  element?.tracking[0]["date"],
+                    fill: new Fill({color: 'black'}),
+                    stroke: new Stroke({color: 'yellow', width: 1}),
                     offsetX: -20,
                     offsetY: 20
                 })
               }) )
               i++;
         });
-
-        // var markerStyle = new Style({
-        //     image: new Style.Icon(/** @type {olx.style.IconOptions} */ ({
-        //       anchor: [0.5, 46],
-        //       anchorXUnits: 'fraction',
-        //       anchorYUnits: 'pixels',
-        //       opacity: 0.75,
-        //       src: 'http://openlayers.org/en/v3.6.0/examples/data/icon.png'
-        //     })),
-        //     text: new Style.Text({
-        //         text: 'The label',
-        //         fill: new Style.Fill({color: 'black'}),
-        //         stroke: new Style.Stroke({color: 'yellow', width: 1}),
-        //         offsetX: -20,
-        //         offsetY: 20
-        //     })
-        //   });
-
-        //   this.marker1.forEach(el =>{
-        //       el.setStyle(markerStyle);
-        //   });
 
         this.vectorSource = new VectorSource({
             features: 
@@ -226,13 +212,14 @@ export class HomeComponent implements OnInit {
               zoom: 5
             })
           });
-        } else {
+        }
+         else {
             this.message = "No vehicle matching that license plate found";
-        } 
-    });     
+         }
+    }); 
+
          
   }
-
   //-----------------------Upload---------------------------------------------- 
   submitUpload(type) {
     const formData = new FormData();
