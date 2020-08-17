@@ -196,7 +196,8 @@
                   <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Close</button>
                </div>
             </ng-template>
-            <!-- Second Modal -->
+            
+            <!-- Detailed Search -->
             <ng-template #contentTwo let-modal>
                <div class="modal-header">
                   <h4 class="modal-title" id="modal-basic-title">Detailed Search</h4>
@@ -396,15 +397,43 @@
                <div class="modal-body">
                   <div class="form-inline center">
                      <table  class="table table-striped" *ngIf='answer != null'>
-                        <thead>
-                           <tr>
-                              <th scope="col">License Plate</th>
-                           </tr>
-                        </thead>
                         <tbody>
+                           <tr>
+                              <th scope="col">License Plate:</th>
+                           </tr>
                            <tr id="box0" class="box" *ngFor='let i of answer'>
-                              <td class="numPlate" >{{i.payload.license_plate}}</td>
-                              </tr>
+                              <td class="numPlate" >{{i.payload[0].license_plate}}</td>
+                           </tr>
+                           <tr>
+                              <th scope="col">Make:</th>
+                           </tr>
+                           <tr id="box0" class="box" *ngFor='let i of answer'>
+                              <td class="numPlate" >{{i.payload[0].make}}</td>
+                           </tr>
+                           <tr>
+                              <th scope="col">Model:</th>
+                           </tr>
+                           <tr id="box0" class="box" *ngFor='let i of answer'>
+                              <td class="numPlate" >{{i.payload[0].model}}</td>
+                           </tr>
+                           <tr>
+                              <th scope="col">Color:</th>
+                           </tr>
+                           <tr id="box0" class="box" *ngFor='let i of answer'>
+                              <td class="numPlate" >{{i.payload[0].color}}</td>
+                           </tr>
+                           <tr>
+                              <th scope="col">SAPS flagged:</th>
+                           </tr>
+                           <tr id="box0" class="box" *ngFor='let i of answer'>
+                              <td class="numPlate" >{{i.payload[0].saps_flagged}}</td>
+                           </tr>
+                           <tr>
+                              <th scope="col">Duplicate:</th>
+                           </tr>
+                           <tr id="box0" class="box" *ngFor='let i of answer'>
+                              <td class="numPlate" >{{i.payload[0].license_plate_duplicate}}</td>
+                           </tr>
                               <tr id="box0" class="box" *ngFor='let i of answer'>
                                 <td class="image" >
                                     <img [src] = "imgURL" height="150" *ngIf="imgURL">
