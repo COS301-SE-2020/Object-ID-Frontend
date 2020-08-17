@@ -122,5 +122,8 @@
       }
     }
   },
-  "defaultProject": "COS301"
+  "defaultProject": "COS301",
+  "cli": {
+    "analytics": "b2b34361-7aed-4302-b194-68ab4087e0b7"
+  }
 }

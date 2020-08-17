@@ -373,4 +373,9 @@ export class HomeComponent implements OnInit {
     this.mapVar = null;
   }
 
+  logout(){
+    this.api.removeToken();
+    this.router.navigate(['']);
+  }
+
 }
