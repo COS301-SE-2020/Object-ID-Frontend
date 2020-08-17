@@ -2,6 +2,7 @@ import Map from 'ol/Map';
 import View from 'ol/View';
 import Feature from 'ol/Feature';
 import VectorLayer from 'ol/layer/Vector';
+import VectorSource from 'ol/source/Vector';
 import Style from 'ol/style/Style';
 import Icon from 'ol/style/Icon';
 import OSM from 'ol/source/OSM';
@@ -51,15 +52,16 @@ export class HomeComponent implements OnInit {
   public MarkRemoveForm: FormGroup;
   public vehicleForm: FormGroup;
   public formUpload: FormGroup;
+  public mapView: FormGroup;
 
-  marker1:any;
-  fromLonLat:any;
+  marker1=[];
   answer: any = null;
   fileData: File = null;
   selectedOption;
   message = null;
   type: any;
   vehicles: any;
+  vectorSource:any;
   filterPlaceholder;
   imgURL:any;
   selectedFilter = [{
@@ -67,6 +69,9 @@ export class HomeComponent implements OnInit {
   }, {
       name: "Duplicate"
   }]
+    vectorLayer: any;
+    mapPayload: Object;
+    mapVar = null;
 
   constructor(private api: ApiService, private fb: FormBuilder, private router: Router, private modalService: NgbModal) {
       this.formUpload = this.fb.group({
@@ -136,6 +141,14 @@ export class HomeComponent implements OnInit {
               ]
           }]
       });
+
+      this.mapView = this.fb.group({
+        license_plate: [null, {
+            validators: [
+                Validators.required
+            ]
+        }]
+    });
   }
 
   ngOnInit(): void {
@@ -143,24 +156,81 @@ export class HomeComponent implements OnInit {
 
  //-----------------------Map---------------------------------------------- 
   map(){
+    let i =0;
+    this.api.map(this.mapView.value.license_plate).subscribe((mData) => {
+        if(mData["success"]=="true"){
+        this.mapPayload["payload"].array.forEach(element => {
+            this.marker1.push(new Feature({
+                    geometry: new Point(olProj.fromLonLat([element["tracking"]["long"], element["tracking"]["lat"]]))
+                })
+            );
+            this.marker1[i].setStyle(new Style({
+                image: new Style.Icon(/** @type {olx.style.IconOptions} */ ({
+                  anchor: [0.5, 46],
+                  anchorXUnits: 'fraction',
+                  anchorYUnits: 'pixels',
+                  opacity: 0.75,
+                  src: 'http://openlayers.org/en/v3.6.0/examples/data/icon.png'
+                })),
+                text: new Style.Text({
+                    text: 'The label',
+                    fill: new Style.Fill({color: 'black'}),
+                    stroke: new Style.Stroke({color: 'yellow', width: 1}),
+                    offsetX: -20,
+                    offsetY: 20
+                })
+              }) )
+              i++;
+        });
 
-    // this.marker1 = new Feature({
-    //     geometry: new Point(this.fromLonLat([7.0785, 51.4614]))
-    // });
+        // var markerStyle = new Style({
+        //     image: new Style.Icon(/** @type {olx.style.IconOptions} */ ({
+        //       anchor: [0.5, 46],
+        //       anchorXUnits: 'fraction',
+        //       anchorYUnits: 'pixels',
+        //       opacity: 0.75,
+        //       src: 'http://openlayers.org/en/v3.6.0/examples/data/icon.png'
+        //     })),
+        //     text: new Style.Text({
+        //         text: 'The label',
+        //         fill: new Style.Fill({color: 'black'}),
+        //         stroke: new Style.Stroke({color: 'yellow', width: 1}),
+        //         offsetX: -20,
+        //         offsetY: 20
+        //     })
+        //   });
 
-    this.map = new Map({
-        target: 'map',
-        layers: [
-          new TileLayer({
-            source: new OSM()
-          })
-        ],
-        view: new View({
-          center: olProj.fromLonLat([7.0785, 51.4614]),
-          zoom: 5
-        })
-      });
-       
+        //   this.marker1.forEach(el =>{
+        //       el.setStyle(markerStyle);
+        //   });
+
+        this.vectorSource = new VectorSource({
+            features: 
+                this.marker1
+        });
+    
+        this.vectorLayer = new VectorLayer({
+            source : this.vectorSource
+        });
+    
+        this.mapVar = new Map({
+            target: 'map',
+            layers: [
+              new TileLayer({
+                source: new OSM()
+              }),
+              this.vectorLayer
+            ],
+            view: new View({
+              center: olProj.fromLonLat([7.0785, 51.4614]),
+              zoom: 5
+            })
+          });
+        } else {
+            this.message = "No vehicle matching that license plate found";
+        } 
+    });     
+         
   }
 
   //-----------------------Upload---------------------------------------------- 
@@ -300,6 +370,7 @@ export class HomeComponent implements OnInit {
     this.type = null;
     this.answer = null;
     this.vehicles = null;
+    this.mapVar = null;
   }
 
 }

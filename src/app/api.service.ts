@@ -14,6 +14,15 @@ export class ApiService {
 
   constructor(private http: HttpClient) {}
 
+
+  //-----------------------Map---------------------------------------------- 
+    map(license_plate){
+        return this.http.post("http://127.0.0.1:8000/api/v1/vehicle/get_vehicle_locations/", {
+            "license_plate": license_plate
+        },this.getHeaders());
+
+    }
+
   //-----------------------Login---------------------------------------------- 
   submitLogin(username, password) {
       return this.http.post("http://127.0.0.1:8000/api-auth/", {

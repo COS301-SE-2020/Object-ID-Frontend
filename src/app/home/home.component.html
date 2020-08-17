@@ -344,15 +344,19 @@
                   <span aria-hidden="true">&times;</span>
                   </button>
                </div>
-               <!-- <button id="mark" class="btn btn-primary" (click)="open(contentThree,'lg')">Mark Vehicle</button><br>
-             <button id="mark1" class="btn btn-primary" (click)="open(contentFour,'lg')">Remove Marked Vehicle</button><br>
-             <button id="mark2" class="btn btn-primary" (click)="openSearched(contentFive)">View Marked Vehicles</button> -->
+               <form class="form-group" (submit)="map()" [formGroup]="mapView">
+               <input type="text" id="search-field" class="form-control" formControlName="license_plate" placeholder="Enter a license plate" required>
              <button id="mark" class="btn btn-primary" (click)="map()">Show</button>
-                     <div class="row">
+            </form>
+            <div *ngIf="message !=null" class="alert alert-danger" role="alert">
+               {{message}}
+            </div>
+                     <div class="row" *ngIf="mapVar != null">
                         <div id="map"></div>
                   </div>
+                  
                <div class="modal-footer">
-                  <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Close</button>
+                  <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click'); clearVariables()">Close</button>
                </div>
             </ng-template>
          </div>
