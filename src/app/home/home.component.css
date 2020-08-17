@@ -1327,6 +1327,9 @@ padding: 130px 0;
 
 .card {
   display:inline-block;
+  position: relative;
+  max-height: 400px;
+  height: 400px;
 }
 
 .Dsearch-button {
@@ -1429,5 +1432,19 @@ input{
 #mark2{
   max-width: 250px;
   margin-left: 240px;
+}
+
+#homeBtn {
+  font-size: 10px;
+  position: absolute;
+  margin-left: 44px;
+  margin-top: 28px;
+}
+
+#homeBtn1 {
+  font-size: 10px;
+  position: absolute;
+  margin-left: 44px;
+  margin-top: 51px;
 }
 

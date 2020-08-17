@@ -497,7 +497,7 @@
             <div class="card-body">
                   <p><strong>Search</strong></p>
                   <p>Do a generic search. Enter a keyword and get results based on that keyword</p>
-                <button class="btn btn-primary" (click)="open(content,'lg')">Quick Search</button>
+                <button id="homeBtn1" class="btn btn-primary" (click)="open(content,'lg')">Quick Search</button>
 
             </div>
               </div>
@@ -507,7 +507,7 @@
                  <div class="card-body">
                <p><strong>Detailed search</strong></p>
                <p>Do a detailed search with different parameters based on a list of keywords</p>
-             <button class="btn btn-primary" (click)="open(contentTwo,'lg')">Detailed Search</button>
+             <button id="homeBtn" class="btn btn-primary" (click)="open(contentTwo,'lg')">Detailed Search</button>
              </div>
            </div>
               <div class="card" style="width: 18rem;">
@@ -516,7 +516,7 @@
           <div class="card-body">
                 <p><strong>Marked Vehicles</strong></p>
                 <p>Flag/Unflag a suspicious vehicle using the vehicle's license plate or see all marked vehicles</p>
-              <button class="btn btn-primary" (click)="open(contentNine,'lg')">Mark/Unmark Vehicle</button><br>
+              <button id="homeBtn" class="btn btn-primary" (click)="open(contentNine,'lg')">Mark Vehicle</button><br>
             </div>
             </div>
             <div class="card" style="width: 18rem;">
@@ -525,7 +525,7 @@
           <div class="card-body">
                 <p><strong>Upload</strong></p>
                 <p>Upload an image and retrieve the license plate or a video and detects cars </p>
-              <button class="btn btn-primary" (click)="open(contentEight,'lg')">Upload</button>
+              <button id="homeBtn" class="btn btn-primary" (click)="open(contentEight,'lg')">Upload</button>
           </div>
          </div>
           <div class="card" style="width: 18rem;">
@@ -534,7 +534,7 @@
               <div class="card-body">
             <p><strong>Map View</strong></p>
             <p>See pins on a map of where a vehicle has travelled by entering the license plate</p>
-          <button class="btn btn-primary" (click)="open(contentTen,'lg')">Map View</button>
+          <button id="homeBtn" class="btn btn-primary" (click)="open(contentTen,'lg')">Map View</button>
           </div>
             </div>
       </div>
