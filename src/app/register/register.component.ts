@@ -12,7 +12,8 @@ export class RegisterComponent implements OnInit {
 
   public form: FormGroup;
   answer:any=null;
-  oLogo:string = "../assets/obd.png";
+  rLogo:string = "../assets/obd.png";
+  rImage:string = "../assets/img/register.svg";
 
   constructor(private api:ApiService, private fb:FormBuilder,private router:Router) { 
     this.form = this.fb.group({
@@ -54,6 +55,11 @@ export class RegisterComponent implements OnInit {
       }
     });
 
+  }
+
+  logout(){
+    this.api.removeToken();
+    this.router.navigate(['']);
   }
 
 }

@@ -15,12 +15,16 @@
 
 <body>
     <div class="container">
-        <div class="login-content">
+        
            <!-- <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
               <div class="card card-signin my-5 shadow">
                   <div class="card-header">
                         <img class="logo" src="../assets/obd.png"/>
                   </div>-->
+                    <div class="img">
+                        <img [src]="rImage">
+                    </div>
+                    <div class="login-content">
                         <div class="card-body">
                             <div *ngIf="answer != null" class ='alert alert-danger'>
                                     <ul *ngFor="let i of answer">
@@ -42,8 +46,8 @@
                             </div>
                         </div>
                         <form class="form-group" (submit)="submitRegister()" [formGroup]="form"> 
-                            <!--<img [src]="oLogo">
-                            <br><input placeholder="Username" id="uname" type="text" class="form-control" formControlName="username" name="username">
+                            <img [src]="rLogo">
+                            <!--<br><input placeholder="Username" id="uname" type="text" class="form-control" formControlName="username" name="username">
                             
                             <br><input placeholder="Email" id="email" type="text" class="form-control" formControlName="email" name="email">
                             
@@ -66,7 +70,7 @@
                                         <i class="fas fa-envelope"></i>
                                 </div>
                                 <div class="div">
-                                        <input placeholder="Username" id="userN" type="text" class="input" formControlName="email" name="username">
+                                        <input placeholder="Email" id="userN" type="text" class="input" formControlName="email" name="username">
                                 </div>
                             </div>
                             <div class="input-div pass">
@@ -85,11 +89,11 @@
                                         <input placeholder="Confirm Password" class="form-control" formControlName="cpassword" id="passW" type="password" name="password">
                                 </div>
                             </div>
-                            <a href="#">Login?</a>
+                            <a (click)="logout()">Login?</a>
                             <input type="submit" class="btn" value="Register">
                     </form>
                 
-            </div>
+                    </div>
           </div>
         <!--  </div></div>-->
 </body>
