@@ -12,6 +12,7 @@ export class RegisterComponent implements OnInit {
 
   public form: FormGroup;
   answer:any=null;
+  oLogo:string = "../assets/obd.png";
 
   constructor(private api:ApiService, private fb:FormBuilder,private router:Router) { 
     this.form = this.fb.group({
