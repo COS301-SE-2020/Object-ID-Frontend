@@ -156,7 +156,7 @@ export class HomeComponent implements OnInit {
   }
 
   //------------------asset varables---------------------------
-  obLogo:string = "../assets/img/banner/objectIDlogo.png";
+  obLogo:string = "../assets/img/objectIDlogo.png";
 
   ngOnInit(): void {
   }
