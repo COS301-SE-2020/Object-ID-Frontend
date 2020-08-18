@@ -42,7 +42,7 @@
                     </div>
                         <form class="form-group" (submit)="submitRegister()" [formGroup]="form"> 
                             <img [src]="oLogo">
-                            <br><input placeholder="Username" id="uname" type="text" class="form-control" formControlName="username" name="username">
+                           <!-- <br><input placeholder="Username" id="uname" type="text" class="form-control" formControlName="username" name="username">
                             
                             <br><input placeholder="Email" id="email" type="text" class="form-control" formControlName="email" name="email">
                             
@@ -50,8 +50,43 @@
                             <br><input placeholder="Confirm Password" class="form-control" formControlName="cpassword" id="cpassword" type="password" name="password">
                             <div id="input">
                                 <button id="submit"> <i class="fa fa-sign-in"></i>  Register</button>
+                            </div>-->
+                            <h2 class="title">Register</h2>
+                            <div class="input-div one">
+                                <div class="i">
+                                        <i class="fas fa-user"></i>
+                                </div>
+                                <div class="div">
+                                        <input placeholder="Username" id="userN" type="text" class="input" formControlName="username" name="username">
+                                </div>
                             </div>
-                        </form>
+                            <div class="input-div one">
+                                <div class="i">
+                                        <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="div">
+                                        <input placeholder="Username" id="userN" type="text" class="input" formControlName="email" name="username">
+                                </div>
+                            </div>
+                            <div class="input-div pass">
+                                <div class="i"> 
+                                        <i class="fas fa-lock"></i>
+                                </div>
+                                <div class="div">
+                                        <input placeholder="Password" class="form-control" formControlName="password" id="passW" type="password" name="password">
+                                </div>
+                            </div>
+                            <div class="input-div pass">
+                                <div class="i"> 
+                                        <i class="fas fa-lock"></i>
+                                </div>
+                                <div class="div">
+                                        <input placeholder="Password" class="form-control" formControlName="cpassword" id="passW" type="password" name="password">
+                                </div>
+                            </div>
+                            <a href="#">Login?</a>
+                            <input type="submit" class="btn" value="Register">
+                    </form>
                 </div>
               </div>
             </div>
