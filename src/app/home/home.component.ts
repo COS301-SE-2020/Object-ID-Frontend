@@ -294,9 +294,10 @@ export class HomeComponent implements OnInit {
   editVehicle() {
       this.type = false;
       this.authpass = prompt("Confirm your password: "); 
-      this.api.submitLogin(localStorage.getItem("username"), this.authpass).subscribe(data => {
-      this.passConfirm = [data];
-      if(data["status"] == true){
+      this.api.submitLogin(localStorage.getItem("username"), this.authpass).subscribe(Adata => {
+      this.passConfirm = [Adata];
+      console.log(Adata);
+      if(Adata["token"]){
           this.api.setToken(this.passConfirm);
       this.api.updateVehicle(this.vehicleForm.value).subscribe(data => {
           console.log(data);
