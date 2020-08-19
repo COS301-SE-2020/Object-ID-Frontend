@@ -42,6 +42,7 @@ export class LoginComponent implements OnInit {
     .subscribe( (data)=>{
       this.token=[data];
       this.api.setToken(this.token);
+      this.api.setUsername(this.form.value.username);
       this.router.navigate(['home']);
     }, err =>
     {

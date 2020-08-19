@@ -34,6 +34,10 @@ export class ApiService {
   setToken(token) {
       localStorage.setItem("token", token[0].token);
   }
+
+  setUsername(username) {
+      localStorage.setItem("username", username);
+  }
   removeToken() {
       localStorage.removeItem("token");
   }
@@ -90,6 +94,13 @@ export class ApiService {
   }
 
   //-----------------------Searches---------------------------------------------- 
+  authenticate(username, password) {
+    return this.http.post("http://127.0.0.1:8000/api-auth/", {
+        "username": username,
+        "password": password
+    });
+}
+
   search(numberPlate) {
       return this.http.post("http://127.0.0.1:8000/api/v1/vehicle/search/", {
           "search": numberPlate

@@ -56,8 +56,9 @@ export class HomeComponent implements OnInit {
   public vehicleForm: FormGroup;
   public formUpload: FormGroup;
   public mapView: FormGroup;
-
-  mapP
+  public authForm: FormGroup;
+    
+  authpass: any;
   searchButtonText = "Submit";
   test = "false";
   marker1=[];
@@ -92,6 +93,18 @@ export class HomeComponent implements OnInit {
               validators: [
                   Validators.required
               ]
+          }]
+      });
+      this.authForm = this.fb.group({
+        username:[null, {
+          validators:[
+            Validators.required
+          ]
+        }],  
+          password:[null, {
+            validators:[
+              Validators.required
+            ]
           }]
       });
       this.vehicleForm = this.fb.group({
@@ -278,6 +291,10 @@ export class HomeComponent implements OnInit {
 
   //-----------------------Edit---------------------------------------------- 
   editVehicle() {
+      this.authpass = prompt("Confirm your password: "); 
+      this.api.submitLogin(localStorage.getItem("username"), this.authpass).subscribe(data => {
+      
+      console.log(this.authpass);
       this.api.updateVehicle(this.vehicleForm.value).subscribe(data => {
           console.log(data);
           if (data["success"] == true) {
@@ -289,6 +306,7 @@ export class HomeComponent implements OnInit {
           }
           this.vehicles = null;
       });
+    });
   }
 
   //-----------------------Mark---------------------------------------------- 
@@ -328,6 +346,12 @@ export class HomeComponent implements OnInit {
   }
 
   //-----------------------Searches---------------------------------------------- 
+  authenticate() {
+      this.api.authenticate(this.form.value.username, this.form.value.password).subscribe((authdata) => {
+       
+    });
+  }
+  
   search() {
       this.clearVariables();
       this.api.search(this.form.value.numPlate).subscribe((Searchdata) => {

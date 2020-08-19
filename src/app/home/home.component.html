@@ -392,7 +392,7 @@
                <div class="modal-body">
                   <form class="form-group" [formGroup]="formUpload" (ngSubmit)="submitUpload('image')">
                      <div class="form-group">
-                         <input id="uploadbut" type="file" #uploadFile class="form-control" formControlName="uploadFile" name="uploadFile" (change)="fileProgress(uploadFile)"  />
+                         <input type="file" #uploadFile class="form-control" formControlName="uploadFile" name="uploadFile" (change)="fileProgress(uploadFile)"  />
                      </div>
                      <div class="form-group">
                          <button class="btn btn-primary">
@@ -531,9 +531,9 @@
                 <img src="../../assets/upload.png"
                   class="card-img-top" alt="">
           <div class="card-body">
-                <p><strong>Upload Image</strong></p>
+                <p><strong>Upload</strong></p>
                 <p>Upload an image and retrieve the license plate or a video and detects cars </p>
-              <button id="homeBtn2" class="btn btn-primary" (click)="open(contentSix,'lg')">Upload Image</button>
+              <button id="homeBtn" class="btn btn-primary" (click)="open(contentEight,'lg')">Upload</button>
           </div>
          </div>
           <div class="card" style="width: 18rem;">
