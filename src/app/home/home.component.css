@@ -1443,3 +1443,36 @@ input{
   margin-top: 51px;
 }
 
+#homeBtn2 {
+  font-size: 10px;
+  position: absolute;
+  margin-left: 40px;
+  margin-top: 28px;
+}
+
+#uploadbut{
+  margin-bottom: 5px;
+  padding: 4px;
+}
+/* Loading */
+.glyphicon.spinning {
+  animation: spin 1s infinite linear;
+  -webkit-animation: spin2 1s infinite linear;
+}
+@keyframes spin {
+  from {
+      transform: scale(1) rotate(0deg);
+  }
+  to {
+      transform: scale(1) rotate(360deg);
+  }
+}
+@-webkit-keyframes spin2 {
+  from {
+      -webkit-transform: rotate(0deg);
+  }
+  to {
+      -webkit-transform: rotate(360deg);
+  }
+}
+
