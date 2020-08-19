@@ -213,7 +213,7 @@ export class HomeComponent implements OnInit {
               this.vectorLayer
             ],
             view: new View({
-              center: olProj.fromLonLat([7.0785, 51.4614]),
+              center: olProj.fromLonLat([28.229, -25.747]),
               zoom: 5
             })
           });
