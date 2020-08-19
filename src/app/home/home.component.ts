@@ -58,6 +58,8 @@ export class HomeComponent implements OnInit {
   public mapView: FormGroup;
 
   mapP
+  searchButtonText = "Submit";
+  test = "false";
   marker1=[];
   answer: any = null;
   fileData: File = null;
@@ -225,6 +227,8 @@ export class HomeComponent implements OnInit {
   }
   //-----------------------Upload---------------------------------------------- 
   submitUpload(type) {
+    this.test = "true";
+    this.searchButtonText = "Loading...";
     const formData = new FormData();
     formData.append('file', this.fileData);
     switch(type){
@@ -235,8 +239,10 @@ export class HomeComponent implements OnInit {
         this.api.submitUploadImage(formData).subscribe((data) => {
           this.answer = [data];
           console.log(this.answer);
+          this.searchButtonText = "Submit";
       });
     }
+  
   }
 
   fileProgress(fileInput: any) {
