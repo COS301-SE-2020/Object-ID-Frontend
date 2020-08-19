@@ -14,6 +14,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TopMenuComponent } from './top-menu/top-menu.component';
 import { UploadComponent } from './upload/upload.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +22,8 @@ import { UploadComponent } from './upload/upload.component';
     LoginComponent,
     TopMenuComponent,
     UploadComponent,
-    RegisterComponent
+    RegisterComponent,
+ 
   ],
   imports: [
     BrowserModule,
