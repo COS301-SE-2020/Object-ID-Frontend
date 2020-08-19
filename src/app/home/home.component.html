@@ -183,8 +183,11 @@
                                  <input type="text" id="search-field" class="form-control" formControlName="license_plate" [(ngModel)]='vehicle.license_plate'>
                                  <input type="text" id="search-field" class="form-control" formControlName="saps_flagged" [(ngModel)]='vehicle.saps_flagged'>
                                  <input type="text" id="search-field" class="form-control" formControlName="license_plate_duplicate" [(ngModel)]='vehicle.license_plate_duplicate'>                              
-                             </div> <button type="submit" class="btn btn-primary" id="search-btn">Update</button>  </div>   
-                             
+                             </div> <button type="submit" class="btn btn-primary" id="search-btn">Update</button>  
+                             <div *ngIf="message != null && type==false" class="alert alert-danger" role="alert">
+                              <p>{{message}}</p>
+                           </div></div>   
+                           
                            </div>
                        </form>
                        

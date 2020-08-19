@@ -79,6 +79,7 @@ export class HomeComponent implements OnInit {
     vectorLayer: any;
     mapPayload: Object;
     mapVar = null;
+    passConfirm: Object[];
 
   constructor(private api: ApiService, private fb: FormBuilder, private router: Router, private modalService: NgbModal) {
       this.formUpload = this.fb.group({
@@ -291,10 +292,12 @@ export class HomeComponent implements OnInit {
 
   //-----------------------Edit---------------------------------------------- 
   editVehicle() {
+      this.type = false;
       this.authpass = prompt("Confirm your password: "); 
       this.api.submitLogin(localStorage.getItem("username"), this.authpass).subscribe(data => {
-      
-      console.log(this.authpass);
+      this.passConfirm = [data];
+      if(data["status"] == true){
+          this.api.setToken(this.passConfirm);
       this.api.updateVehicle(this.vehicleForm.value).subscribe(data => {
           console.log(data);
           if (data["success"] == true) {
@@ -306,6 +309,11 @@ export class HomeComponent implements OnInit {
           }
           this.vehicles = null;
       });
+    }
+    else{
+        this.type = false;
+        this.message = "Not authenticated.";
+    }
     });
   }
 
