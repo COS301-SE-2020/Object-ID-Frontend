@@ -32,7 +32,7 @@ https://github.com/COS301-SE-2020/ObjectID-Backend
 
 ## User Manual:
 
-https://www.overleaf.com/6343251583zgjzqxwkskzc
+https://www.overleaf.com/read/fxqswyzrhpkb
 
 ## Technical Installation Manual:
 
