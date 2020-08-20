@@ -26,10 +26,10 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
-Back-end link:
+## Back-end link:
 
 https://github.com/COS301-SE-2020/ObjectID-Backend
 
-Technical_Installation_Manual link:
+## Technical Installation Manual:
 
 https://drive.google.com/file/d/1vHkX7AUkQ25nHGlBGraC3zkmtZtfJ56u/view?usp=sharing
