@@ -30,6 +30,10 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 https://github.com/COS301-SE-2020/ObjectID-Backend
 
+## Software Requirements Specification Document:
+
+https://www.overleaf.com/read/jkftvtyxvbfr
+
 ## User Manual:
 
 https://www.overleaf.com/read/fxqswyzrhpkb
