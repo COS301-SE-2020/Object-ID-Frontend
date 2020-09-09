@@ -1353,6 +1353,22 @@ padding: 130px 0;
   padding-bottom: 5px;
 }
 
+.h7{
+  color: gray;
+}
+
+
+
+hr{
+  border: 0;
+  clear:both;
+  display:block;
+  width: 96%;               
+  background-color:lightgray;
+  height: 1px;
+}
+
+
 .dropdown {
   border-radius: 25px;
   border: 0;
@@ -1416,6 +1432,7 @@ input{
 
 #mark{
   max-width: 250px;
+  margin-top: 5px;
   margin-left: 240px;
 }
 
