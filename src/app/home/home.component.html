@@ -7,10 +7,12 @@
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
       <!-- Bootstrap -->
-         <!-- OpenLayers -->
-         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.2.1/css/ol.css" type="text/css">
-         <!-- Ajax -->
-         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-animate.js"></script>
+      <!-- OpenLayers -->
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.2.1/css/ol.css" type="text/css">
+      <!-- Ajax -->
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-animate.js"></script>
+      <!-- Font Awesome -->
+      <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
    </head>
    <body>
@@ -32,8 +34,7 @@
                   <ul class="nav navbar-nav menu_nav ml-auto">
                       <li class="nav-item active"><a class="nav-link" routerLink="/home">Home</a></li> 
                       <li class="nav-item"><a class="nav-link" routerLink="/home">About</a></li> <!--href="about-us.html"-->
-                      <li class="nav-item"><a class="nav-link" routerLink="/home">services</a></li> <!--href="service.html"-->
-                      <li class="nav-item"><a class="nav-link" routerLink="/home">search</a></li> <!--href="project.html"-->             
+                      <li class="nav-item"><a class="nav-link" routerLink="/home">services</a></li> <!--href="service.html"-->           
                       <li class="nav-item"><a class="nav-link" routerLink="/home">Contact</a></li><!--href="about-us.html"-->
                       <li class="nav-item"><a class="nav-link" routerLink="/register">Register</a></li><!--href="about-us.html"-->
                       <li class="nav-item"><a class="nav-link" (click)="logout()">Logout</a></li><!--href="about-us.html"-->
@@ -504,7 +505,7 @@
                     class="card-img-top" alt="">
             <div class="card-body">
                   <p><strong>Search</strong></p>
-                  <p>Do a generic search. Enter a keyword and get results based on that keyword</p>
+                  <p>Do a generic search. Enter a keyword and get results based on that keyword.</p>
                 <button id="homeBtn1" class="btn btn-primary" (click)="open(content,'lg')">Quick Search</button>
 
             </div>
@@ -514,7 +515,7 @@
                  class="card-img-top" alt="">
                  <div class="card-body">
                <p><strong>Detailed search</strong></p>
-               <p>Do a detailed search with different parameters based on a list of keywords like color</p>
+               <p>Do a detailed search with different parameters based on a list of keywords.</p>
              <button id="homeBtn" class="btn btn-primary" (click)="open(contentTwo,'lg')">Detailed Search</button>
              </div>
            </div>
@@ -523,7 +524,7 @@
                   class="card-img-top" alt="">
           <div class="card-body">
                 <p><strong>Marked Vehicles</strong></p>
-                <p>Flag or unflag a suspicious vehicle using the vehicle's license plate or see all marked vehicles</p>
+                <p>Flag or unflag a vehicle for different reasons using the vehicle's license plate or see all flagged vehicles.</p>
               <button id="homeBtn" class="btn btn-primary" (click)="open(contentNine,'lg')">Mark Vehicle</button><br>
             </div>
             </div>
@@ -532,7 +533,7 @@
                   class="card-img-top" alt="">
           <div class="card-body">
                 <p><strong>Upload</strong></p>
-                <p>Upload an image and retrieve the license plate or a video and also detects cars</p>
+                <p>Upload an image of a vehicle along with the location and retrieve the vehicle's information.</p>
               <button id="homeBtn" class="btn btn-primary" (click)="open(contentSix,'lg')">Upload</button>
           </div>
          </div>
@@ -541,7 +542,7 @@
               class="card-img-top" alt="">
               <div class="card-body">
             <p><strong>Map View</strong></p>
-            <p>See pins on a map of where a vehicle has travelled by entering the license plate</p>
+            <p>See pins on a map of where a vehicle has travelled by entering the license plate.</p>
           <button id="homeBtn" class="btn btn-primary" (click)="open(contentTen,'lg')">Map View</button>
           </div>
             </div>
