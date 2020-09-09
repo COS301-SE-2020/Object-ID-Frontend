@@ -7,10 +7,12 @@
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
       <!-- Bootstrap -->
-         <!-- OpenLayers -->
-         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.2.1/css/ol.css" type="text/css">
-         <!-- Ajax -->
-         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-animate.js"></script>
+      <!-- OpenLayers -->
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.2.1/css/ol.css" type="text/css">
+      <!-- Ajax -->
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-animate.js"></script>
+      <!-- Font Awesome -->
+      <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
    </head>
    <body>
@@ -32,8 +34,7 @@
                   <ul class="nav navbar-nav menu_nav ml-auto">
                       <li class="nav-item active"><a class="nav-link" routerLink="/home">Home</a></li> 
                       <li class="nav-item"><a class="nav-link" routerLink="/home">About</a></li> <!--href="about-us.html"-->
-                      <li class="nav-item"><a class="nav-link" routerLink="/home">services</a></li> <!--href="service.html"-->
-                      <li class="nav-item"><a class="nav-link" routerLink="/home">search</a></li> <!--href="project.html"-->             
+                      <li class="nav-item"><a class="nav-link" routerLink="/home">services</a></li> <!--href="service.html"-->           
                       <li class="nav-item"><a class="nav-link" routerLink="/home">Contact</a></li><!--href="about-us.html"-->
                       <li class="nav-item"><a class="nav-link" routerLink="/register">Register</a></li><!--href="about-us.html"-->
                       <li class="nav-item"><a class="nav-link" (click)="logout()">Logout</a></li><!--href="about-us.html"-->
@@ -131,7 +132,8 @@
                </div>
                <div class="modal-body">
                   <div class="form-inline center">
-
+                     <p class = "h7">Enter any keyword eg. a vehicle license plate or the color of the vehicle and click on the search button. All vehicles matching the criteria will show. To see more specific vehciles, click on the "filter by" drop-down button and select a filter eg. flagged. If no vehicles match the criteria, there will be no vehicles shown.</p>
+                     <hr><br>
                   <form class="form-group" (submit)="search()" [formGroup]="form"> 
                      <input type="text" id="search-field" class="form-control" formControlName="numPlate" placeholder="Enter a keyword" required>
                      <button type="submit" class="search-button" id="search-btn"><i class="fa fa-search"></i></button>
@@ -214,6 +216,8 @@
                   </button>
                </div>
                <div class="modal-body">
+                  <p class = "h7"> Fill in as many of the search boxes (1 to all 5), enter the correct search criteria in the matching box and click on the search button. A specific vehicle matching all the criteria will show. If no vehicles match the criteria, there will be no vehicles shown.</p>
+                     <hr><br>
                   <form class="form-group"  (submit)="Dsearch()" [formGroup]="Dform"> 
                       <div class="row center">
                         <div class="form-inline center">
@@ -272,9 +276,10 @@
                </div>
                <div class="modal-body">
                   <div class="form-inline center">
-
+                     <p class = "h7"> Enter a vehicle license number in the text box and click mark to mark a specific vehicle for some reason eg. suspicious or damaged.</p>
+                     <hr><br>
                   <form class="form-group" (submit)="markVehicle()"[formGroup]="MarkAddForm"> 
-                     <input type="text" id="search-field" class="form-control" formControlName="numPlateMarked" placeholder="Enter the license plate number" required>
+                     <input type="text" id="search-field" class="form-control" formControlName="numPlateMarked" placeholder="License" required>
                      <button type="submit" class="btn btn-primary" >Mark</button>
                   </form><br>                
                 </div>
@@ -299,9 +304,10 @@
                </div>
                <div class="modal-body">
                   <div class="form-inline center">
-
+                     <p class = "h7"> Enter a vehicle license number in the text box and click unmark to remove a specific vehicle from your list of marked vehicles.</p>
+                     <hr><br>
                   <form class="form-group" (submit)="removeMarkVehicle()"[formGroup]="MarkRemoveForm"> 
-                     <input type="text" id="search-field" class="form-control" formControlName="numPlateRemove" placeholder="Enter the license plate number" required>
+                     <input type="text" id="search-field" class="form-control" formControlName="numPlateRemove" placeholder="License" required>
                      <button type="submit" class="btn btn-primary">Unmark</button>
                   </form><br>
                 </div>
@@ -326,11 +332,13 @@
                </div>
                <div class="modal-body">
                   <div class="form-inline center">
+                     <p class = "h7"> Here is a list of all the vehicles that you have marked for some reason eg. suspicious or damaged. Only you can see these marked vehicles.</p>
+                     <hr><br>
                      <table  class="table table-striped" *ngIf='answer != null'>
                         <thead>
                            <tr>
                               <th scope="col">License Plate</th>
-                              <th scope="col">Marked By</th>
+                              <th scope="col">Reason</th>
                            </tr>
                         </thead>
                         <tbody>
@@ -393,6 +401,8 @@
                   </button>
                </div>
                <div class="modal-body">
+                  <p class = "h7"> Upload an image of a vehicle that you think has committed a crime to add it to the database. All the vehicle's information will be shown after the upload. </p>
+                  <hr><br>
                   <form class="form-group" [formGroup]="formUpload" (ngSubmit)="submitUpload('image')">
                      <div class="form-group">
                          <input type="file" #uploadFile class="form-control" formControlName="uploadFile" name="uploadFile" (change)="fileProgress(uploadFile)"  />
@@ -473,30 +483,36 @@
                 </div>
              </ng-template>
               <!-- Map -->
-              <ng-template #contentTen let-modal>
+            <ng-template #contentTen let-modal>
                <div class="modal-header">
                   <h4 class="modal-title" id="modal-basic-title">Map View</h4>
                   <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
                   <span aria-hidden="true">&times;</span>
                   </button>
                </div>
-               <form class="form-group" (submit)="map()" [formGroup]="mapView">
-               <input type="text" id="search-field" class="form-control" formControlName="license_plate" placeholder="Enter a license plate" required>
-             <button id="mark" class="btn btn-primary" (click)="map()">Show</button>
-            </form>
-            <div *ngIf="message !=null" class="alert alert-danger" role="alert">
-               {{message}}
-            </div>
-                     <div class="row" *ngIf="mapVar != null">
-                        <div id="map"></div>
-                  </div>
-                  
+               <div class="modal-body">
+                  <div class="form-inline center">
+                     <p class = "h7"> Enter a vehicle license number in the text box and click submit to see a map with pins on all the locations that the vehicle has been spotted.</p>
+                   <hr><br>
+                  <form class="form-group" (submit)="map()" [formGroup]="mapView"> 
+                     <input type="text" id="search-field" class="form-control" formControlName="license_plate" placeholder="License" required>
+                     <button type="submit" class="btn btn-primary" >Show</button>
+                  </form><br>                
+                </div>
+                <div *ngIf="message !=null" class="alert alert-danger" role="alert">
+                  {{message}}
+               </div>
+                        <div class="row" *ngIf="mapVar != null">
+                           <div id="map"></div>
+                     </div>
+               </div>
                <div class="modal-footer">
-                  <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click'); clearVariables()">Close</button>
+                  <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Close</button>
                </div>
             </ng-template>
          </div>
 
+         
          <!-- The Function containers -->
          <div class="center d-flex">
         <div class="card" style="width: 18rem;">
@@ -504,7 +520,7 @@
                     class="card-img-top" alt="">
             <div class="card-body">
                   <p><strong>Search</strong></p>
-                  <p>Do a generic search. Enter a keyword and get results based on that keyword</p>
+                  <p>Do a generic search. Enter a keyword and get results based on that keyword.</p>
                 <button id="homeBtn1" class="btn btn-primary" (click)="open(content,'lg')">Quick Search</button>
 
             </div>
@@ -514,7 +530,7 @@
                  class="card-img-top" alt="">
                  <div class="card-body">
                <p><strong>Detailed search</strong></p>
-               <p>Do a detailed search with different parameters based on a list of keywords like color</p>
+               <p>Do a detailed search with different parameters based on a list of keywords.</p>
              <button id="homeBtn" class="btn btn-primary" (click)="open(contentTwo,'lg')">Detailed Search</button>
              </div>
            </div>
@@ -523,7 +539,7 @@
                   class="card-img-top" alt="">
           <div class="card-body">
                 <p><strong>Marked Vehicles</strong></p>
-                <p>Flag or unflag a suspicious vehicle using the vehicle's license plate or see all marked vehicles</p>
+                <p>Flag or unflag a vehicle for different reasons using the vehicle's license plate or see all flagged vehicles.</p>
               <button id="homeBtn" class="btn btn-primary" (click)="open(contentNine,'lg')">Mark Vehicle</button><br>
             </div>
             </div>
@@ -532,7 +548,7 @@
                   class="card-img-top" alt="">
           <div class="card-body">
                 <p><strong>Upload</strong></p>
-                <p>Upload an image and retrieve the license plate or a video and also detects cars</p>
+                <p>Upload an image of a vehicle along with the location and retrieve the vehicle's information.</p>
               <button id="homeBtn" class="btn btn-primary" (click)="open(contentSix,'lg')">Upload</button>
           </div>
          </div>
@@ -541,7 +557,7 @@
               class="card-img-top" alt="">
               <div class="card-body">
             <p><strong>Map View</strong></p>
-            <p>See pins on a map of where a vehicle has travelled by entering the license plate</p>
+            <p>See pins on a map of where a vehicle has travelled by entering the license plate.</p>
           <button id="homeBtn" class="btn btn-primary" (click)="open(contentTen,'lg')">Map View</button>
           </div>
             </div>

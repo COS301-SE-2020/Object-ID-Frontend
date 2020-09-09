@@ -1331,7 +1331,7 @@ padding: 130px 0;
   right: 4px;
   top: 5px;
   margin-top:5px;
-  background-color: #2d476e;
+  background-color:#007bff;
   border-radius: 25px;
   border: 0;
   color: #FFF;
@@ -1353,6 +1353,22 @@ padding: 130px 0;
   padding-bottom: 5px;
 }
 
+.h7{
+  color: gray;
+}
+
+
+
+hr{
+  border: 0;
+  clear:both;
+  display:block;
+  width: 96%;               
+  background-color:lightgray;
+  height: 1px;
+}
+
+
 .dropdown {
   border-radius: 25px;
   border: 0;
@@ -1373,7 +1389,7 @@ input{
 }
 
 .search-button {
-  background-color: #2d476e;
+  background-color: #007bff;
   border-radius: 25px;
   border: 0;
   color: #FFF;
@@ -1416,6 +1432,7 @@ input{
 
 #mark{
   max-width: 250px;
+  margin-top: 5px;
   margin-left: 240px;
 }
 
