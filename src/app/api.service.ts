@@ -137,6 +137,10 @@ export class ApiService {
           this.getHeaders());
   }
 
+  getLoc(uploadFormAd) {
+    return this.http.get("http://open.mapquestapi.com/geocoding/v1/address?key=62PmHdx24WG4SKrLCjPKwlrnbW9yBbuD&location="+uploadFormAd)
+}
+
   submitUploadVideo(FormData) {
       return this.http.post("http://127.0.0.1:8000/api/v1/vehicle/detect/", FormData,
           this.getHeaders());

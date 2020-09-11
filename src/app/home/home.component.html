@@ -406,6 +406,7 @@
                   <form class="form-group" [formGroup]="formUpload" (ngSubmit)="submitUpload('image')">
                      <div class="form-group">
                          <input type="file" #uploadFile class="form-control" formControlName="uploadFile" name="uploadFile" (change)="fileProgress(uploadFile)"  />
+                         <input type="text"  class="form-control" formControlName="uploadFileAd" name="uploadFileAd" placeholder="Address"  />
                      </div>
                      <div class="form-group">
                          <button class="btn btn-primary">Submit</button>

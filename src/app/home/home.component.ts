@@ -63,6 +63,7 @@ export class HomeComponent implements OnInit {
   test = "false";
   marker1=[];
   answer: any = null;
+  answer2: any = null;
   fileData: File = null;
   selectedOption;
   message = null;
@@ -87,7 +88,12 @@ export class HomeComponent implements OnInit {
               validators: [
                   Validators.required
               ]
-          }]
+          }],
+          uploadFileAd: [null, {
+            validators: [
+                Validators.required
+            ]
+        }]
       });
       this.form = this.fb.group({
           numPlate: [null, {
@@ -254,6 +260,10 @@ export class HomeComponent implements OnInit {
           this.answer = [data];
           console.log(this.answer);
           this.searchButtonText = "Submit";
+      });
+      this.api.getLoc(this.formUpload.value.uploadFileAd).subscribe((data2) => {
+        this.answer2 = [data2];
+        console.log(this.answer2);
       });
     }
   
