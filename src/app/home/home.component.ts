@@ -11,7 +11,7 @@ import Icon from 'ol/style/Icon';
 import OSM from 'ol/source/OSM';
 import * as olProj from 'ol/proj';
 import TileLayer from 'ol/layer/Tile';
-import Point from 'ol/geom/Point'
+import Point from 'ol/geom/Point';
 import {
     Control, 
     defaults as defaultControls
@@ -76,7 +76,8 @@ export class HomeComponent implements OnInit {
     vectorLayer: any;
     mapPayload: Object;
     mapVar = null;
-
+    toggleNavbar = true;
+    closeResult: string;
   constructor(private api: ApiService, private fb: FormBuilder, private router: Router, private modalService: NgbModal) {
       this.formUpload = this.fb.group({
           uploadFile: [null, {
@@ -153,6 +154,24 @@ export class HomeComponent implements OnInit {
             ]
         }]
     });
+  }
+
+  openn(content) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+  
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return  `with: ${reason}`;
+    }
   }
 
   //------------------asset varables---------------------------

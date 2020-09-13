@@ -13,6 +13,9 @@ import { RegisterComponent } from './register/register.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TopMenuComponent } from './top-menu/top-menu.component';
 import { UploadComponent } from './upload/upload.component';
+import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
+
+
 
 @NgModule({
   declarations: [
@@ -30,6 +33,7 @@ import { UploadComponent } from './upload/upload.component';
     ReactiveFormsModule,
     FormsModule,
     NgbModule,
+    NgbCollapseModule,
     GoogleMapsModule,
   ],
   providers: [
