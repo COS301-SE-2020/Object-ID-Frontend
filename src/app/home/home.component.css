@@ -117,7 +117,7 @@ ul {
 }
 
 .header_area .navbar {
-  background: transparent;
+  background: #fff;
   padding: 0px;
   border: 0px;
   border-radius: 0px;
@@ -258,7 +258,7 @@ ul {
 .header_area.navbar_fixed .main_menu {
   position: fixed;
   width: 100%;
-  top: -70px;
+  top: 0px;
   left: 0;
   right: 0;
   background: #fff;
@@ -269,132 +269,9 @@ ul {
 }
 
 .header_area.navbar_fixed .main_menu .navbar .nav .nav-item .nav-link {
-  line-height: 70px;
+  line-height: 10px;
 }
 
-.top_menu {
-  background: #f6f6f6;
-}
-
-.top_menu .header_social {
-  float: right;
-}
-
-.top_menu .header_social li {
-  display: inline-block;
-  margin-right: 15px;
-}
-
-.top_menu .header_social li a {
-  font-size: 13px;
-  color: #888888;
-  display: inline-block;
-  line-height: 42px;
-  transition: all 300ms linear 0s;
-}
-
-.top_menu .header_social li:last-child {
-  margin-right: 0px;
-}
-
-.top_menu .header_social li:hover a {
-  color: #e22104;
-}
-
-@media (max-width: 991px) {
-  .top_menu .header_social li {
-    margin-right: 7px;
-  }
-}
-
-.top_menu .dn_btn {
-  line-height: 42px;
-  display: inline-block;
-  font-size: 14px;
-  margin-right: 50px;
-  font-family: "Roboto", sans-serif;
-  font-weight: normal;
-  color: #888888;
-  transition: all 300ms linear 0s;
-}
-
-.top_menu .dn_btn:hover {
-  color: #e22104;
-}
-
-.top_menu .dn_btn:last-child {
-  margin-right: 0px;
-}
-
-.top_menu .dn_btn i {
-  color: #e22104;
-  margin-right: 10px;
-}
-
-@media (max-width: 991px) {
-  .top_menu .dn_btn {
-    margin-right: 5px;
-    font-size: 13px;
-  }
-}
-
-.top_menu .follow_us {
-  float: left;
-  color: #777;
-  font-size: 14px;
-  line-height: 42px;
-  margin-right: 17px;
-}
-
-@media (max-width: 767px) {
-  .top_menu {
-    display: none;
-  }
-}
-
-.right-button {
-  margin-left: 60px;
-  margin-top: 15px;
-}
-
-.right-button ul {
-  padding: 0;
-  list-style: none;
-}
-
-.right-button ul li {
-  display: inline-block;
-  margin-left: 30px;
-  font-size: 16px;
-}
-
-.right-button ul li a {
-  color: #777;
-}
-
-.right-button .shop-icon {
-  position: relative;
-}
-
-.right-button .shop-icon span {
-  position: absolute;
-  background: #e22104;
-  right: -10px;
-  top: -4px;
-  border-radius: 50px;
-  color: #fff;
-  width: 15px;
-  height: 15px;
-  font-size: 10px;
-  text-align: center;
-  line-height: 14px;
-}
-
-@media (max-width: 991px) {
-  .right-button {
-    display: none;
-  }
-}
 
 #search_input_box {
   position: fixed;
@@ -686,7 +563,7 @@ ul {
 
 @media (max-width: 991px) {
   .header_area .navbar-collapse {
-    padding: 15px 0px;
+    padding: 5px 0px;
   }
 }
 
@@ -696,7 +573,7 @@ ul {
   }
 
   .home_banner_area .banner_inner .banner_content h3 {
-    font-size: 33px;
+    font-size: 20px;
   }
 
   .home_banner_area .banner_inner .banner_content h3 br {
@@ -708,7 +585,7 @@ ul {
   }
 
   .home_banner_area .banner_inner .banner_content span {
-    font-size: 15px;
+    font-size: 10px;
     margin-bottom: 6px;
   }
 
@@ -803,247 +680,12 @@ ul {
   padding: 130px 0;
 }
 
-.sample-text-area {
-  padding: 100px 0px;
-}
-
-.sample-text-area .title_color {
-  margin-bottom: 30px;
-}
-
-.sample-text-area p {
-  line-height: 26px;
-}
-
-.sample-text-area p b {
-  font-weight: bold;
-  color: #e22104;
-}
-
-.sample-text-area p i {
-  color: #e22104;
-  font-style: italic;
-}
-
-.sample-text-area p sup {
-  color: #e22104;
-  font-style: italic;
-}
-
-.sample-text-area p sub {
-  color: #e22104;
-  font-style: italic;
-}
-
-.sample-text-area p del {
-  color: #e22104;
-}
-
-.sample-text-area p u {
-  color: #e22104;
-}
-
-/*============== End Elements Area css ================*/
-/*==============Elements Button Area css ================*/
-.elements_button .title_color {
-  margin-bottom: 30px;
-  color: #202e31;
-}
-
-.title_color {
-  color: #202e31;
-}
-
-.button-group-area {
-  margin-top: 15px;
-}
-
-.button-group-area:nth-child(odd) {
-  margin-top: 40px;
-}
-
-.button-group-area:first-child {
-  margin-top: 0px;
-}
-
-.button-group-area .theme_btn {
-  margin-right: 10px;
-}
-
-.button-group-area .white_btn {
-  margin-right: 10px;
-}
-
-.button-group-area .link {
-  text-decoration: underline;
-  color: #202e31;
-  background: transparent;
-}
-
-.button-group-area .link:hover {
-  color: #fff;
-}
-
-.button-group-area .disable {
-  background: transparent;
-  color: #007bff;
-  cursor: not-allowed;
-}
-
-.button-group-area .disable:before {
-  display: none;
-}
-
-.primary {
-  background: #52c5fd;
-}
-
-.primary:before {
-  background: #2faae6;
-}
-
-.success {
-  background: #4cd3e3;
-}
-
-.success:before {
-  background: #2ebccd;
-}
-
-.info {
-  background: #38a4ff;
-}
-
-.info:before {
-  background: #298cdf;
-}
-
-.warning {
-  background: #f4e700;
-}
-
-.warning:before {
-  background: #e1d608;
-}
-
-.danger {
-  background: #f54940;
-}
-
-.danger:before {
-  background: #e13b33;
-}
-
-.primary-border {
-  background: transparent;
-  border: 1px solid #52c5fd;
-  color: #52c5fd;
-}
-
-.primary-border:before {
-  background: #52c5fd;
-}
-
-.success-border {
-  background: transparent;
-  border: 1px solid #4cd3e3;
-  color: #4cd3e3;
-}
-
-.success-border:before {
-  background: #4cd3e3;
-}
-
-.info-border {
-  background: transparent;
-  border: 1px solid #38a4ff;
-  color: #38a4ff;
-}
-
-.info-border:before {
-  background: #38a4ff;
-}
-
-.warning-border {
-  background: #fff;
-  border: 1px solid #f4e700;
-  color: #f4e700;
-}
-
-.warning-border:before {
-  background: #f4e700;
-}
-
-.danger-border {
-  background: transparent;
-  border: 1px solid #f54940;
-  color: #f54940;
-
-}
-
-.danger-border:before {
-  background: #f54940;
-}
-
-.link-border {
-  background: transparent;
-  border: 1px solid #e22104;
-  color: #e22104;
-}
-
-.link-border:before {
-  background: #e22104;
-}
-
-.radius {
-  border-radius: 3px;
-}
-
-.circle {
-  border-radius: 20px;
-}
-
-.arrow span {
-  padding-left: 5px;
-}
-
-.e-large {
-  line-height: 50px;
-  padding-top: 0px;
-  padding-bottom: 0px;
-}
-
-.large {
-  line-height: 45px;
-  padding-top: 0px;
-  padding-bottom: 0px;
-}
-
-.medium {
-  line-height: 30px;
-  padding-top: 0px;
-  padding-bottom: 0px;
-}
-
-.small {
-  line-height: 25px;
-  padding-top: 0px;
-  padding-bottom: 0px;
-}
-
-.general {
-  line-height: 38px;
-  padding-top: 0px;
-  padding-bottom: 0px;
-}
-
-/*==============End Elements Button Area css ================*/
 /* =================================== */
 /*  Elements Page Styles
 /* =================================== */
 /*---------- Start Elements Page -------------*/
 .generic-banner {
-  margin-top: 60px;
+  margin-top: 6px;
   text-align: center;
 }
 
@@ -1059,7 +701,7 @@ ul {
 
 .generic-banner .generic-banner-content h2 {
   line-height: 1.2em;
-  margin-bottom: 20px;
+  margin-bottom: 2px;
 }
 
 @media (max-width: 991.98px) {
