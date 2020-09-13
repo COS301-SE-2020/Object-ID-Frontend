@@ -535,50 +535,94 @@
          </div>
 
          <!-- The Function containers -->
-         <div class="center d-flex">
-            <div class="card" style="width: 18rem;">
-               <img src="../../assets/img/web_search.svg" class="card-img-top" alt="">
-               <div class="card-body">
-                  <p><strong>Search</strong></p>
-                  <p>Do a generic search. Enter a keyword and get results based on that keyword</p>
-                  <button id="homeBtn1" class="btn btn-primary" (click)="open(content,'lg')">Quick Search</button>
-
+         <div class="row center">
+            <!-- <div class="center d-flex flex-column"> -->
+            <div class="col-md-6 col-lg-2">
+               <div class="card p-3">
+                  <img src="../../assets/img/web_search.svg" class="card-img-top img-fluid" alt="">
+                  <div class="card-block text-muted">
+                     <div>
+                        <p class="font-weight-bold">Quick Search</p>
+                        <p>Do a generic search. Enter a keyword and get results based on that keyword</p>
+                     </div>
+                     <div class="p-3 mb-4">
+                        <div class="text-center">
+                        <button id="homeBtn" class="btn btn-primary" (click)="open(content,'lg')">Quick
+                           Search</button>
+                     </div>
+                     </div>
+                  </div>
                </div>
             </div>
-            <div class="card" style="width: 18rem;">
-               <img src="../../assets/img/my_car.svg" class="card-img-top" alt="">
-               <div class="card-body">
-                  <p><strong>Detailed search</strong></p>
-                  <p>Do a detailed search with different parameters based on a list of keywords like color</p>
-                  <button id="homeBtn" class="btn btn-primary" (click)="open(contentTwo,'lg')">Detailed Search</button>
+            <div class="col-md-6 col-lg-2">
+               <div class="card p-3">
+                  <img src="../../assets/img/my_car.svg" class="card-img-top img-fluid" alt="">
+                  <div class="card-block">
+                     <div>
+                        <p class="font-weight-bold">Detailed search</p>
+                        <p>Do a detailed search with different parameters based on a list of keywords like color</p>
+                     </div>
+                     <div class="p-3 mb-4">
+                        <div class="text-center">
+                        <button id="homeBtn" class="btn btn-primary" (click)="open(contentTwo,'lg')">Detailed
+                           Search</button>
+                     </div>
+                     </div>
+                  </div>
                </div>
             </div>
-            <div class="card" style="width: 18rem;">
-               <img src="../../assets/img/challenge.svg" class="card-img-top" alt="">
-               <div class="card-body">
-                  <p><strong>Marked Vehicles</strong></p>
-                  <p>Flag or unflag a suspicious vehicle using the vehicle's license plate or see all marked vehicles
-                  </p>
-                  <button id="homeBtn" class="btn btn-primary" (click)="open(contentNine,'lg')">Mark
-                     Vehicle</button><br>
+            <div class="col-md-6 col-lg-2">
+               <div class="card p-3">
+                  <img src="../../assets/img/challenge.svg" class="card-img-top img-fluid" alt="">
+                  <div class="card-block">
+                     <div>
+                        <p class="font-weight-bold">Marked Vehicles</p>
+                        <p>Flag or unflag a suspicious vehicle using the vehicle's license plate</p>
+                     </div>
+                     <div class="p-3 mb-4">
+                        <div class="text-center">
+                        <button id="homeBtn" class="btn btn-primary" (click)="open(contentNine,'lg')">Mark
+                           Vehicle</button>
+                     </div>
+                     </div>
+                  </div>
                </div>
             </div>
-            <div class="card" style="width: 18rem;">
-               <img src="../../assets/img/upload.svg" class="card-img-top" alt="">
-               <div class="card-body">
-                  <p><strong>Upload</strong></p>
-                  <p>Upload an image and retrieve the license plate or a video and also detects cars</p>
-                  <button id="homeBtn" class="btn btn-primary" (click)="open(contentEight,'lg')">Upload</button>
+            <div class="col-md-6 col-lg-2">
+               <div class="card p-3">
+                  <img src="../../assets/img/upload.svg" class="card-img-top img-fluid" alt="">
+                  <div class="card-block">
+                     <div>
+                        <p class="font-weight-bold">Upload</p>
+                        <p>Upload an image and retrieve the license plate or a video and also detects cars</p>
+                     </div>
+                     <div class="p-3 mb-4">
+                        <div class="text-center">
+                           <button id="homeBtn" class="btn btn-primary"
+                              (click)="open(contentEight,'lg')">Upload</button>
+                        </div>
+                     </div>
+                  </div>
                </div>
             </div>
-            <div class="card" style="width: 18rem;">
-               <img src="../../assets/img/mapD.svg" class="card-img-top" alt="">
-               <div class="card-body">
-                  <p><strong>Map View</strong></p>
-                  <p>See pins on a map of where a vehicle has travelled by entering the license plate</p>
-                  <button id="homeBtn" class="btn btn-primary" (click)="open(contentTen,'lg')">Map View</button>
+            <div class="col-md-6 col-lg-2">
+               <div class="card p-3">
+                  <img src="../../assets/img/mapD.svg" class="card-img-top img-fluid" alt="">
+                  <div class="card-block">
+                     <div>
+                        <p class="font-weight-bold">Map View</p>
+                        <p>See pins on a map of where a vehicle has travelled by entering the license plate</p>
+                     </div>
+                     <div class="p-3 mb-4">
+                        <div class="text-center">
+                        <button id="homeBtn" class="btn btn-primary" (click)="open(contentTen,'lg')">Map
+                           View</button>
+                     </div>
+                     </div>
+                  </div>
                </div>
             </div>
+            <!-- </div>-->
          </div>
       </div>
    </div>
