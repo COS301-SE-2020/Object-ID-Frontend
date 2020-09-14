@@ -79,7 +79,7 @@
     <section class="home_banner_area">
       <div class="banner_inner">
         <div class="chart-container container">
-          <div class="spectre-line-chart">
+          <div class="fchart">
             <h4 class="card-title border-bottom" style="text-align: center">
               All Camera Reads
             </h4>
@@ -87,7 +87,7 @@
               [view]="[1000, 400]"
               [results]="allCamera"
               [xAxisLabel]="'Cameras'"
-              [legendTitle]="'Reads per camera'"
+              [legendTitle]="'Legend'"
               [yAxisLabel]="'Reads'"
               [legend]="true"
               [showXAxisLabel]="true"
@@ -101,6 +101,12 @@
           </div>
         </div>
       </div>
+      <!-- <div class="container-fluid">
+        <div class="jumbotron">
+           <img class="mx-auto d-block" src="../../assets/logo.png"/>
+        </div>
+      </div>  -->
+
       <div class="container">
         <hr />
         <div class="form-inline center">
@@ -128,7 +134,7 @@
                 [view]="[500, 200]"
                 [results]="Camera1"
                 [xAxisLabel]="'Date'"
-                [legendTitle]="'Reads'"
+                [legendTitle]="'Legend'"
                 [yAxisLabel]="'Reads'"
                 [legend]="true"
                 [showXAxisLabel]="true"
@@ -148,7 +154,7 @@
                 [view]="[500, 200]"
                 [results]="Camera2"
                 [xAxisLabel]="'Date'"
-                [legendTitle]="'Reads'"
+                [legendTitle]="'Legend'"
                 [yAxisLabel]="'Reads'"
                 [legend]="true"
                 [showXAxisLabel]="true"
@@ -170,7 +176,7 @@
                 [view]="[500, 200]"
                 [results]="Camera3"
                 [xAxisLabel]="'Date'"
-                [legendTitle]="'Reads'"
+                [legendTitle]="'Legend'"
                 [yAxisLabel]="'Reads'"
                 [legend]="true"
                 [showXAxisLabel]="true"
@@ -190,7 +196,7 @@
                 [view]="[500, 200]"
                 [results]="Camera4"
                 [xAxisLabel]="'Date'"
-                [legendTitle]="'Reads'"
+                [legendTitle]="'Legend'"
                 [yAxisLabel]="'Reads'"
                 [legend]="true"
                 [showXAxisLabel]="true"
@@ -210,11 +216,6 @@
     <!--================End Home Banner Area =================-->
 
     <!-----Isaaacs Header------->
-    <div class="container-fluid">
-      <div class="jumbotron">
-        <!-- <img class="mx-auto d-block" src="../../assets/logo.png"/> -->
-      </div>
-    </div>
 
     <!--================ start footer Area =================-->
     <footer class="footer-area">
@@ -228,7 +229,7 @@
                   <ul class="footer-nav">
                     <li>
                       <i class="ti-angle-right"></i>
-                      <a href="#">home</a>
+                      <a routerLink="/home">home</a>
                     </li>
                     <li>
                       <i class="ti-angle-right"></i>
@@ -236,15 +237,7 @@
                     </li>
                     <li>
                       <i class="ti-angle-right"></i>
-                      <a href="#">our services</a>
-                    </li>
-                    <li>
-                      <i class="ti-angle-right"></i>
-                      <a href="#">search</a>
-                    </li>
-                    <li>
-                      <i class="ti-angle-right"></i>
-                      <a href="#">contuct us</a>
+                      <a routerLink="/dashboard">dashboard</a>
                     </li>
                   </ul>
                 </div>
@@ -269,15 +262,15 @@
                 <form>
                   <div class="row no-gutters">
                     <div class="col-lg-8 col-md-8 col-7">
-                      <p>Email: xxx@xxx.co.za</p>
-                      <p>Telphone: xxx xxx xxxx</p>
-                      <a class="footer-link" href="#">privacy policy</a>
+                      <p>Email: ctrl.intelligence@gmail.com</p>
+                      <!-- <p>Telphone: xxx xxx xxxx</p> -->
+                      <!-- <a class="footer-link" href="#">privacy policy</a> -->
                     </div>
-                    <ul>
+                    <!-- <ul>
                       <li><a href="#" class="text-muted">Twitter</a></li>
                       <li><a href="#" class="text-muted">Facebook</a></li>
                       <li><a href="#" class="text-muted">Instagram</a></li>
-                    </ul>
+                    </ul> -->
                   </div>
                   <div class="info"></div>
                 </form>

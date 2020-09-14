@@ -16,34 +16,35 @@ export class DashboardComponent implements OnInit {
   allCamera = [
     { name: "Camera 1", value: 25 },
     { name: "Camera 2", value: 17 },
-    { name: "Camera 3", value: 16 },
-    { name: "Camera 4", value: 12 },
+    { name: "Camera 3", value: 15 },
+    { name: "Camera 4", value: 11 },
   ];
   // allCamera = [];
   // perCamera = [];
   Camera1 = [
     { name: "2020-08-10", value: 2 },
     { name: "2020-08-13", value: 3 },
-    { name: "2020-08-22", value: 1 },
+    { name: "2020-08-22", value: 7 },
     { name: "2020-09-03", value: 4 },
+    { name: "2020-09-05", value: 9 },
   ];
   Camera2 = [
     { name: "2020-08-10", value: 2 },
-    { name: "2020-08-13", value: 3 },
-    { name: "2020-08-22", value: 1 },
-    { name: "2020-09-03", value: 4 },
-    { name: "2020-09-07", value: 3 },
+    { name: "2020-08-14", value: 6 },
+    { name: "2020-08-17", value: 1 },
+    { name: "2020-08-28", value: 4 },
+    { name: "2020-09-04", value: 4 },
   ];
   Camera3 = [
-    { name: "2020-08-10", value: 2 },
+    { name: "2020-08-10", value: 5 },
     { name: "2020-08-13", value: 3 },
-    { name: "2020-08-22", value: 1 },
+    { name: "2020-08-22", value: 3 },
+    { name: "2020-09-04", value: 4 },
   ];
   Camera4 = [
-    { name: "2020-08-10", value: 2 },
+    { name: "2020-08-10", value: 4 },
     { name: "2020-08-13", value: 3 },
-    { name: "2020-08-22", value: 1 },
-    { name: "2020-09-03", value: 4 },
+    { name: "2020-08-22", value: 4 },
   ];
 
   constructor(

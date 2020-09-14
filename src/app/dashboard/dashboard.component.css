@@ -779,6 +779,10 @@ ul {
   margin-top: 35px;
 }
 
+.banner_inner {
+  max-height: 600px !important;
+  min-height: 600px !important;
+}
 /* End Home Banner Area css
   ============================================================================================ */
 /*============== Elements Area css ================*/
@@ -1217,6 +1221,10 @@ ul {
 .black_btn:hover {
   background: #e22104;
   color: #202e31;
+}
+
+.fchart {
+  margin-top: 100px;
 }
 
 .card {
