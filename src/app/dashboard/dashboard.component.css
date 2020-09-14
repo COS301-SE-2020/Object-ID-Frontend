@@ -1219,6 +1219,12 @@ ul {
   color: #202e31;
 }
 
+.card {
+  margin: 10px;
+  float: left;
+  min-width: 500px;
+  margin-left: 60px;
+}
 /*=================== custom button rule start ====================*/
 .button {
   font-family: "Roboto", sans-serif;

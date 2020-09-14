@@ -62,10 +62,6 @@
                 <li class="nav-item active">
                   <a class="nav-link" routerLink="/dashboard">Dashboard</a>
                 </li>
-                <!--href="service.html"-->
-                <li class="nav-item">
-                  <a class="nav-link" routerLink="/home">Contact</a>
-                </li>
                 <!--href="about-us.html"-->
                 <li class="nav-item">
                   <a class="nav-link" (click)="logout()">Logout</a>
@@ -84,7 +80,9 @@
       <div class="banner_inner">
         <div class="chart-container container">
           <div class="spectre-line-chart">
-            <h4 class="card-title border-bottom">All Camera Reads</h4>
+            <h4 class="card-title border-bottom" style="text-align: center">
+              All Camera Reads
+            </h4>
             <ngx-charts-bar-vertical
               [view]="[1000, 400]"
               [results]="allCamera"
@@ -104,10 +102,9 @@
         </div>
       </div>
       <div class="container">
-        <br />
         <hr />
         <div class="form-inline center">
-          <form class="form-group" (submit)="perCameras()" [formGroup]="Cform">
+          <!-- <form class="form-group" (submit)="perCameras()" [formGroup]="Cform">
             <input
               type="text"
               id="search-field"
@@ -120,27 +117,91 @@
               Show
             </button>
             <br />
-          </form>
-          <br />
-          <br />
+          </form> -->
           <hr />
-          <div *ngIf="perCamera.length > 0">
-            <h4 class="card-title border-bottom">Single Camera Reads</h4>
-            <ngx-charts-bar-vertical
-              [view]="[1000, 400]"
-              [results]="perCamera"
-              [xAxisLabel]="'Date'"
-              [legendTitle]="'Reads'"
-              [yAxisLabel]="'Reads'"
-              [legend]="true"
-              [showXAxisLabel]="true"
-              [showYAxisLabel]="true"
-              [xAxis]="true"
-              [yAxis]="true"
-              [gradient]="true"
-              scheme="ocean"
-            >
-            </ngx-charts-bar-vertical>
+          <div>
+            <div class="card" style="width: 18rem">
+              <h4 class="card-title border-bottom" style="text-align: center">
+                Camera 1
+              </h4>
+              <ngx-charts-bar-vertical
+                [view]="[500, 200]"
+                [results]="Camera1"
+                [xAxisLabel]="'Date'"
+                [legendTitle]="'Reads'"
+                [yAxisLabel]="'Reads'"
+                [legend]="true"
+                [showXAxisLabel]="true"
+                [showYAxisLabel]="true"
+                [xAxis]="true"
+                [yAxis]="true"
+                [gradient]="true"
+                scheme="ocean"
+              >
+              </ngx-charts-bar-vertical>
+            </div>
+            <div class="card" style="width: 18rem">
+              <h4 class="card-title border-bottom" style="text-align: center">
+                Camera 2
+              </h4>
+              <ngx-charts-bar-vertical
+                [view]="[500, 200]"
+                [results]="Camera2"
+                [xAxisLabel]="'Date'"
+                [legendTitle]="'Reads'"
+                [yAxisLabel]="'Reads'"
+                [legend]="true"
+                [showXAxisLabel]="true"
+                [showYAxisLabel]="true"
+                [xAxis]="true"
+                [yAxis]="true"
+                [gradient]="true"
+                scheme="ocean"
+              >
+              </ngx-charts-bar-vertical>
+            </div>
+          </div>
+          <div>
+            <div class="card" style="width: 18rem">
+              <h4 class="card-title border-bottom" style="text-align: center">
+                Camera 3
+              </h4>
+              <ngx-charts-bar-vertical
+                [view]="[500, 200]"
+                [results]="Camera3"
+                [xAxisLabel]="'Date'"
+                [legendTitle]="'Reads'"
+                [yAxisLabel]="'Reads'"
+                [legend]="true"
+                [showXAxisLabel]="true"
+                [showYAxisLabel]="true"
+                [xAxis]="true"
+                [yAxis]="true"
+                [gradient]="true"
+                scheme="ocean"
+              >
+              </ngx-charts-bar-vertical>
+            </div>
+            <div class="card" style="width: 18rem">
+              <h4 class="card-title border-bottom" style="text-align: center">
+                Camera 4
+              </h4>
+              <ngx-charts-bar-vertical
+                [view]="[500, 200]"
+                [results]="Camera4"
+                [xAxisLabel]="'Date'"
+                [legendTitle]="'Reads'"
+                [yAxisLabel]="'Reads'"
+                [legend]="true"
+                [showXAxisLabel]="true"
+                [showYAxisLabel]="true"
+                [xAxis]="true"
+                [yAxis]="true"
+                [gradient]="true"
+                scheme="ocean"
+              >
+              </ngx-charts-bar-vertical>
+            </div>
           </div>
         </div>
         <br />

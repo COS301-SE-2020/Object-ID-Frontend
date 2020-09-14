@@ -13,42 +13,38 @@ import { features } from "process";
 export class DashboardComponent implements OnInit {
   public Cform: FormGroup;
 
-  // allCamera = [
-  //   { name: "Camera 1", value: 25 },
-  //   { name: "Camera 2", value: 17 },
-  //   { name: "Camera 3", value: 16 },
-  //   { name: "Camera 4", value: 12 },
-  // ];
-  allCamera = [];
-  perCamera = [];
-  // Camera1 = [
-  //   { date: "2020-08-10", value: 2 },
-  //   { date: "2020-08-13", value: 3 },
-  //   { date: "2020-08-22", value: 1 },
-  //   { date: "2020-09-03", value: 4 },
-  //   { date: "2020-09-07", value: 3 },
-  // ];
-  // Camera2 = [
-  //   { date: "2020-08-10", value: 2 },
-  //   { date: "2020-08-13", value: 3 },
-  //   { date: "2020-08-22", value: 1 },
-  //   { date: "2020-09-03", value: 4 },
-  //   { date: "2020-09-07", value: 3 },
-  // ];
-  // Camera3 = [
-  //   { date: "2020-08-10", value: 2 },
-  //   { date: "2020-08-13", value: 3 },
-  //   { date: "2020-08-22", value: 1 },
-  //   { date: "2020-09-03", value: 4 },
-  //   { date: "2020-09-07", value: 3 },
-  // ];
-  // perCamera4 = [
-  //   { date: "2020-08-10", value: 2 },
-  //   { date: "2020-08-13", value: 3 },
-  //   { date: "2020-08-22", value: 1 },
-  //   { date: "2020-09-03", value: 4 },
-  //   { date: "2020-09-07", value: 3 },
-  // ];
+  allCamera = [
+    { name: "Camera 1", value: 25 },
+    { name: "Camera 2", value: 17 },
+    { name: "Camera 3", value: 16 },
+    { name: "Camera 4", value: 12 },
+  ];
+  // allCamera = [];
+  // perCamera = [];
+  Camera1 = [
+    { name: "2020-08-10", value: 2 },
+    { name: "2020-08-13", value: 3 },
+    { name: "2020-08-22", value: 1 },
+    { name: "2020-09-03", value: 4 },
+  ];
+  Camera2 = [
+    { name: "2020-08-10", value: 2 },
+    { name: "2020-08-13", value: 3 },
+    { name: "2020-08-22", value: 1 },
+    { name: "2020-09-03", value: 4 },
+    { name: "2020-09-07", value: 3 },
+  ];
+  Camera3 = [
+    { name: "2020-08-10", value: 2 },
+    { name: "2020-08-13", value: 3 },
+    { name: "2020-08-22", value: 1 },
+  ];
+  Camera4 = [
+    { name: "2020-08-10", value: 2 },
+    { name: "2020-08-13", value: 3 },
+    { name: "2020-08-22", value: 1 },
+    { name: "2020-09-03", value: 4 },
+  ];
 
   constructor(
     private api: ApiService,
@@ -82,23 +78,71 @@ export class DashboardComponent implements OnInit {
         console.log(this.allCamera);
       }
     });
+    //------------------Chart for camera1---------------------------
+    this.api.allCameras().subscribe((cameraData) => {
+      if (cameraData["success"] == true) {
+        cameraData["payload"].forEach((element) => {
+          this.Camera1.push({
+            name: element["date"],
+            value: element["total"],
+          });
+        });
+        console.log(this.Camera1);
+      }
+    });
+    //------------------Chart for camera2---------------------------
+    this.api.allCameras().subscribe((cameraData) => {
+      if (cameraData["success"] == true) {
+        cameraData["payload"].forEach((element) => {
+          this.Camera2.push({
+            name: element["date"],
+            value: element["total"],
+          });
+        });
+        console.log(this.allCamera);
+      }
+    });
+    //------------------Chart for camera3---------------------------
+    this.api.allCameras().subscribe((cameraData) => {
+      if (cameraData["success"] == true) {
+        cameraData["payload"].forEach((element) => {
+          this.Camera3.push({
+            name: element["date"],
+            value: element["total"],
+          });
+        });
+        console.log(this.allCamera);
+      }
+    });
+    //------------------Chart for camera4---------------------------
+    this.api.allCameras().subscribe((cameraData) => {
+      if (cameraData["success"] == true) {
+        cameraData["payload"].forEach((element) => {
+          this.Camera4.push({
+            name: element["date"],
+            value: element["total"],
+          });
+        });
+        console.log(this.allCamera);
+      }
+    });
   }
 
   //-----------------Chart for each camera --------------------------
   perCameras() {
-    const formData = new FormData();
-    formData.append("unique_key", this.Cform.value.camera);
-    this.api.perCameras(formData).subscribe((cameraD) => {
-      if (cameraD["success"] == true) {
-        cameraD["payload"]["data"].forEach((element) => {
-          this.perCamera.push({
-            name: element["date"],
-            value: element["count"],
-          });
-        });
-        console.log(this.perCamera);
-      }
-    });
+    // const formData = new FormData();
+    // formData.append("unique_key", this.Cform.value.camera);
+    // this.api.perCameras(formData).subscribe((cameraD) => {
+    //   if (cameraD["success"] == true) {
+    //     cameraD["payload"]["data"].forEach((element) => {
+    //       this.perCamera.push({
+    //         name: element["date"],
+    //         value: element["count"],
+    //       });
+    //     });
+    //     console.log(this.perCamera);
+    //   }
+    // });
   }
 
   logout() {
