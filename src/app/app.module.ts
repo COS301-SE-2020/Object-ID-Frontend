@@ -15,6 +15,7 @@ import { TopMenuComponent } from './top-menu/top-menu.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NgxChartsModule }from '@swimlane/ngx-charts';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AboutComponent } from './about/about.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     TopMenuComponent,
     RegisterComponent,
     DashboardComponent,
+    AboutComponent,
  
   ],
   imports: [
