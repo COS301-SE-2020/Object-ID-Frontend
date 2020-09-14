@@ -12,7 +12,9 @@ import { CanActivateRouteGuard } from './can-activate-route.guard';
 import { RegisterComponent } from './register/register.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TopMenuComponent } from './top-menu/top-menu.component';
-import { UploadComponent } from './upload/upload.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { NgxChartsModule }from '@swimlane/ngx-charts';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -21,8 +23,8 @@ import { UploadComponent } from './upload/upload.component';
     HomeComponent,
     LoginComponent,
     TopMenuComponent,
-    UploadComponent,
     RegisterComponent,
+    DashboardComponent,
  
   ],
   imports: [
@@ -33,6 +35,8 @@ import { UploadComponent } from './upload/upload.component';
     FormsModule,
     NgbModule,
     GoogleMapsModule,
+    NgxChartsModule,
+    BrowserAnimationsModule
   ],
   providers: [
     CanActivateRouteGuard],
