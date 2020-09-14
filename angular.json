@@ -25,7 +25,12 @@
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "src/styles.css"
+              "src/styles.css",
+              "src/assets/css/bootstrap.css",
+              "src/assets/css/responsive.css",
+              "src/assets/css/_about.css",
+              "src/assets/css/breadcrumb.css",
+              "src/assets/css/themify-icons.css"
             ],
             "scripts": []
           },

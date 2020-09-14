@@ -12,10 +12,16 @@ import { CanActivateRouteGuard } from './can-activate-route.guard';
 import { RegisterComponent } from './register/register.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TopMenuComponent } from './top-menu/top-menu.component';
+<<<<<<< HEAD
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NgxChartsModule }from '@swimlane/ngx-charts';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AboutComponent } from './about/about.component';
+=======
+import { UploadComponent } from './upload/upload.component';
+import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
+
+>>>>>>> update-ui
 
 
 @NgModule({
@@ -36,6 +42,7 @@ import { AboutComponent } from './about/about.component';
     ReactiveFormsModule,
     FormsModule,
     NgbModule,
+    NgbCollapseModule,
     GoogleMapsModule,
     NgxChartsModule,
     BrowserAnimationsModule
