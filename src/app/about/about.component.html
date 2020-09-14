@@ -55,11 +55,11 @@
                 <li class="nav-item">
                   <a class="nav-link" routerLink="/home">Home</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item active">
                   <a class="nav-link" routerLink="/about">About</a>
                 </li>
                 <!--href="about-us.html"-->
-                <li class="nav-item active">
+                <li class="nav-item">
                   <a class="nav-link" routerLink="/dashboard">Dashboard</a>
                 </li>
                 <!--href="about-us.html"-->
@@ -77,145 +77,29 @@
 
     <!--================Home Banner Area =================-->
     <section class="home_banner_area">
-      <div class="banner_inner">
-        <div class="chart-container container">
-          <div class="fchart">
-            <h4 class="card-title border-bottom" style="text-align: center">
-              All Camera Reads
-            </h4>
-            <ngx-charts-bar-vertical
-              [view]="[1000, 400]"
-              [results]="allCamera"
-              [xAxisLabel]="'Cameras'"
-              [legendTitle]="'Legend'"
-              [yAxisLabel]="'Reads'"
-              [legend]="true"
-              [showXAxisLabel]="true"
-              [showYAxisLabel]="true"
-              [xAxis]="true"
-              [yAxis]="true"
-              [gradient]="true"
-              scheme="ocean"
-            >
-            </ngx-charts-bar-vertical>
-          </div>
-        </div>
-      </div>
-      <!-- <div class="container-fluid">
-        <div class="jumbotron">
-           <img class="mx-auto d-block" src="../../assets/logo.png"/>
-        </div>
-      </div>  -->
+      <div class="banner_inner"></div>
+      <p class="def">
+        The project is based on creating a system that is able to identify
+        vehicles via their colour and number plate or registration number as
+        well as identify any blemishes or damage to the vehicle using camera
+        tracking software for crime prevention purposes. The system will be able
+        to track the movements of vehicles as well as damage that occurs or is
+        already present on the vehicle. The system should be able to discover
+        blemishes on the vehicle as well, such as stickers that are on the
+        windows of the vehicle. The system will also attempt to identify the
+        make of the vehicle in order to better track if there are stolen number
+        plates. I.e if the vehicle has number plate x as a blue Ford and another
+        vehicle that is a red Ferrari that also has number plate x then the
+        system can identify this as an abnormality and report it. The system
+        will later on be able to identify different objects as well.
+      </p>
 
       <div class="container">
-        <hr />
-        <div class="form-inline center">
-          <!-- <form class="form-group" (submit)="perCameras()" [formGroup]="Cform">
-            <input
-              type="text"
-              id="search-field"
-              class="form-control"
-              formControlName="camera"
-              placeholder="Enter camera key"
-              required
-            />
-            <button type="submit" class="show-button" id="search-btn">
-              Show
-            </button>
-            <br />
-          </form> -->
-          <hr />
-          <div>
-            <div class="card" style="width: 18rem">
-              <h4 class="card-title border-bottom" style="text-align: center">
-                Camera 1
-              </h4>
-              <ngx-charts-bar-vertical
-                [view]="[500, 200]"
-                [results]="Camera1"
-                [xAxisLabel]="'Date'"
-                [legendTitle]="'Legend'"
-                [yAxisLabel]="'Reads'"
-                [legend]="true"
-                [showXAxisLabel]="true"
-                [showYAxisLabel]="true"
-                [xAxis]="true"
-                [yAxis]="true"
-                [gradient]="true"
-                scheme="ocean"
-              >
-              </ngx-charts-bar-vertical>
-            </div>
-            <div class="card" style="width: 18rem">
-              <h4 class="card-title border-bottom" style="text-align: center">
-                Camera 2
-              </h4>
-              <ngx-charts-bar-vertical
-                [view]="[500, 200]"
-                [results]="Camera2"
-                [xAxisLabel]="'Date'"
-                [legendTitle]="'Legend'"
-                [yAxisLabel]="'Reads'"
-                [legend]="true"
-                [showXAxisLabel]="true"
-                [showYAxisLabel]="true"
-                [xAxis]="true"
-                [yAxis]="true"
-                [gradient]="true"
-                scheme="ocean"
-              >
-              </ngx-charts-bar-vertical>
-            </div>
-          </div>
-          <div>
-            <div class="card" style="width: 18rem">
-              <h4 class="card-title border-bottom" style="text-align: center">
-                Camera 3
-              </h4>
-              <ngx-charts-bar-vertical
-                [view]="[500, 200]"
-                [results]="Camera3"
-                [xAxisLabel]="'Date'"
-                [legendTitle]="'Legend'"
-                [yAxisLabel]="'Reads'"
-                [legend]="true"
-                [showXAxisLabel]="true"
-                [showYAxisLabel]="true"
-                [xAxis]="true"
-                [yAxis]="true"
-                [gradient]="true"
-                scheme="ocean"
-              >
-              </ngx-charts-bar-vertical>
-            </div>
-            <div class="card" style="width: 18rem">
-              <h4 class="card-title border-bottom" style="text-align: center">
-                Camera 4
-              </h4>
-              <ngx-charts-bar-vertical
-                [view]="[500, 200]"
-                [results]="Camera4"
-                [xAxisLabel]="'Date'"
-                [legendTitle]="'Legend'"
-                [yAxisLabel]="'Reads'"
-                [legend]="true"
-                [showXAxisLabel]="true"
-                [showYAxisLabel]="true"
-                [xAxis]="true"
-                [yAxis]="true"
-                [gradient]="true"
-                scheme="ocean"
-              >
-              </ngx-charts-bar-vertical>
-            </div>
-          </div>
-        </div>
+        <div class="form-inline center"></div>
         <br />
       </div>
     </section>
     <!--================End Home Banner Area =================-->
-
-    <!-----Isaaacs Header------->
 
     <!--================ start footer Area =================-->
     <footer class="footer-area">
