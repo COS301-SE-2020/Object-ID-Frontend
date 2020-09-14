@@ -4,7 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { CanActivateRouteGuard } from './can-activate-route.guard';
 import { RegisterComponent } from './register/register.component';
-import { UploadComponent } from './upload/upload.component';
+import { DashboardComponent } from './dashboard/dashboard.component'
 
 
 const routes: Routes = [
@@ -13,13 +13,12 @@ const routes: Routes = [
     component: HomeComponent,
     canActivate: [CanActivateRouteGuard]  
   },
+  { path: 'dashboard', 
+  component: DashboardComponent,
+  canActivate: [CanActivateRouteGuard]  
+},
   { path: 'register', 
-    component: RegisterComponent,
-    canActivate: [CanActivateRouteGuard]},
-  { path: 'upload', 
-    component: UploadComponent,
-    canActivate: [CanActivateRouteGuard]  
-  }
+    component: RegisterComponent }
 ];
 
 @NgModule({

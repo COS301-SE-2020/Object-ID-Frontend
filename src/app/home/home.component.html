@@ -6,7 +6,6 @@
       <!-- Bootstrap -->
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-      <!-- Bootstrap -->
       <!-- OpenLayers -->
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.2.1/css/ol.css" type="text/css">
       <!-- Ajax -->
@@ -34,9 +33,8 @@
                   <ul class="nav navbar-nav menu_nav ml-auto">
                       <li class="nav-item active"><a class="nav-link" routerLink="/home">Home</a></li> 
                       <li class="nav-item"><a class="nav-link" routerLink="/home">About</a></li> <!--href="about-us.html"-->
-                      <li class="nav-item"><a class="nav-link" routerLink="/home">services</a></li> <!--href="service.html"-->           
+                      <li class="nav-item"><a class="nav-link" routerLink="/dashboard">Dashboard</a></li> <!--href="service.html"-->           
                       <li class="nav-item"><a class="nav-link" routerLink="/home">Contact</a></li><!--href="about-us.html"-->
-                      <li class="nav-item"><a class="nav-link" routerLink="/register">Register</a></li><!--href="about-us.html"-->
                       <li class="nav-item"><a class="nav-link" (click)="logout()">Logout</a></li><!--href="about-us.html"-->
                   </ul>
                </div>
@@ -55,7 +53,7 @@
          <div class="container">
              <div class="banner_content text-center">
               <span>Object ID Technology</span>
-              <h3> proactive monitoring and reaction 
+              <h3> Proactive monitoring and reaction 
            <br/>to potential crime
            incidents</h3>
               <button type="button" class="main_btn btn btn-info btn-lg" data-toggle="modal" data-target="#mySearch">Search</button>
@@ -409,7 +407,7 @@
                          <input type="text"  class="form-control" formControlName="uploadFileAd" name="uploadFileAd" placeholder="Address"  />
                      </div>
                      <div class="form-group">
-                         <button class="btn btn-primary">Submit</button>
+                         <button class="btn btn-primary" >{{searchButtonText}}</button>
                      </div>
                  </form>
                </div>
