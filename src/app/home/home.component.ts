@@ -201,9 +201,8 @@ export class HomeComponent implements OnInit {
     this.api.map(this.mapView.value.license_plate).subscribe((mData) => {
       if (mData["success"] == true) {
         mData["payload"].forEach((element) => {
-          //console.log(element?.tracking[0]["long"]);
-          console.log(element);
-          console.log(element.tracking);
+          console.log(element?.tracking[0]["long"]);
+          console.log(element?.tracking[0]["lat"]);
 
           this.marker1.push(
             new Feature({
@@ -262,6 +261,8 @@ export class HomeComponent implements OnInit {
       } else {
         this.message = "No vehicle matching that license plate found";
       }
+
+      console.log(this.mapVar);
     });
   }
   //-----------------------Upload----------------------------------------------
@@ -281,12 +282,15 @@ export class HomeComponent implements OnInit {
             let lat = data2["results"][0].locations[0].displayLatLng.lat;
             formData.append("lat", lat);
             formData.append("long", long);
-          });
+            console.log(formData.get("long"));
+            console.log(formData.get("lat"));
 
-        this.api.submitUploadImage(formData).subscribe((data) => {
-          this.answer = [data];
-          console.log(this.answer);
-        });
+            this.api.submitUploadImage(formData).subscribe((data) => {
+              this.answer = [data];
+              console.log(this.answer);
+              this.searchButtonText = "Submit";
+            });
+          });
     }
   }
 

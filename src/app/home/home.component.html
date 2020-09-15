@@ -15,15 +15,18 @@
       href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.2.1/css/ol.css"
       type="text/css"
     />
-    <!-- Ajax -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-animate.js"></script>
     <!-- Font Awesome -->
+    <script
+      src="https://kit.fontawesome.com/e109c8324c.js"
+      crossorigin="anonymous"
+    ></script>
     <link
       href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
       rel="stylesheet"
     />
   </head>
   <body>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-animate.js"></script>
     <!--================Header Menu Area =================-->
     <header class="header_area">
       <div class="main_menu">
@@ -315,9 +318,9 @@
                         <button
                           type="submit"
                           class="btn btn-primary"
-                          id="search-btn"
+                          id="up-btn"
                         >
-                          Update
+                          <i class="fa fa-check-circle-o"></i>
                         </button>
                       </div>
                     </div>
@@ -773,6 +776,7 @@
                 <div class="form-group">
                   <button class="btn btn-primary">
                     {{ searchButtonText }}
+                    <i class="fa-li fa fa-spinner fa-spin"></i>
                   </button>
                 </div>
               </form>
@@ -954,8 +958,8 @@
             <div class="card-body">
               <p><strong>Search</strong></p>
               <p>
-                Do a generic search. Enter a keyword and get results based on
-                that keyword.
+                Perform a generic search. Enter a keyword and get results based
+                on that keyword.
               </p>
               <button
                 id="homeBtn1"
@@ -975,8 +979,8 @@
             <div class="card-body">
               <p><strong>Detailed search</strong></p>
               <p>
-                Do a detailed search with different parameters based on a list
-                of keywords.
+                Perform a detailed search with different parameters based on a
+                list of keywords.
               </p>
               <button
                 id="homeBtn"
