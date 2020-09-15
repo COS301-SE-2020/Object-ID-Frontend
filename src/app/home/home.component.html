@@ -239,7 +239,9 @@
                   </thead>
                   <tbody>
                     <tr id="box0" class="box" *ngFor="let i of answer.payload">
-                      <td class="numPlate">{{ i.license_plate }}</td>
+                      <td class="numPlate">
+                        {{ i.license_plate }}
+                      </td>
                       <td class="color">{{ i.color }}</td>
                       <td class="make">{{ i.make }}</td>
                       <td class="model">{{ i.model }}</td>
@@ -250,9 +252,24 @@
                           Edit
                         </button>
                       </td>
+                      <td class="image">
+                        <button
+                          class="btn btn-primary"
+                          (click)="openImage(i.id)"
+                        >
+                          View
+                        </button>
+                      </td>
                     </tr>
                   </tbody>
                 </table>
+                <img
+                  class="carImg"
+                  [src]="imgURL"
+                  height="200"
+                  *ngIf="imgURL"
+                />
+
                 <div *ngIf="vehicles != null">
                   <form
                     class="form-group"
@@ -911,7 +928,7 @@
                 </p>
                 <hr />
                 <br />
-                <form class="form-group" (submit)="map()" [formGroup]="mapView">
+                <form class="form-group" submit="map()" [formGroup]="mapView">
                   <input
                     type="text"
                     id="search-field"
@@ -920,7 +937,9 @@
                     placeholder="License"
                     required
                   />
-                  <button type="submit" class="btn btn-primary">Show</button>
+                  <button type="submit" (click)="map()" class="btn btn-primary">
+                    Show
+                  </button>
                 </form>
                 <br />
               </div>
@@ -935,6 +954,32 @@
                 <div id="map"></div>
               </div>
             </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-outline-dark"
+                (click)="modal.close('Close click')"
+              >
+                Close
+              </button>
+            </div>
+          </ng-template>
+          <!-- Mark -->
+          <ng-template #image let-modal>
+            <div class="modal-header">
+              <!-- <h4 class="modal-title" id="modal-basic-title">
+                Mark/Unmark Vehicles
+              </h4> -->
+              <button
+                type="button"
+                class="close"
+                aria-label="Close"
+                (click)="modal.dismiss('Cross click')"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+
             <div class="modal-footer">
               <button
                 type="button"

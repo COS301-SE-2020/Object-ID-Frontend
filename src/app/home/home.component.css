@@ -1327,7 +1327,9 @@ ul {
 }
 
 /*---------------------------------------------------- */
-
+.carImg {
+  margin-left: 200px;
+}
 .card {
   display: inline-block;
   position: relative;

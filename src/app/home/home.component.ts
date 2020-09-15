@@ -38,7 +38,9 @@ export class HomeComponent implements OnInit {
   public mapView: FormGroup;
   public authForm: FormGroup;
 
+  img: any;
   authpass: any;
+  id: any;
   searchButtonText = "Submit";
   test = "false";
   marker1 = [];
@@ -404,7 +406,30 @@ export class HomeComponent implements OnInit {
     this.clearVariables();
     this.api.search(this.form.value.numPlate).subscribe((Searchdata) => {
       this.answer = Searchdata;
+      console.log(this.answer);
     });
+  }
+
+  openImage(id) {
+    this.api.openImage(id).subscribe((data) => {
+      console.log(data);
+      this.createFromBlob(data);
+    });
+  }
+
+  createFromBlob(img: Blob) {
+    let reader = new FileReader();
+    reader.addEventListener(
+      "load",
+      () => {
+        this.imgURL = reader.result;
+      },
+      false
+    );
+
+    if (img) {
+      reader.readAsDataURL(img);
+    }
   }
 
   Dsearch() {

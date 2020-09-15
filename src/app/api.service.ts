@@ -147,6 +147,21 @@ export class ApiService {
     );
   }
 
+  openImage(id) {
+    const headers = new HttpHeaders({
+      "Content-Type": "application/json",
+      Authorization: "Token " + this.getToken(),
+    });
+
+    return this.http.post<Blob>(
+      "http://127.0.0.1:8000/api/v1/vehicle/get_latest_vehicle_image/",
+      {
+        vehicle_id: id,
+      },
+      { headers: headers, responseType: "blob" as "json" }
+    );
+  }
+
   //-----------------------Filters----------------------------------------------
   filterFlagged(filter) {
     return this.http.get(
