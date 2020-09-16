@@ -628,13 +628,13 @@ ul {
 }
 
 .home_banner_area .banner_inner .banner_content {
-  color: #000;
+  color: #fff;
   text-shadow: 1px 1px 1px grey;
 }
 
 .home_banner_area .banner_inner .banner_content span {
   font-size: 24px;
-  color: #000;
+  color: #fff;
   text-shadow: 1px 1px 1px grey;
   font-family: "Heebo", sans-serif;
   text-transform: uppercase;
