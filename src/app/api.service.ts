@@ -11,10 +11,12 @@ import {
 export class ApiService {
   constructor(private http: HttpClient) {}
 
+  host = "https://sysintel.dedicated.co.za:8443";
+
   //-----------------------Map----------------------------------------------
   map(license_plate) {
     return this.http.post(
-      "http://127.0.0.1:8000/api/v1/vehicle/get_vehicle_locations/",
+      this.host + "/api/v1/vehicle/get_vehicle_locations/",
       {
         license_plate: license_plate,
       },
@@ -24,7 +26,7 @@ export class ApiService {
 
   //-----------------------Login----------------------------------------------
   submitLogin(username, password) {
-    return this.http.post("http://127.0.0.1:8000/api-auth/", {
+    return this.http.post(this.host + "/api-auth/", {
       username: username,
       password: password,
     });
@@ -55,7 +57,7 @@ export class ApiService {
   //-----------------------Mark----------------------------------------------
   markVehicle(numPlate) {
     return this.http.post(
-      "http://127.0.0.1:8000/api/v1/vehicle/add_marked_vehicle/",
+      this.host + "/api/v1/vehicle/add_marked_vehicle/",
       {
         license_plate: numPlate,
       },
@@ -65,7 +67,7 @@ export class ApiService {
 
   removeMarked(numPlate) {
     return this.http.post(
-      "http://127.0.0.1:8000/api/v1/vehicle/remove_marked_vehicle/",
+      this.host + "/api/v1/vehicle/remove_marked_vehicle/",
       {
         license_plate: numPlate,
       },
@@ -75,7 +77,7 @@ export class ApiService {
 
   getMarkedVehicles() {
     return this.http.post(
-      "http://127.0.0.1:8000/api/v1/vehicle/get_marked_vehicles",
+      this.host + "/api/v1/vehicle/get_marked_vehicles",
       {},
       this.getHeaders()
     );
@@ -84,7 +86,7 @@ export class ApiService {
   //-----------------------Update----------------------------------------------
   updateVehicle(vehicle) {
     return this.http.post(
-      "http://127.0.0.1:8000/api/v1/vehicle/edit_vehicle",
+      this.host + "/api/v1/vehicle/edit_vehicle",
       {
         vehicle_id: vehicle.vehicle_id,
         make: vehicle.make,
@@ -101,7 +103,7 @@ export class ApiService {
   //-----------------------Register----------------------------------------------
   submitRegister(username, email, password, cpassword) {
     return this.http.post(
-      "http://127.0.0.1:8000/api/v1/user/register_user/",
+      this.host + "/api/v1/user/register_user/",
       {
         username: username,
         email: email,
@@ -114,7 +116,7 @@ export class ApiService {
 
   //-----------------------Searches----------------------------------------------
   authenticate(username, password) {
-    return this.http.post("http://127.0.0.1:8000/api-auth/", {
+    return this.http.post(this.host + "/api-auth/", {
       username: username,
       password: password,
     });
@@ -122,7 +124,7 @@ export class ApiService {
 
   search(numberPlate) {
     return this.http.post(
-      "http://127.0.0.1:8000/api/v1/vehicle/search/",
+      this.host + "/api/v1/vehicle/search/",
       {
         search: numberPlate,
       },
@@ -132,7 +134,7 @@ export class ApiService {
 
   damageSearch(numberPlate) {
     return this.http.post(
-      "http://127.0.0.1:8000/api/v1/vehicle/get_vehicle_damage/",
+      this.host + "/api/v1/vehicle/get_vehicle_damage/",
       {
         license_plate: numberPlate,
       },
@@ -142,7 +144,7 @@ export class ApiService {
 
   Dsearch(numberplate, color, make, model, flag, damage) {
     return this.http.post(
-      "http://127.0.0.1:8000/api/v1/vehicle/search_advanced/",
+      this.host + "/api/v1/vehicle/search_advanced/",
       {
         type: "and",
         filters: {
@@ -165,7 +167,7 @@ export class ApiService {
     });
 
     return this.http.post<Blob>(
-      "http://127.0.0.1:8000/api/v1/vehicle/get_latest_vehicle_image/",
+      this.host + "/api/v1/vehicle/get_latest_vehicle_image/",
       {
         vehicle_id: id,
       },
@@ -176,14 +178,14 @@ export class ApiService {
   //-----------------------Filters----------------------------------------------
   filterFlagged(filter) {
     return this.http.get(
-      "http://127.0.0.1:8000/api/v1/vehicle/get_saps_flagged/",
+      this.host + "/api/v1/vehicle/get_saps_flagged/",
       this.getHeaders()
     );
   }
 
   filterDuplicate(filter) {
     return this.http.get(
-      "http://127.0.0.1:8000/api/v1/vehicle/get_duplicates/",
+      this.host + "/api/v1/vehicle/get_duplicates/",
       this.getHeaders()
     );
   }
@@ -191,7 +193,7 @@ export class ApiService {
   //-----------------------Upload----------------------------------------------
   submitUploadImage(formData) {
     return this.http.post(
-      "http://127.0.0.1:8000/api/v1/vehicle/file_recognize/",
+      this.host + "/api/v1/vehicle/file_recognize/",
       formData,
       this.getHeaders()
     );
@@ -207,7 +209,7 @@ export class ApiService {
 
   submitUploadVideo(FormData) {
     return this.http.post(
-      "http://127.0.0.1:8000/api/v1/vehicle/detect/",
+      this.host + "/api/v1/vehicle/detect/",
       FormData,
       this.getHeaders()
     );
@@ -216,7 +218,7 @@ export class ApiService {
   //-----------------------Charts----------------------------------------------
   allCameras() {
     return this.http.post(
-      "http://127.0.0.1:8000/api/v1/dashboard/get_all_camera_total/",
+      this.host + "/api/v1/dashboard/get_all_camera_total/",
       null,
       this.getHeaders()
     );
@@ -224,7 +226,7 @@ export class ApiService {
 
   perCameras(camera) {
     return this.http.post(
-      "http://127.0.0.1:8000/api/v1/dashboard/get_camera_history/",
+      this.host + "/api/v1/dashboard/get_camera_history/",
       {
         id: camera,
       },
@@ -235,14 +237,14 @@ export class ApiService {
   //-----------------------Bussiness----------------------------------------------
   getLogo() {
     return this.http.get(
-      "http://127.0.0.1:8000/api/v1/business/get_logo/",
+      this.host + "/api/v1/business/get_logo/",
       this.getHeaders()
     );
   }
 
   setLogo(logo) {
     return this.http.post(
-      "http://127.0.0.1:8000/api/v1/business/add_logo/",
+      this.host + "/api/v1/business/add_logo/",
       {
         file: logo,
       },
@@ -252,7 +254,7 @@ export class ApiService {
 
   setName(name) {
     return this.http.post(
-      "http://127.0.0.1:8000/api/v1/business/edit_business_name/",
+      this.host + "/api/v1/business/edit_business_name/",
       {
         name: name,
       },
@@ -262,7 +264,7 @@ export class ApiService {
 
   addCam(cam, lat, long) {
     return this.http.post(
-      "http://127.0.0.1:8000/api/v1/business/add_camera/",
+      this.host + "/api/v1/business/add_camera/",
       {
         name: cam,
         lat: lat,
