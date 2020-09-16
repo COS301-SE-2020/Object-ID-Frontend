@@ -237,7 +237,6 @@
                       <th scope="col">Model</th>
                       <th scope="col">SAPS Flagged</th>
                       <th scope="col">Duplicate</th>
-                      <th scope="col">Damage</th>
                       <th scope="col"></th>
                     </tr>
                   </thead>
@@ -251,7 +250,6 @@
                       <td class="model">{{ i.model }}</td>
                       <td class="flag">{{ i.saps_flagged }}</td>
                       <td class="duplicate">{{ i.license_plate_duplicate }}</td>
-                      <td class="duplicate"></td>
                       <td class="edit">
                         <button class="btn btn-primary" (click)="openEdit(i)">
                           Edit
@@ -466,7 +464,6 @@
                       <th scope="col">Model</th>
                       <th scope="col">SAPS Flagged</th>
                       <th scope="col">Duplicate</th>
-                      <th scope="col">Damage</th>
                       <!-- <th scope="col">Custom Flagged</th> -->
                     </tr>
                   </thead>
@@ -478,7 +475,6 @@
                       <td class="model">{{ i.model }}</td>
                       <td class="flag">{{ i.saps_flagged }}</td>
                       <td class="duplicate">{{ i.license_plate_duplicate }}</td>
-                      <td class="duplicate"></td>
                       <!-- <td class="customFlag">{{i.</td> -->
                     </tr>
                   </tbody>
