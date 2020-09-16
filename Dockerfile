@@ -10,7 +10,7 @@ RUN npm install
 COPY . .
 
 RUN npm install -g @angular/cli@9.1.12
-RUN ng build --prod --output-path=dist
+RUN npm run build
 
 FROM nginx:latest
 COPY nginx.conf /etc/nginx/nginx.conf
