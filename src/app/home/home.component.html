@@ -65,6 +65,9 @@
                 <li class="nav-item">
                   <a class="nav-link" routerLink="/dashboard">Dashboard</a>
                 </li>
+                <li class="nav-item">
+                  <a class="nav-link" routerLink="/profile">Profile</a>
+                </li>
                 <!--href="service.html"-->
                 <li class="nav-item">
                   <a class="nav-link" (click)="logout()">Logout</a>
@@ -234,6 +237,7 @@
                       <th scope="col">Model</th>
                       <th scope="col">SAPS Flagged</th>
                       <th scope="col">Duplicate</th>
+                      <th scope="col">Damage</th>
                       <th scope="col"></th>
                     </tr>
                   </thead>
@@ -247,6 +251,7 @@
                       <td class="model">{{ i.model }}</td>
                       <td class="flag">{{ i.saps_flagged }}</td>
                       <td class="duplicate">{{ i.license_plate_duplicate }}</td>
+                      <td class="duplicate"></td>
                       <td class="edit">
                         <button class="btn btn-primary" (click)="openEdit(i)">
                           Edit
@@ -263,12 +268,7 @@
                     </tr>
                   </tbody>
                 </table>
-                <img
-                  class="carImg"
-                  [src]="imgURL"
-                  height="200"
-                  *ngIf="imgURL"
-                />
+                <img class="carImg" [src]="imgU" height="200" *ngIf="imgU" />
 
                 <div *ngIf="vehicles != null">
                   <form
@@ -334,8 +334,8 @@
                         </div>
                         <button
                           type="submit"
-                          class="btn btn-primary"
-                          id="up-btn"
+                          class="Dsearch-button"
+                          id="search-btn"
                         >
                           <i class="fa fa-check-circle-o"></i>
                         </button>
@@ -391,7 +391,8 @@
                 correct search criteria in the matching box and click on the
                 search button. A specific vehicle matching all the criteria will
                 show. If no vehicles match the criteria, there will be no
-                vehicles shown.
+                vehicles shown. (For damage, enter the location eg. side) All
+                the fields marked with "*" are optional.
               </p>
               <hr />
               <br />
@@ -403,21 +404,21 @@
                       id="search-field"
                       class="form-control"
                       formControlName="numplate"
-                      placeholder="License"
+                      placeholder="License*"
                     />
                     <input
                       type="text"
                       id="search-field"
                       class="form-control"
                       formControlName="color"
-                      placeholder="Color"
+                      placeholder="Color*"
                     />
                     <input
                       type="text"
                       id="search-field"
                       class="form-control"
                       formControlName="make"
-                      placeholder="Make"
+                      placeholder="Make*"
                     />
                   </div>
                 </div>
@@ -428,14 +429,21 @@
                       id="search-field"
                       class="form-control"
                       formControlName="model"
-                      placeholder="Model"
+                      placeholder="Model*"
                     />
                     <input
                       type="text"
                       id="search-field"
                       class="form-control"
                       formControlName="flag"
-                      placeholder="SAPS flag"
+                      placeholder="SAPS flag*"
+                    />
+                    <input
+                      type="text"
+                      id="search-field"
+                      class="form-control"
+                      formControlName="damage"
+                      placeholder="Damage*"
                     />
                     <button
                       type="submit"
@@ -458,6 +466,7 @@
                       <th scope="col">Model</th>
                       <th scope="col">SAPS Flagged</th>
                       <th scope="col">Duplicate</th>
+                      <th scope="col">Damage</th>
                       <!-- <th scope="col">Custom Flagged</th> -->
                     </tr>
                   </thead>
@@ -469,6 +478,7 @@
                       <td class="model">{{ i.model }}</td>
                       <td class="flag">{{ i.saps_flagged }}</td>
                       <td class="duplicate">{{ i.license_plate_duplicate }}</td>
+                      <td class="duplicate"></td>
                       <!-- <td class="customFlag">{{i.</td> -->
                     </tr>
                   </tbody>
@@ -765,6 +775,8 @@
                 Upload an image of a vehicle that you think has committed a
                 crime to add it to the database. All the vehicle's information
                 will be shown after the upload.
+                <br />
+                *To speed up detection, enable GPU on your system.
               </p>
               <hr />
               <br />
@@ -964,32 +976,6 @@
               </button>
             </div>
           </ng-template>
-          <!-- Mark -->
-          <ng-template #image let-modal>
-            <div class="modal-header">
-              <!-- <h4 class="modal-title" id="modal-basic-title">
-                Mark/Unmark Vehicles
-              </h4> -->
-              <button
-                type="button"
-                class="close"
-                aria-label="Close"
-                (click)="modal.dismiss('Cross click')"
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-outline-dark"
-                (click)="modal.close('Close click')"
-              >
-                Close
-              </button>
-            </div>
-          </ng-template>
         </div>
 
         <!-- The Function containers -->
@@ -1007,7 +993,7 @@
                 on that keyword.
               </p>
               <button
-                id="homeBtn1"
+                id="homeBtn"
                 class="btn btn-primary"
                 (click)="open(content, 'lg')"
               >
@@ -1119,6 +1105,10 @@
                     <li>
                       <i class="ti-angle-right"></i>
                       <a routerLink="/dashboard">dashboard</a>
+                    </li>
+                    <li>
+                      <i class="ti-angle-right"></i>
+                      <a routerLink="/profile">profile</a>
                     </li>
                   </ul>
                 </div>

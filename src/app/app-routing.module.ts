@@ -6,6 +6,7 @@ import { CanActivateRouteGuard } from "./can-activate-route.guard";
 import { RegisterComponent } from "./register/register.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { AboutComponent } from "./about/about.component";
+import { ProfileComponent } from "./profile/profile.component";
 
 const routes: Routes = [
   { path: "", component: LoginComponent },
@@ -17,6 +18,11 @@ const routes: Routes = [
   {
     path: "dashboard",
     component: DashboardComponent,
+    canActivate: [CanActivateRouteGuard],
+  },
+  {
+    path: "profile",
+    component: ProfileComponent,
     canActivate: [CanActivateRouteGuard],
   },
   {

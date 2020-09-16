@@ -779,17 +779,6 @@ ul {
   margin-top: 35px;
 }
 
-.banner_inner {
-  max-height: 100px !important;
-  min-height: 100px !important;
-}
-
-.def {
-  text-align: center;
-  max-width: 400px !important;
-  min-width: 400px !important;
-  float: left;
-}
 /* End Home Banner Area css
   ============================================================================================ */
 /*============== Elements Area css ================*/
@@ -1230,37 +1219,6 @@ ul {
   color: #202e31;
 }
 
-.cars {
-  float: right;
-  min-height: 500px;
-}
-.one {
-  float: left;
-  margin-left: 30px;
-}
-
-.two {
-  float: right;
-  margin-left: 30px;
-}
-
-.outerblock {
-  max-width: 1500px !important;
-  min-width: 1000px !important;
-  float: right;
-  margin-right: 500px;
-  min-height: 500px !important;
-}
-#img1 {
-  margin-left: 300px;
-  margin-top: 30px !important;
-  padding: 20px;
-}
-#img2 {
-  margin-left: 100px !important;
-  margin-top: 30px !important;
-  padding: 20px;
-}
 /*=================== custom button rule start ====================*/
 .button {
   font-family: "Roboto", sans-serif;
@@ -1369,7 +1327,106 @@ ul {
 }
 
 /*---------------------------------------------------- */
+.carImg {
+  margin-left: 200px;
+}
+.card {
+  position: relative;
+  max-height: 400px;
+  height: 200px;
+  float: left;
+}
 
+#card1 {
+  min-height: 500px !important;
+  min-width: 900px;
+}
+
+.inst {
+  margin-left: 20px;
+}
+
+#up-btn {
+  width: 30px;
+}
+
+.logo-div {
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 5px;
+}
+
+.add {
+  cursor: pointer;
+}
+
+.h7 {
+  color: gray;
+}
+
+hr {
+  border: 0;
+  clear: both;
+  display: block;
+  width: 96%;
+  background-color: lightgray;
+  height: 1px;
+}
+
+.lightbulb {
+  float: left;
+  padding: 20px;
+}
+.dropdown {
+  border-radius: 25px;
+  border: 0;
+  max-height: 50px;
+  max-width: 100px;
+  min-width: 100px;
+  outline: 0;
+  margin-left: 5px;
+}
+
+input {
+  margin-right: 10px;
+  margin-bottom: 5px;
+}
+
+.form-group {
+  text-align: center;
+}
+
+.search-button {
+  background-color: #007bff;
+  border-radius: 25px;
+  border: 0;
+  color: #fff;
+  width: 35px;
+  height: 35px;
+  outline: 0;
+}
+
+.card {
+  margin: 10px;
+}
+
+.box_Container {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.card-img-top {
+  height: 10rem;
+  object-fit: contain;
+}
+
+.center {
+  justify-content: center;
+}
+
+.btn {
+  margin-bottom: 5px;
+}
 /* Loading */
 .glyphicon.spinning {
   animation: spin 1s infinite linear;

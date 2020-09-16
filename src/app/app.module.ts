@@ -16,6 +16,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { NgxChartsModule }from '@swimlane/ngx-charts';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AboutComponent } from './about/about.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { AboutComponent } from './about/about.component';
     RegisterComponent,
     DashboardComponent,
     AboutComponent,
+    ProfileComponent,
  
   ],
   imports: [

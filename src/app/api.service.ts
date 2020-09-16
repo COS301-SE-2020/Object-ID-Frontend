@@ -130,7 +130,17 @@ export class ApiService {
     );
   }
 
-  Dsearch(numberplate, color, make, model, flag) {
+  damageSearch(numberPlate) {
+    return this.http.post(
+      "http://127.0.0.1:8000/api/v1/vehicle/get_vehicle_damage/",
+      {
+        license_plate: numberPlate,
+      },
+      this.getHeaders()
+    );
+  }
+
+  Dsearch(numberplate, color, make, model, flag, damage) {
     return this.http.post(
       "http://127.0.0.1:8000/api/v1/vehicle/search_advanced/",
       {
@@ -141,6 +151,7 @@ export class ApiService {
           make: make,
           model: model,
           saps_flagged: flag,
+          damage: damage,
         },
       },
       this.getHeaders()
@@ -214,7 +225,49 @@ export class ApiService {
   perCameras(camera) {
     return this.http.post(
       "http://127.0.0.1:8000/api/v1/dashboard/get_camera_history/",
-      camera,
+      {
+        id: camera,
+      },
+      this.getHeaders()
+    );
+  }
+
+  //-----------------------Bussiness----------------------------------------------
+  getLogo() {
+    return this.http.get(
+      "http://127.0.0.1:8000/api/v1/business/get_logo/",
+      this.getHeaders()
+    );
+  }
+
+  setLogo(logo) {
+    return this.http.post(
+      "http://127.0.0.1:8000/api/v1/business/add_logo/",
+      {
+        file: logo,
+      },
+      this.getHeaders()
+    );
+  }
+
+  setName(name) {
+    return this.http.post(
+      "http://127.0.0.1:8000/api/v1/business/edit_business_name/",
+      {
+        name: name,
+      },
+      this.getHeaders()
+    );
+  }
+
+  addCam(cam, lat, long) {
+    return this.http.post(
+      "http://127.0.0.1:8000/api/v1/business/add_camera/",
+      {
+        name: cam,
+        lat: lat,
+        long: long,
+      },
       this.getHeaders()
     );
   }

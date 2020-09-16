@@ -20,6 +20,7 @@ import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { NgbModal, ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
 import { features } from "process";
+import { ThrowStmt } from "@angular/compiler";
 @Component({
   selector: "app-home",
   templateUrl: "./home.component.html",
@@ -38,7 +39,11 @@ export class HomeComponent implements OnInit {
   public mapView: FormGroup;
   public authForm: FormGroup;
 
+  imgU: any;
   img: any;
+  damage: any;
+  Dtype: any;
+  number: any;
   authpass: any;
   id: any;
   searchButtonText = "Submit";
@@ -166,6 +171,12 @@ export class HomeComponent implements OnInit {
         },
       ],
       flag: [
+        null,
+        {
+          validators: [],
+        },
+      ],
+      damage: [
         null,
         {
           validators: [],
@@ -406,6 +417,11 @@ export class HomeComponent implements OnInit {
     this.clearVariables();
     this.api.search(this.form.value.numPlate).subscribe((Searchdata) => {
       this.answer = Searchdata;
+      this.number = this.answer["payload"][0].license_plate;
+      this.api.damageSearch(this.number).subscribe((damageD) => {
+        this.damage = damageD["payload"][0].location;
+      });
+      this.Dtype = this.damage;
       console.log(this.answer);
     });
   }
@@ -422,7 +438,7 @@ export class HomeComponent implements OnInit {
     reader.addEventListener(
       "load",
       () => {
-        this.imgURL = reader.result;
+        this.imgU = reader.result;
       },
       false
     );
@@ -441,7 +457,8 @@ export class HomeComponent implements OnInit {
         this.Dform.value.color,
         this.Dform.value.make,
         this.Dform.value.model,
-        this.Dform.value.flag
+        this.Dform.value.flag,
+        this.Dform.value.damage
       )
       .subscribe((DSearchData) => {
         this.answer = DSearchData;
@@ -472,6 +489,18 @@ export class HomeComponent implements OnInit {
     this.answer = null;
     this.vehicles = null;
     this.mapVar = null;
+    this.imgU = null;
+    this.img = null;
+    this.damage = null;
+    this.Dtype = null;
+    this.number = null;
+    this.authpass = null;
+    this.id = null;
+    this.answer2 = null;
+    this.fileData = null;
+    this.vehicles = null;
+    this.vectorSource = null;
+    this.imgURL = null;
   }
 
   logout() {
