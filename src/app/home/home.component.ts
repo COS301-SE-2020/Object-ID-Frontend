@@ -46,6 +46,7 @@ export class HomeComponent implements OnInit {
   number: any;
   authpass: any;
   id: any;
+  reason: any;
   searchButtonText = "Submit";
   test = "false";
   marker1 = [];
@@ -138,6 +139,12 @@ export class HomeComponent implements OnInit {
     });
     this.MarkAddForm = this.fb.group({
       numPlateMarked: [
+        null,
+        {
+          validators: [Validators.required],
+        },
+      ],
+      reason: [
         null,
         {
           validators: [Validators.required],
@@ -372,8 +379,13 @@ export class HomeComponent implements OnInit {
     this.clearVariables();
 
     this.api
-      .markVehicle(this.MarkAddForm.value.numPlateMarked)
+      .markVehicle(
+        this.MarkAddForm.value.numPlateMarked,
+        this.MarkAddForm.value.reason
+      )
       .subscribe((markData) => {
+        this.answer = markData;
+        console.log(this.answer);
         if (markData["success"] == true) {
           this.type = true;
           this.message = "Vehicle was successfully marked";
@@ -501,6 +513,7 @@ export class HomeComponent implements OnInit {
     this.vehicles = null;
     this.vectorSource = null;
     this.imgURL = null;
+    this.reason = null;
   }
 
   logout() {
