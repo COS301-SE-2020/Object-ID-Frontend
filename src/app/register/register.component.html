@@ -5,51 +5,49 @@
 <head>
     <title>Object ID Login</title>
     <!-- font awesome link -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
-        integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
-        integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
 </head>
 
 <body>
     <div class="container">
-
-        <!-- <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        
+           <!-- <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
               <div class="card card-signin my-5 shadow">
                   <div class="card-header">
                         <img class="logo" src="../assets/obd.png"/>
                   </div>-->
-        <div class="img">
-            <img [src]="rImage">
-        </div>
-        <div class="login-content">
-            <div class="card-body">
-                <div *ngIf="answer != null" class='alert alert-danger'>
-                    <ul *ngFor="let i of answer">
-                        <li *ngIf="i.username != null">
-                            {{i.username}}
+                    <div class="img">
+                        <img [src]="rImage">
+                    </div>
+                    <div class="login-content">
+                        <div class="card-body">
+                            <div *ngIf="answer != null" class ='alert alert-danger'>
+                                    <ul *ngFor="let i of answer">
+                                        <li *ngIf = "i.username != null">
+                                            {{i.username}}
+                                    
+                                        </li>
+                                        <li *ngIf = "i.email != null">
+                                            {{i.email}} 
+                                        </li>
+                                        <li *ngIf = "i.password1 != null">
+                                    {{i.password1}}
+                                        </li>
+                                        <li *ngIf = "i.password2 != null">
 
-                        </li>
-                        <li *ngIf="i.email != null">
-                            {{i.email}}
-                        </li>
-                        <li *ngIf="i.password1 != null">
-                            {{i.password1}}
-                        </li>
-                        <li *ngIf="i.password2 != null">
-
-                            {{i.password2}}
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <form class="form-group" (submit)="submitRegister()" [formGroup]="form">
-                <img [src]="rLogo">
-                <!--<br><input placeholder="Username" id="uname" type="text" class="form-control" formControlName="username" name="username">
+                                    {{i.password2}}
+                                        </li>
+                                    </ul>
+                            </div>
+                        </div>
+                        <form class="form-group" (submit)="submitRegister()" [formGroup]="form"> 
+                            <img [src]="rLogo">
+                            <!--<br><input placeholder="Username" id="uname" type="text" class="form-control" formControlName="username" name="username">
                             
                             <br><input placeholder="Email" id="email" type="text" class="form-control" formControlName="email" name="email">
                             
@@ -58,50 +56,46 @@
                             <div id="input">
                                 <button id="submit"> <i class="fa fa-sign-in"></i>  Register</button>
                             </div>-->
-                <h2 class="title">Register</h2>
-                <div class="input-div one">
-                    <div class="i">
-                        <i class="fas fa-user"></i>
+                            <h2 class="title">Register</h2>
+                            <div class="input-div one">
+                                <div class="i">
+                                        <i class="fas fa-user"></i>
+                                </div>
+                                <div class="div">
+                                        <input placeholder="Username" id="userN" type="text" class="input" formControlName="username" name="username">
+                                </div>
+                            </div>
+                            <div class="input-div one">
+                                <div class="i">
+                                        <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="div">
+                                        <input placeholder="Email" id="userN" type="text" class="input" formControlName="email" name="username">
+                                </div>
+                            </div>
+                            <div class="input-div pass">
+                                <div class="i"> 
+                                        <i class="fas fa-lock"></i>
+                                </div>
+                                <div class="div">
+                                        <input placeholder="Password" class="form-control" formControlName="password" id="passW" type="password" name="password">
+                                </div>
+                            </div>
+                            <div class="input-div pass">
+                                <div class="i"> 
+                                        <i class="fas fa-lock"></i>
+                                </div>
+                                <div class="div">
+                                        <input placeholder="Confirm Password" class="form-control" formControlName="cpassword" id="passW" type="password" name="password">
+                                </div>
+                            </div>
+                            <a href="#" (click)="logout()">Already registered?</a>
+                            <input type="submit" class="btn" value="Register">
+                    </form>
+                
                     </div>
-                    <div class="div">
-                        <input placeholder="Username" id="userN" type="text" class="input" formControlName="username"
-                            name="username">
-                    </div>
-                </div>
-                <div class="input-div one">
-                    <div class="i">
-                        <i class="fas fa-envelope"></i>
-                    </div>
-                    <div class="div">
-                        <input placeholder="Email" id="userN" type="text" class="input" formControlName="email"
-                            name="username">
-                    </div>
-                </div>
-                <div class="input-div pass">
-                    <div class="i">
-                        <i class="fas fa-lock"></i>
-                    </div>
-                    <div class="div">
-                        <input placeholder="Password" class="form-control" formControlName="password" id="passW"
-                            type="password" name="password">
-                    </div>
-                </div>
-                <div class="input-div pass">
-                    <div class="i">
-                        <i class="fas fa-lock"></i>
-                    </div>
-                    <div class="div">
-                        <input placeholder="Confirm Password" class="form-control" formControlName="cpassword"
-                            id="passW" type="password" name="password">
-                    </div>
-                </div>
-                <a (click)="logout()">Login?</a>
-                <input type="submit" class="btn" value="Register">
-            </form>
-
-        </div>
-    </div>
-    <!--  </div></div>-->
+          </div>
+        <!--  </div></div>-->
 </body>
 
 </html>

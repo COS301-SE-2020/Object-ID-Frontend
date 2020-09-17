@@ -1,0 +1,309 @@
+<app-top-menu></app-top-menu>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Object ID</title>
+    <!-- Bootstrap -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <!-- OpenLayers -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.2.1/css/ol.css"
+      type="text/css"
+    />
+    <!-- Ajax -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-animate.js"></script>
+    <!-- Font Awesome -->
+    <link
+      href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!--================Header Menu Area =================-->
+    <header class="header_area">
+      <div class="main_menu">
+        <nav class="navbar navbar-expand-lg navbar-light">
+          <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <a class="navbar-brand logo_h" href="#"
+              ><img [src]="obLogo" alt=""
+            /></a>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div
+              class="collapse navbar-collapse offset"
+              id="navbarSupportedContent"
+            >
+              <ul class="nav navbar-nav menu_nav ml-auto">
+                <li class="nav-item">
+                  <a class="nav-link" routerLink="/home">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" routerLink="/about">About</a>
+                </li>
+                <!--href="about-us.html"-->
+                <li class="nav-item active">
+                  <a class="nav-link" routerLink="/dashboard">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" routerLink="/profile">Profile</a>
+                </li>
+                <!--href="about-us.html"-->
+                <li class="nav-item">
+                  <a class="nav-link" (click)="logout()">Logout</a>
+                </li>
+                <!--href="about-us.html"-->
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <!--================Header Menu Area =================-->
+
+    <!--================Home Banner Area =================-->
+    <section class="home_banner_area">
+      <hr />
+      <div class="banner_inner">
+        <div class="chart-container container">
+          <div class="fchart">
+            <h4 class="card-title border-bottom" style="text-align: center">
+              All Camera Reads
+            </h4>
+            <ngx-charts-bar-vertical
+              [view]="[1000, 400]"
+              [results]="allCamera"
+              [xAxisLabel]="'Cameras'"
+              [legendTitle]="'Legend'"
+              [yAxisLabel]="'Reads'"
+              [legend]="true"
+              [showXAxisLabel]="true"
+              [showYAxisLabel]="true"
+              [xAxis]="true"
+              [yAxis]="true"
+              [gradient]="true"
+              scheme="ocean"
+            >
+            </ngx-charts-bar-vertical>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="container-fluid">
+        <div class="jumbotron">
+           <img class="mx-auto d-block" src="../../assets/logo.png"/>
+        </div>
+      </div>  -->
+
+      <div class="container">
+        <hr />
+        <div class="form-inline center">
+          <!-- <form class="form-group" (submit)="perCameras()" [formGroup]="Cform">
+            <input
+              type="text"
+              id="search-field"
+              class="form-control"
+              formControlName="camera"
+              placeholder="Enter camera key"
+              required
+            />
+            <button type="submit" class="show-button" id="search-btn">
+              Show
+            </button>
+            <br />
+          </form> -->
+          <hr />
+          <div>
+            <div class="card" style="width: 18rem">
+              <h4 class="card-title border-bottom" style="text-align: center">
+                Camera 1
+              </h4>
+              <ngx-charts-bar-vertical
+                [view]="[500, 200]"
+                [results]="Camera1"
+                [xAxisLabel]="'Date'"
+                [legendTitle]="'Legend'"
+                [yAxisLabel]="'Reads'"
+                [legend]="true"
+                [showXAxisLabel]="true"
+                [showYAxisLabel]="true"
+                [xAxis]="true"
+                [yAxis]="true"
+                [gradient]="true"
+                scheme="ocean"
+              >
+              </ngx-charts-bar-vertical>
+            </div>
+            <div class="card" style="width: 18rem">
+              <h4 class="card-title border-bottom" style="text-align: center">
+                Camera 2
+              </h4>
+              <ngx-charts-bar-vertical
+                [view]="[500, 200]"
+                [results]="Camera2"
+                [xAxisLabel]="'Date'"
+                [legendTitle]="'Legend'"
+                [yAxisLabel]="'Reads'"
+                [legend]="true"
+                [showXAxisLabel]="true"
+                [showYAxisLabel]="true"
+                [xAxis]="true"
+                [yAxis]="true"
+                [gradient]="true"
+                scheme="ocean"
+              >
+              </ngx-charts-bar-vertical>
+            </div>
+          </div>
+          <div>
+            <div class="card" style="width: 18rem">
+              <h4 class="card-title border-bottom" style="text-align: center">
+                Camera 3
+              </h4>
+              <ngx-charts-bar-vertical
+                [view]="[500, 200]"
+                [results]="Camera3"
+                [xAxisLabel]="'Date'"
+                [legendTitle]="'Legend'"
+                [yAxisLabel]="'Reads'"
+                [legend]="true"
+                [showXAxisLabel]="true"
+                [showYAxisLabel]="true"
+                [xAxis]="true"
+                [yAxis]="true"
+                [gradient]="true"
+                scheme="ocean"
+              >
+              </ngx-charts-bar-vertical>
+            </div>
+            <div class="card" style="width: 18rem">
+              <h4 class="card-title border-bottom" style="text-align: center">
+                Camera 4
+              </h4>
+              <ngx-charts-bar-vertical
+                [view]="[500, 200]"
+                [results]="Camera4"
+                [xAxisLabel]="'Date'"
+                [legendTitle]="'Legend'"
+                [yAxisLabel]="'Reads'"
+                [legend]="true"
+                [showXAxisLabel]="true"
+                [showYAxisLabel]="true"
+                [xAxis]="true"
+                [yAxis]="true"
+                [gradient]="true"
+                scheme="ocean"
+              >
+              </ngx-charts-bar-vertical>
+            </div>
+          </div>
+        </div>
+        <br />
+      </div>
+    </section>
+    <!--================End Home Banner Area =================-->
+
+    <!-----Isaaacs Header------->
+
+    <!--================ start footer Area =================-->
+    <footer class="footer-area">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 col-md-6">
+            <div class="single-footer-widget">
+              <h6>Userful Links</h6>
+              <div class="row">
+                <div class="col-lg-6">
+                  <ul class="footer-nav">
+                    <li>
+                      <i class="ti-angle-right"></i>
+                      <a routerLink="/home">home</a>
+                    </li>
+                    <li>
+                      <i class="ti-angle-right"></i>
+                      <a routerLink="/home">about us</a>
+                    </li>
+                    <li>
+                      <i class="ti-angle-right"></i>
+                      <a routerLink="/dashboard">dashboard</a>
+                    </li>
+                    <li>
+                      <i class="ti-angle-right"></i>
+                      <a routerLink="/profile">profile</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="single-footer-widget mail-chimp">
+              <h6 class="mb-20">Business Hours</h6>
+              <ul class="business-hour">
+                <li>Monday - Friday : <span>9:00 am - 18:00 pm</span></li>
+                <li>Saturday :<span>9:00 am - 16:00 pm</span></li>
+                <li>Sunday :<span>Closed</span></li>
+              </ul>
+              <p>We work all the holidays!</p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-12">
+            <div class="single-footer-widget newsletter">
+              <h6>Contact Information</h6>
+              <div id="mc_embed_signup">
+                <form>
+                  <div class="row no-gutters">
+                    <div class="col-lg-8 col-md-8 col-7">
+                      <p>Email: ctrl.intelligence@gmail.com</p>
+                      <!-- <p>Telphone: xxx xxx xxxx</p> -->
+                      <!-- <a class="footer-link" href="#">privacy policy</a> -->
+                    </div>
+                    <!-- <ul>
+                      <li><a href="#" class="text-muted">Twitter</a></li>
+                      <li><a href="#" class="text-muted">Facebook</a></li>
+                      <li><a href="#" class="text-muted">Instagram</a></li>
+                    </ul> -->
+                  </div>
+                  <div class="info"></div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="container">
+          <div class="row">
+            <p class="col-lg-12 footer-text">
+              Copyright &copy;
+              <script>
+                document.write(new Date().getFullYear());
+              </script>
+              All rights reserved |This made with
+              <i class="fa fa-heart" aria-hidden="true"></i> by
+              <a href="#" target="_blank">Ctrl+Intelligence</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!--================ End footer Area =================-->
+  </body>
+</html>

@@ -1,0 +1,406 @@
+<app-top-menu></app-top-menu>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Object ID</title>
+    <!-- Bootstrap -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <!-- OpenLayers -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.2.1/css/ol.css"
+      type="text/css"
+    />
+    <!-- Ajax -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-animate.js"></script>
+    <!-- Font Awesome -->
+    <link
+      href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!--================Header Menu Area =================-->
+    <header class="header_area">
+      <div class="main_menu">
+        <nav class="navbar navbar-expand-lg navbar-light">
+          <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <a class="navbar-brand logo_h" href="#"
+              ><img [src]="obLogo" alt=""
+            /></a>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div
+              class="collapse navbar-collapse offset"
+              id="navbarSupportedContent"
+            >
+              <ul class="nav navbar-nav menu_nav ml-auto">
+                <li class="nav-item">
+                  <a class="nav-link" routerLink="/home">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" routerLink="/about">About</a>
+                </li>
+                <!--href="about-us.html"-->
+                <li class="nav-item">
+                  <a class="nav-link" routerLink="/dashboard">Dashboard</a>
+                </li>
+                <li class="nav-item active">
+                  <a class="nav-link" routerLink="/profile">Profile</a>
+                </li>
+                <!--href="about-us.html"-->
+                <li class="nav-item">
+                  <a class="nav-link" (click)="logout()">Logout</a>
+                </li>
+                <!--href="about-us.html"-->
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <!--================Header Menu Area =================-->
+
+    <!--================Home Banner Area =================-->
+    <section class="home_banner_area">
+      <hr />
+      <div
+        class="container-fluid"
+        style="background-color: rgb(235, 235, 235) !important"
+      >
+        <!-- Add camera -->
+        <ng-template #contentCam let-modal>
+          <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Add a camera</h4>
+            <button
+              type="button"
+              class="close"
+              aria-label="Close"
+              (click)="modal.dismiss('Cross click')"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="center d-flex">
+            <form class="form-group" submit="addCam()" [formGroup]="Cameraform">
+              <input
+                type="text"
+                id="search-field"
+                class="form-control"
+                formControlName="cam"
+                placeholder="Name"
+                required
+              />
+              <input
+                type="text"
+                id="search-field"
+                class="form-control"
+                formControlName="lat"
+                placeholder="Latitude*"
+              />
+              <input
+                type="text"
+                id="search-field"
+                class="form-control"
+                formControlName="long"
+                placeholder="Longatude*"
+              />
+              <button type="submit" (click)="addCam()" class="btn btn-primary">
+                Submit
+              </button>
+              <div *ngIf="key != null">
+                <p>Your unique_key is: {{ key }}</p>
+              </div>
+            </form>
+          </div>
+
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-outline-dark"
+              (click)="modal.close('Close click')"
+            >
+              Close
+            </button>
+          </div>
+        </ng-template>
+        <ng-template #contentName let-modal>
+          <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">
+              Edit Business name
+            </h4>
+            <button
+              type="button"
+              class="close"
+              aria-label="Close"
+              (click)="modal.dismiss('Cross click')"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="center d-flex">
+            <form class="form-group" submit="editName()" [formGroup]="Nameform">
+              <input
+                type="text"
+                id="search-field"
+                class="form-control"
+                formControlName="name"
+                placeholder="New Name"
+                required
+              />
+              <button
+                type="submit"
+                (click)="editName()"
+                class="btn btn-primary"
+              >
+                Submit
+              </button>
+            </form>
+          </div>
+          <div
+            *ngIf="message != null && type == true"
+            class="alert alert-success"
+            role="alert"
+          >
+            <p>{{ message }}</p>
+          </div>
+
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-outline-dark"
+              (click)="modal.close('Close click')"
+            >
+              Close
+            </button>
+          </div>
+        </ng-template>
+        <ng-template #contentLogo let-modal>
+          <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Edit Logo</h4>
+            <button
+              type="button"
+              class="close"
+              aria-label="Close"
+              (click)="modal.dismiss('Cross click')"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="center d-flex">
+            <form
+              class="form-group"
+              submit="editLogo('image')"
+              [formGroup]="Logoform"
+            >
+              <div class="form-group">
+                <input
+                  type="file"
+                  #uploadFile
+                  class="form-control"
+                  formControlName="Logoform"
+                  name="logo"
+                  (change)="fileProgress(logo)"
+                />
+                <button
+                  type="submit"
+                  (click)="editLogo('image')"
+                  class="btn btn-primary"
+                >
+                  {{ searchButtonText }}
+                </button>
+              </div>
+            </form>
+          </div>
+          <div
+            *ngIf="message != null && type == true"
+            class="alert alert-success"
+            role="alert"
+          >
+            <p>{{ message }}</p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-outline-dark"
+              (click)="modal.close('Close click')"
+            >
+              Close
+            </button>
+          </div>
+        </ng-template>
+        <div class="center d-flex">
+          <div class="card" style="width: 18rem">
+            <div class="card-body">
+              <p><strong>Update Profile</strong></p>
+              <p (click)="open(contentCam, 'lg')" class="add">Add Camera</p>
+              <p (click)="open(contentName, 'lg')" class="add">
+                Edit Company Name
+              </p>
+              <p (click)="open(contentLogo, 'lg')" class="add">Edit Logo</p>
+            </div>
+          </div>
+          <!-- <div><img [src]="img" height="100" *ngIf="img" /></div> -->
+
+          <div id="card1" class="card" style="width: 18rem">
+            <div>
+              <img
+                class="lightbulb"
+                height="100px;"
+                src="../../assets/img/pngfind.com-foco-idea-png-4791861.png"
+              />
+            </div>
+            <h4
+              id="tit"
+              class="card-title border-bottom"
+              style="text-align: center"
+            >
+              How to use the camera endpoint:
+            </h4>
+            <div class="inst">
+              <p>
+                Configure your cameras to send requests using this format:
+                <br />
+                Each camera must send a request to:
+                <br />
+                &lt;api_url&gt;/api/v1/camera/add/
+                <br />
+                The endpoint expects the following:
+                <br />
+                &#123; "key": &lt;unique_key of camera&gt;,
+                <br />
+                "file": &lt;the file to send along&gt; &#125;
+                <br />
+                Responses:
+                <br />
+                200:
+                <br />
+                &#123; "success": True &#125;
+                <br />
+                This is a successful request
+                <br />
+                401:
+                <br />
+                &#123; "success": False,
+                <br />
+                "message": "There is no camera matching this key" &#125;
+                <br />
+                This is an unauthorized attempt to add an image. This usually
+                means that the unique_key you passed to endpoint was incorrect.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="form-inline center"></div>
+          <br />
+        </div>
+      </div>
+    </section>
+    <!--================End Home Banner Area =================-->
+
+    <!-----Isaaacs Header------->
+
+    <!--================ start footer Area =================-->
+    <footer class="footer-area">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 col-md-6">
+            <div class="single-footer-widget">
+              <h6>Userful Links</h6>
+              <div class="row">
+                <div class="col-lg-6">
+                  <ul class="footer-nav">
+                    <li>
+                      <i class="ti-angle-right"></i>
+                      <a routerLink="/home">home</a>
+                    </li>
+                    <li>
+                      <i class="ti-angle-right"></i>
+                      <a routerLink="/home">about us</a>
+                    </li>
+                    <li>
+                      <i class="ti-angle-right"></i>
+                      <a routerLink="/dashboard">dashboard</a>
+                    </li>
+                    <li>
+                      <i class="ti-angle-right"></i>
+                      <a routerLink="/profile">profile</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="single-footer-widget mail-chimp">
+              <h6 class="mb-20">Business Hours</h6>
+              <ul class="business-hour">
+                <li>Monday - Friday : <span>9:00 am - 18:00 pm</span></li>
+                <li>Saturday :<span>9:00 am - 16:00 pm</span></li>
+                <li>Sunday :<span>Closed</span></li>
+              </ul>
+              <p>We work all the holidays!</p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-12">
+            <div class="single-footer-widget newsletter">
+              <h6>Contact Information</h6>
+              <div id="mc_embed_signup">
+                <form>
+                  <div class="row no-gutters">
+                    <div class="col-lg-8 col-md-8 col-7">
+                      <p>Email: ctrl.intelligence@gmail.com</p>
+                      <!-- <p>Telphone: xxx xxx xxxx</p> -->
+                      <!-- <a class="footer-link" href="#">privacy policy</a> -->
+                    </div>
+                    <!-- <ul>
+                      <li><a href="#" class="text-muted">Twitter</a></li>
+                      <li><a href="#" class="text-muted">Facebook</a></li>
+                      <li><a href="#" class="text-muted">Instagram</a></li>
+                    </ul> -->
+                  </div>
+                  <div class="info"></div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="container">
+          <div class="row">
+            <p class="col-lg-12 footer-text">
+              Copyright &copy;
+              <script>
+                document.write(new Date().getFullYear());
+              </script>
+              All rights reserved |This made with
+              <i class="fa fa-heart" aria-hidden="true"></i> by
+              <a href="#" target="_blank">Ctrl+Intelligence</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!--================ End footer Area =================-->
+  </body>
+</html>
