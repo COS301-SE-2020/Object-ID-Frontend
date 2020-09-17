@@ -6,10 +6,11 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 RUN export NODE_OPTIONS=--max_old_space_size=4096
 RUN npm install
-
+RUN npm update
+RUN npm audit fix
+RUN npm install -g increase-memory-limit
+RUN npm install -g @angular/cli
 COPY . .
-
-RUN npm install -g @angular/cli@9.1.12
 RUN npm run build
 
 FROM nginx:latest

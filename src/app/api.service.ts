@@ -11,8 +11,8 @@ import {
 export class ApiService {
   constructor(private http: HttpClient) {}
 
-  //host = "https://sysintel.dedicated.co.za:8443";
-  host = "http://127.0.0.1:8000";
+  host = "https://sysintel.dedicated.co.za:8443";
+  // host = "http://127.0.0.1:8000";
 
   //-----------------------Map----------------------------------------------
   map(license_plate) {
@@ -56,11 +56,12 @@ export class ApiService {
   }
 
   //-----------------------Mark----------------------------------------------
-  markVehicle(numPlate) {
+  markVehicle(numPlate, reason) {
     return this.http.post(
       this.host + "/api/v1/vehicle/add_marked_vehicle/",
       {
         license_plate: numPlate,
+        reason: reason,
       },
       this.getHeaders()
     );
