@@ -9,12 +9,16 @@ body {
 	overflow: hidden;
 }
 
+.first {
+	position: relative;
+}
 .wave {
-	position: fixed;
+	position: absolute;
 	bottom: 0;
 	left: 0;
 	height: 100%;
 	z-index: -1;
+	width: 100%;
 }
 
 .container {

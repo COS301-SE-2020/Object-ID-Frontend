@@ -15,42 +15,43 @@
 </head>
 
 <body>
-	<img class="wave" [src]="wave">
+	<div class="first">
+	<img class="wave" [src]="sWave">
+	</div>
 	<div class="container">
 		<div class="img">
 			<img [src]="pImage">
 		</div>
 		<div class="login-content">
 			<div class="card-body">
-				<div *ngIf="answer != null" class='alert alert-danger'>
-					{{answer}}
+				<div *ngIf="answer != null" class ='alert alert-danger'>
+				 {{answer}}
+		  </div>
+			<form (submit)="submitLogin()" [formGroup]="form">
+				<img [src]="oLogo">
+				<h2 class="title">Welcome</h2>
+           		<div class="input-div one">
+           		   <div class="i">
+           		   		<i class="fas fa-user"></i>
+           		   </div>
+           		   <div class="div">
+						<input placeholder="Username" id="userN" type="text" class="input" formControlName="username" name="username">
+           		   </div>
+           		</div>
+           		<div class="input-div pass">
+           		   <div class="i"> 
+           		    	<i class="fas fa-lock"></i>
+           		   </div>
+           		   <div class="div">
+           		    	<input placeholder="Password" class="form-control" formControlName="password" id="passW" type="password" name="password">
+            	   </div>
 				</div>
-				<form (submit)="submitLogin()" [formGroup]="form">
-					<img [src]="oLogo">
-					<h2 class="title">Welcome</h2>
-					<div class="input-div one">
-						<div class="i">
-							<i class="fas fa-user"></i>
-						</div>
-						<div class="div">
-							<input placeholder="Username" id="userN" type="text" class="input"
-								formControlName="username" name="username">
-						</div>
-					</div>
-					<div class="input-div pass">
-						<div class="i">
-							<i class="fas fa-lock"></i>
-						</div>
-						<div class="div">
-							<input placeholder="Password" class="form-control" formControlName="password" id="passW"
-								type="password" name="password">
-						</div>
-					</div>
-					<a href="#">Forgot Password?</a>
-					<input type="submit" class="btn" value="Login">
-				</form>
-			</div>
-		</div>
+				<a routerLink="/register" >Want to register an organization?</a>
+            	<a href="#">Forgot Password?</a>
+            	<input type="submit" class="btn" value="Login">
+            </form>
+        </div>
+    </div>
 	</div>
 
 </body>

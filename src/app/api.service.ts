@@ -11,7 +11,8 @@ import {
 export class ApiService {
   constructor(private http: HttpClient) {}
 
-  host = "https://sysintel.dedicated.co.za:8443";
+  //host = "https://sysintel.dedicated.co.za:8443";
+  host = "http://127.0.0.1:8000";
 
   //-----------------------Map----------------------------------------------
   map(license_plate) {

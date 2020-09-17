@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  wave:string = "../assets/wave.png";
+  sWave:string = "../assets/wave.svg";
   pImage:string = "../assets/programming.svg";
   oLogo:string = "../assets/obd.png";
  
@@ -42,6 +42,7 @@ export class LoginComponent implements OnInit {
     .subscribe( (data)=>{
       this.token=[data];
       this.api.setToken(this.token);
+      this.api.setUsername(this.form.value.username);
       this.router.navigate(['home']);
     }, err =>
     {
