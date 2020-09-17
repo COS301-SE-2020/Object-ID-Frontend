@@ -507,9 +507,9 @@
             <div class="modal-body">
               <div class="form-inline center">
                 <p class="h7">
-                  Enter a vehicle license number in the text box and click mark
-                  to mark a specific vehicle for some reason eg. suspicious or
-                  damaged.
+                  Enter a vehicle license number and a reason in the text boxes
+                  and click mark to mark a specific vehicle for some reason eg.
+                  suspicious or damaged.
                 </p>
                 <hr />
                 <br />
@@ -524,6 +524,14 @@
                     class="form-control"
                     formControlName="numPlateMarked"
                     placeholder="License"
+                    required
+                  />
+                  <input
+                    type="text"
+                    id="search-field"
+                    class="form-control"
+                    formControlName="reason"
+                    placeholder="Reason"
                     required
                   />
                   <button type="submit" class="btn btn-primary">Mark</button>
@@ -655,7 +663,7 @@
                   <tbody>
                     <tr id="box0" class="box" *ngFor="let i of answer.payload">
                       <td class="numPlate">{{ i.license_plate }}</td>
-                      <td class="color">{{ i.marked_by }}</td>
+                      <td class="color">{{ i.reason }}</td>
                     </tr>
                   </tbody>
                 </table>
