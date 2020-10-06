@@ -479,18 +479,19 @@
                       <th scope="col">Model</th>
                       <th scope="col">SAPS Flagged</th>
                       <th scope="col">Duplicate</th>
+                      <th scope="col">Damage</th>
                       <!-- <th scope="col">Custom Flagged</th> -->
                     </tr>
                   </thead>
                   <tbody>
-                    <tr id="box0" class="box" *ngFor="let i of answer.payload">
+                    <tr id="box0" class="box" *ngFor="let i of searchAnswer">
                       <td class="numPlate">{{ i.license_plate }}</td>
                       <td class="color">{{ i.color }}</td>
                       <td class="make">{{ i.make }}</td>
                       <td class="model">{{ i.model }}</td>
                       <td class="flag">{{ i.saps_flagged }}</td>
                       <td class="duplicate">{{ i.license_plate_duplicate }}</td>
-                      <!-- <td class="customFlag">{{i.</td> -->
+                      <td class="duplicate">{{ i.damage }}</td>
                     </tr>
                   </tbody>
                 </table>

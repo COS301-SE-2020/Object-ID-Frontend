@@ -501,7 +501,7 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  Dsearch() {
+  async Dsearch() {
     this.clearVariables();
 
     this.api
@@ -515,6 +515,29 @@ export class HomeComponent implements OnInit {
       )
       .subscribe((DSearchData) => {
         this.answer = DSearchData;
+        if (this.answer["payload"].length > 0) {
+          this.answer["payload"].forEach((vehicle) => {
+            this.api
+              .damageSearch(vehicle.license_plate)
+              .subscribe((damageD) => {
+                let helper = "";
+
+                if (damageD["payload"].length > 0) {
+                  damageD["payload"].forEach((element) => {
+                    if (element.location != null || element.location != "") {
+                      helper += element.location + ", ";
+                    }
+                  });
+                  helper = helper.substr(0, helper.length - 2);
+                } else {
+                  helper = "None";
+                }
+
+                this.searchAnswer.push({ ...vehicle, damage: helper });
+                console.log(this.searchAnswer);
+              });
+          });
+        }
       });
   }
 
