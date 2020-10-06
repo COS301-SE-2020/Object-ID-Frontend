@@ -42,10 +42,11 @@ export class HomeComponent implements OnInit {
   imgU: any;
   img: any;
   damage: any;
-  Dtype: any;
+  Dtype: any = [];
   number: any;
   authpass: any;
   id: any;
+  searchAnswer: any = [];
   reason: any;
   searchButtonText = "Submit";
   test = "false";
@@ -212,20 +213,25 @@ export class HomeComponent implements OnInit {
   }
 
   openn(content) {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
+    this.modalService
+      .open(content, { ariaLabelledBy: "modal-basic-title" })
+      .result.then(
+        (result) => {
+          this.closeResult = `Closed with: ${result}`;
+        },
+        (reason) => {
+          this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+        }
+      );
   }
-  
+
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
+      return "by pressing ESC";
     } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
+      return "by clicking on a backdrop";
     } else {
-      return  `with: ${reason}`;
+      return `with: ${reason}`;
     }
   }
 
@@ -366,6 +372,7 @@ export class HomeComponent implements OnInit {
 
   //-----------------------Edit----------------------------------------------
   editVehicle() {
+    this.clearVariables();
     this.type = false;
     this.authpass = prompt("Confirm your password: ");
     this.api
@@ -444,16 +451,31 @@ export class HomeComponent implements OnInit {
       .subscribe((authdata) => {});
   }
 
-  search() {
+  async search() {
     this.clearVariables();
-    this.api.search(this.form.value.numPlate).subscribe((Searchdata) => {
-      this.answer = Searchdata;
-      this.number = this.answer["payload"][0].license_plate;
-      this.api.damageSearch(this.number).subscribe((damageD) => {
-        this.damage = damageD["payload"][0].location;
-      });
-      this.Dtype = this.damage;
-      console.log(this.answer);
+    this.api.search(this.form.value.numPlate).subscribe((SearchData) => {
+      this.answer = SearchData;
+      if (this.answer["payload"].length > 0) {
+        this.answer["payload"].forEach((vehicle) => {
+          this.api.damageSearch(vehicle.license_plate).subscribe((damageD) => {
+            let helper = "";
+
+            if (damageD["payload"].length > 0) {
+              damageD["payload"].forEach((element) => {
+                if (element.location != null || element.location != "") {
+                  helper += element.location + ", ";
+                }
+              });
+              helper = helper.substr(0, helper.length - 2);
+            } else {
+              helper = "None";
+            }
+
+            this.searchAnswer.push({ ...vehicle, damage: helper });
+            console.log(this.searchAnswer);
+          });
+        });
+      }
     });
   }
 
@@ -533,6 +555,7 @@ export class HomeComponent implements OnInit {
     this.vectorSource = null;
     this.imgURL = null;
     this.reason = null;
+    this.searchAnswer = [];
   }
 
   logout() {
