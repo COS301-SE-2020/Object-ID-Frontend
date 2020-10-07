@@ -217,6 +217,55 @@ export class ApiService {
     );
   }
 
+  damage() {
+    const headers = new HttpHeaders({
+      "Content-Type": "application/json",
+      Authorization: "Token " + this.getToken(),
+    });
+
+    return this.http.get<Blob>(
+      this.host + "/api/v1/vehicle/get_latest_damage_detection_image/",
+
+      { headers: headers, responseType: "blob" as "json" }
+    );
+  }
+
+  color() {
+    const headers = new HttpHeaders({
+      "Content-Type": "application/json",
+      Authorization: "Token " + this.getToken(),
+    });
+
+    return this.http.get<Blob>(
+      this.host + "/api/v1/vehicle/get_latest_colour_detection_image/",
+
+      { headers: headers, responseType: "blob" as "json" }
+    );
+  }
+
+  makemodel() {
+    const headers = new HttpHeaders({
+      "Content-Type": "application/json",
+      Authorization: "Token " + this.getToken(),
+    });
+
+    return this.http.get<Blob>(
+      this.host + "/api/v1/vehicle/get_latest_make_model_detection_image/",
+
+      { headers: headers, responseType: "blob" as "json" }
+    );
+  }
+
+  accuracy(Vid) {
+    return this.http.post(
+      this.host + "/api/v1/dashboard/get_vehicle_accuracy/",
+      {
+        id: Vid,
+      },
+      this.getHeaders()
+    );
+  }
+
   //-----------------------Charts----------------------------------------------
   allCameras() {
     return this.http.post(

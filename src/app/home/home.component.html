@@ -823,7 +823,11 @@
             </div>
             <div class="modal-body">
               <div class="form-inline center">
-                <table class="table table-striped" *ngIf="answer != null">
+                <table
+                  class="table table-striped"
+                  *ngIf="answer != null"
+                  style="text-align: center"
+                >
                   <tbody>
                     <tr>
                       <th scope="col">License Plate:</th>
@@ -870,6 +874,64 @@
                     </tr>
                   </tbody>
                 </table>
+                <div *ngIf="imgU">
+                  <table align="center">
+                    <!-- <th align="center">Damage Detection: {{ dvalue }}</th> -->
+                    <tr>
+                      <td align="center" valign="center">
+                        <b>Damage Detection: {{ dvalue }}</b>
+                        <br />
+                        <br />
+                        <img
+                          class="carImg"
+                          [src]="imgU"
+                          height="200"
+                          *ngIf="imgU"
+                          align="center"
+                          valign="center"
+                        />
+                      </td>
+                    </tr>
+                    <hr />
+                    <br />
+                    <br />
+
+                    <tr>
+                      <td align="center" valign="center">
+                        <b>Colour Detection: {{ cvalue }}</b>
+                        <br />
+                        <br />
+                        <img
+                          class="carImg"
+                          [src]="imgU1"
+                          height="200"
+                          *ngIf="imgU1"
+                          align="center"
+                          valign="center"
+                        />
+                      </td>
+                    </tr>
+                    <hr />
+                    <br />
+                    <br />
+
+                    <tr>
+                      <td align="center" valign="center">
+                        <b>Make/Model Detection: {{ mvalue }}</b>
+                        <br />
+                        <br />
+                        <img
+                          class="carImg"
+                          [src]="imgU2"
+                          height="200"
+                          *ngIf="imgU2"
+                          align="center"
+                          valign="center"
+                        />
+                      </td>
+                    </tr>
+                  </table>
+                </div>
               </div>
             </div>
             <div class="modal-footer">
@@ -879,6 +941,13 @@
                 (click)="modal.close('Close click')"
               >
                 Close
+              </button>
+              <button
+                type="button"
+                class="btn btn-outline-dark"
+                (click)="viewDetails()"
+              >
+                Details
               </button>
             </div>
           </ng-template>
@@ -1147,7 +1216,7 @@
         <div class="row">
           <div class="col-lg-4 col-md-6">
             <div class="single-footer-widget">
-              <h6>Userful Links</h6>
+              <h6>Useful Links</h6>
               <div class="row">
                 <div class="col-lg-6">
                   <ul class="footer-nav">
