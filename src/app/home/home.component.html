@@ -542,6 +542,14 @@
                     placeholder="License"
                     required
                   />
+                  <input
+                    type="text"
+                    id="search-field"
+                    class="form-control"
+                    formControlName="reason"
+                    placeholder="Reason"
+                    required
+                  />
                   <button type="submit" class="btn btn-primary">Mark</button>
                 </form>
                 <br />
@@ -671,7 +679,7 @@
                   <tbody>
                     <tr id="box0" class="box" *ngFor="let i of answer.payload">
                       <td class="numPlate">{{ i.license_plate }}</td>
-                      <td class="color">{{ i.marked_by }}</td>
+                      <td class="color">{{ i.reason }}</td>
                     </tr>
                   </tbody>
                 </table>
