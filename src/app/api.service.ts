@@ -195,7 +195,7 @@ export class ApiService {
   //-----------------------Upload----------------------------------------------
   submitUploadImage(formData) {
     return this.http.post(
-      this.host + "/api/v1/vehicle/file_recognize/",
+      this.host + "/api/v1/vehicle/file_recognize_two/",
       formData,
       this.getHeaders()
     );

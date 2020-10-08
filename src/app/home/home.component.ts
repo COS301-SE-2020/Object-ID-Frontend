@@ -43,6 +43,12 @@ export class HomeComponent implements OnInit {
   cvalue: any;
   mvalue: any;
   imgU: any;
+  license: any;
+  make: any;
+  model: any;
+  color: any;
+  saps: any;
+  dup: any;
   submitUploadImageID: any;
   imgU1: any;
   imgU2: any;
@@ -318,6 +324,7 @@ export class HomeComponent implements OnInit {
   }
   //-----------------------Upload----------------------------------------------
   submitUpload(type) {
+    // this.clearVariables();
     this.test = "true";
     this.searchButtonText = "Loading...";
     const formData = new FormData();
@@ -338,7 +345,20 @@ export class HomeComponent implements OnInit {
 
             this.api.submitUploadImage(formData).subscribe((data) => {
               this.answer = [data];
-              this.submitUploadImageID = this.answer[0]["payload"][0]["id"];
+              this.submitUploadImageID = data["payload"]["id"];
+
+              this.license = data["payload"]["license_plate"];
+              this.make = data["payload"]["make"];
+              this.model = data["payload"]["model"];
+              this.color = data["payload"]["color"];
+              if (data["payload"]["saps_flagged"] == false) {
+                this.saps = "false";
+              } else this.saps = "true";
+
+              if (data["payload"]["license_plate_duplicate"] == false) {
+                this.dup = "false";
+              } else this.dup = "true";
+
               this.searchButtonText = "Submit";
             });
           });

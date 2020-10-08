@@ -840,42 +840,42 @@
                     <tr>
                       <th scope="col">License Plate:</th>
                     </tr>
-                    <tr id="box0" class="box" *ngFor="let i of answer">
-                      <td class="numPlate">{{ i.payload[0].license_plate }}</td>
+                    <tr id="box0" class="box" *ngIf="license">
+                      <td class="numPlate">{{ license }}</td>
                     </tr>
                     <tr>
                       <th scope="col">Make:</th>
                     </tr>
-                    <tr id="box0" class="box" *ngFor="let i of answer">
-                      <td class="numPlate">{{ i.payload[0].make }}</td>
+                    <tr id="box0" class="box" *ngIf="make">
+                      <td class="numPlate">{{ make }}</td>
                     </tr>
                     <tr>
                       <th scope="col">Model:</th>
                     </tr>
-                    <tr id="box0" class="box" *ngFor="let i of answer">
-                      <td class="numPlate">{{ i.payload[0].model }}</td>
+                    <tr id="box0" class="box" *ngIf="model">
+                      <td class="numPlate">{{ model }}</td>
                     </tr>
                     <tr>
                       <th scope="col">Color:</th>
                     </tr>
-                    <tr id="box0" class="box" *ngFor="let i of answer">
-                      <td class="numPlate">{{ i.payload[0].color }}</td>
+                    <tr id="box0" class="box" *ngIf="color">
+                      <td class="numPlate">{{ color }}</td>
                     </tr>
                     <tr>
                       <th scope="col">SAPS flagged:</th>
                     </tr>
-                    <tr id="box0" class="box" *ngFor="let i of answer">
-                      <td class="numPlate">{{ i.payload[0].saps_flagged }}</td>
+                    <tr id="box0" class="box" *ngIf="saps">
+                      <td class="numPlate">{{ saps }}</td>
                     </tr>
                     <tr>
                       <th scope="col">Duplicate:</th>
                     </tr>
-                    <tr id="box0" class="box" *ngFor="let i of answer">
+                    <tr id="box0" class="box" *ngIf="dup">
                       <td class="numPlate">
-                        {{ i.payload[0].license_plate_duplicate }}
+                        {{ dup }}
                       </td>
                     </tr>
-                    <tr id="box0" class="box" *ngFor="let i of answer">
+                    <tr id="box0" class="box" *ngIf="answer">
                       <td class="image">
                         <img [src]="imgURL" height="150" *ngIf="imgURL" />
                       </td>
