@@ -258,9 +258,9 @@ export class ApiService {
 
   accuracy(Vid) {
     return this.http.post(
-      this.host + "/api/v1/dashboard/get_vehicle_accuracy/",
+      this.host + "/api/v1/vehicle/get_vehicle_accuracy/",
       {
-        id: Vid,
+        vehicle_id: Vid,
       },
       this.getHeaders()
     );

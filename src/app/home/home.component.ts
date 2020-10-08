@@ -368,18 +368,23 @@ export class HomeComponent implements OnInit {
       console.log(data2);
       this.createFromBlob2(data2);
     });
-    // this.accuracy(this.submitUploadImageID);
-    this.dvalue = (Math.random() * (70.0 - 90.0) + 90.0).toFixed(2) + "%";
-    this.cvalue = (Math.random() * (70.0 - 90.0) + 90.0).toFixed(2) + "%";
-    this.mvalue = (Math.random() * (70.0 - 90.0) + 90.0).toFixed(2) + "%";
+    console.log(this.submitUploadImageID);
+    this.accuracy(this.submitUploadImageID);
+    // this.dvalue = (Math.random() * (70.0 - 90.0) + 90.0).toFixed(2) + "%";
+    // this.cvalue = (Math.random() * (70.0 - 90.0) + 90.0).toFixed(2) + "%";
+    // this.mvalue = (Math.random() * (70.0 - 90.0) + 90.0).toFixed(2) + "%";
   }
 
-  // accuracy(Vid) {
-  //   this.clearVariables();
-  //   this.api.accuracy(Vid).subscribe((d) => {
-  //     this.answer = d;
-  //   });
-  // }
+  accuracy(Vid) {
+    this.clearVariables();
+    this.api.accuracy(Vid).subscribe((d) => {
+      this.answer = d;
+      console.log(this.answer);
+      this.dvalue = this.answer["payload"].damage_accuracy;
+      this.cvalue = this.answer["payload"].color_accuracy;
+      this.mvalue = this.answer["payload"].make_accuracy;
+    });
+  }
 
   //-----------------------Modal opening----------------------------------------------
   open(content, sizeOfContent) {
