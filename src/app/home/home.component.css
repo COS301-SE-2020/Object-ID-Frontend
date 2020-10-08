@@ -976,6 +976,11 @@ ul {
 }
 
 /*---------------------------------------------------- */
+#detailTitleM {
+  display: block;
+  height: 130px;
+  max-width: 280px;
+}
 .carImg {
   margin-left: 200px;
 }
@@ -984,6 +989,7 @@ ul {
   position: relative;
   max-height: 400px;
   height: 400px;
+  width: 280px;
 }
 
 #up-btn {
@@ -1108,8 +1114,15 @@ input {
 
 #homeBtn {
   font-size: 15px;
+  max-width: 130px;
+  width: 130px;
+  margin-top: 10px;
 }
 
+#cardSection {
+  padding-top: auto;
+  margin-bottom: 30px;
+}
 
 #uploadbut {
   margin-bottom: 5px;
