@@ -346,6 +346,7 @@ export class HomeComponent implements OnInit {
             this.api.submitUploadImage(formData).subscribe((data) => {
               this.answer = [data];
               this.submitUploadImageID = data["payload"]["id"];
+              console.log(data);
 
               this.license = data["payload"]["license_plate"];
               this.make = data["payload"]["make"];
