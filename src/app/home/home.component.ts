@@ -39,13 +39,26 @@ export class HomeComponent implements OnInit {
   public mapView: FormGroup;
   public authForm: FormGroup;
 
+  dvalue: any;
+  cvalue: any;
+  mvalue: any;
   imgU: any;
+  license: any;
+  make: any;
+  model: any;
+  color: any;
+  saps: any;
+  dup: any;
+  submitUploadImageID: any;
+  imgU1: any;
+  imgU2: any;
   img: any;
   damage: any;
-  Dtype: any;
+  Dtype: any = [];
   number: any;
   authpass: any;
   id: any;
+  searchAnswer: any = [];
   reason: any;
   searchButtonText = "Submit";
   test = "false";
@@ -212,20 +225,25 @@ export class HomeComponent implements OnInit {
   }
 
   openn(content) {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
+    this.modalService
+      .open(content, { ariaLabelledBy: "modal-basic-title" })
+      .result.then(
+        (result) => {
+          this.closeResult = `Closed with: ${result}`;
+        },
+        (reason) => {
+          this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+        }
+      );
   }
-  
+
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
+      return "by pressing ESC";
     } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
+      return "by clicking on a backdrop";
     } else {
-      return  `with: ${reason}`;
+      return `with: ${reason}`;
     }
   }
 
@@ -306,6 +324,7 @@ export class HomeComponent implements OnInit {
   }
   //-----------------------Upload----------------------------------------------
   submitUpload(type) {
+    // this.clearVariables();
     this.test = "true";
     this.searchButtonText = "Loading...";
     const formData = new FormData();
@@ -326,7 +345,20 @@ export class HomeComponent implements OnInit {
 
             this.api.submitUploadImage(formData).subscribe((data) => {
               this.answer = [data];
-              console.log(this.answer);
+              this.submitUploadImageID = data["payload"]["id"];
+
+              this.license = data["payload"]["license_plate"];
+              this.make = data["payload"]["make"];
+              this.model = data["payload"]["model"];
+              this.color = data["payload"]["color"];
+              if (data["payload"]["saps_flagged"] == false) {
+                this.saps = "false";
+              } else this.saps = "true";
+
+              if (data["payload"]["license_plate_duplicate"] == false) {
+                this.dup = "false";
+              } else this.dup = "true";
+
               this.searchButtonText = "Submit";
             });
           });
@@ -340,6 +372,38 @@ export class HomeComponent implements OnInit {
     reader.onload = (_event) => {
       this.imgURL = reader.result;
     };
+  }
+
+  async viewDetails() {
+    this.clearVariables();
+    this.api.damage().subscribe((data) => {
+      console.log(data);
+      this.createFromBlob(data);
+    });
+    this.api.color().subscribe((data1) => {
+      console.log(data1);
+      this.createFromBlob1(data1);
+    });
+    this.api.makemodel().subscribe((data2) => {
+      console.log(data2);
+      this.createFromBlob2(data2);
+    });
+    console.log(this.submitUploadImageID);
+    this.accuracy(this.submitUploadImageID);
+    // this.dvalue = (Math.random() * (70.0 - 90.0) + 90.0).toFixed(2) + "%";
+    // this.cvalue = (Math.random() * (70.0 - 90.0) + 90.0).toFixed(2) + "%";
+    // this.mvalue = (Math.random() * (70.0 - 90.0) + 90.0).toFixed(2) + "%";
+  }
+
+  accuracy(Vid) {
+    this.clearVariables();
+    this.api.accuracy(Vid).subscribe((d) => {
+      this.answer = d;
+      console.log(this.answer);
+      this.dvalue = this.answer["payload"].damage_accuracy;
+      this.cvalue = this.answer["payload"].color_accuracy;
+      this.mvalue = this.answer["payload"].make_accuracy;
+    });
   }
 
   //-----------------------Modal opening----------------------------------------------
@@ -366,6 +430,7 @@ export class HomeComponent implements OnInit {
 
   //-----------------------Edit----------------------------------------------
   editVehicle() {
+    this.clearVariables();
     this.type = false;
     this.authpass = prompt("Confirm your password: ");
     this.api
@@ -444,16 +509,31 @@ export class HomeComponent implements OnInit {
       .subscribe((authdata) => {});
   }
 
-  search() {
+  async search() {
     this.clearVariables();
-    this.api.search(this.form.value.numPlate).subscribe((Searchdata) => {
-      this.answer = Searchdata;
-      this.number = this.answer["payload"][0].license_plate;
-      this.api.damageSearch(this.number).subscribe((damageD) => {
-        this.damage = damageD["payload"][0].location;
-      });
-      this.Dtype = this.damage;
-      console.log(this.answer);
+    this.api.search(this.form.value.numPlate).subscribe((SearchData) => {
+      this.answer = SearchData;
+      if (this.answer["payload"].length > 0) {
+        this.answer["payload"].forEach((vehicle) => {
+          this.api.damageSearch(vehicle.license_plate).subscribe((damageD) => {
+            let helper = "";
+
+            if (damageD["payload"].length > 0) {
+              damageD["payload"].forEach((element) => {
+                if (element.location != null || element.location != "") {
+                  helper += element.location + ", ";
+                }
+              });
+              helper = helper.substr(0, helper.length - 2);
+            } else {
+              helper = "None";
+            }
+
+            this.searchAnswer.push({ ...vehicle, damage: helper });
+            console.log(this.searchAnswer);
+          });
+        });
+      }
     });
   }
 
@@ -479,7 +559,36 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  Dsearch() {
+  createFromBlob1(img: Blob) {
+    let reader = new FileReader();
+    reader.addEventListener(
+      "load",
+      () => {
+        this.imgU1 = reader.result;
+      },
+      false
+    );
+
+    if (img) {
+      reader.readAsDataURL(img);
+    }
+  }
+  createFromBlob2(img: Blob) {
+    let reader = new FileReader();
+    reader.addEventListener(
+      "load",
+      () => {
+        this.imgU2 = reader.result;
+      },
+      false
+    );
+
+    if (img) {
+      reader.readAsDataURL(img);
+    }
+  }
+
+  async Dsearch() {
     this.clearVariables();
 
     this.api
@@ -493,6 +602,29 @@ export class HomeComponent implements OnInit {
       )
       .subscribe((DSearchData) => {
         this.answer = DSearchData;
+        if (this.answer["payload"].length > 0) {
+          this.answer["payload"].forEach((vehicle) => {
+            this.api
+              .damageSearch(vehicle.license_plate)
+              .subscribe((damageD) => {
+                let helper = "";
+
+                if (damageD["payload"].length > 0) {
+                  damageD["payload"].forEach((element) => {
+                    if (element.location != null || element.location != "") {
+                      helper += element.location + ", ";
+                    }
+                  });
+                  helper = helper.substr(0, helper.length - 2);
+                } else {
+                  helper = "None";
+                }
+
+                this.searchAnswer.push({ ...vehicle, damage: helper });
+                console.log(this.searchAnswer);
+              });
+          });
+        }
       });
   }
 
@@ -533,6 +665,7 @@ export class HomeComponent implements OnInit {
     this.vectorSource = null;
     this.imgURL = null;
     this.reason = null;
+    this.searchAnswer = [];
   }
 
   logout() {

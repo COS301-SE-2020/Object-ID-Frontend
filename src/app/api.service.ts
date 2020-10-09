@@ -195,7 +195,7 @@ export class ApiService {
   //-----------------------Upload----------------------------------------------
   submitUploadImage(formData) {
     return this.http.post(
-      this.host + "/api/v1/vehicle/file_recognize/",
+      this.host + "/api/v1/vehicle/file_recognize_two/",
       formData,
       this.getHeaders()
     );
@@ -213,6 +213,55 @@ export class ApiService {
     return this.http.post(
       this.host + "/api/v1/vehicle/detect/",
       FormData,
+      this.getHeaders()
+    );
+  }
+
+  damage() {
+    const headers = new HttpHeaders({
+      "Content-Type": "application/json",
+      Authorization: "Token " + this.getToken(),
+    });
+
+    return this.http.get<Blob>(
+      this.host + "/api/v1/vehicle/get_latest_damage_detection_image/",
+
+      { headers: headers, responseType: "blob" as "json" }
+    );
+  }
+
+  color() {
+    const headers = new HttpHeaders({
+      "Content-Type": "application/json",
+      Authorization: "Token " + this.getToken(),
+    });
+
+    return this.http.get<Blob>(
+      this.host + "/api/v1/vehicle/get_latest_colour_detection_image/",
+
+      { headers: headers, responseType: "blob" as "json" }
+    );
+  }
+
+  makemodel() {
+    const headers = new HttpHeaders({
+      "Content-Type": "application/json",
+      Authorization: "Token " + this.getToken(),
+    });
+
+    return this.http.get<Blob>(
+      this.host + "/api/v1/vehicle/get_latest_make_model_detection_image/",
+
+      { headers: headers, responseType: "blob" as "json" }
+    );
+  }
+
+  accuracy(Vid) {
+    return this.http.post(
+      this.host + "/api/v1/vehicle/get_vehicle_accuracy/",
+      {
+        vehicle_id: Vid,
+      },
       this.getHeaders()
     );
   }

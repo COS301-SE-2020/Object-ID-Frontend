@@ -11,6 +11,12 @@ a {
   transition: all 0.3s ease-in-out;
 }
 
+td img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 a:hover,
 a:focus {
   text-decoration: none;
@@ -270,7 +276,6 @@ ul {
 .header_area.navbar_fixed .main_menu .navbar .nav .nav-item .nav-link {
   line-height: 10px;
 }
-
 
 #search_input_box {
   position: fixed;

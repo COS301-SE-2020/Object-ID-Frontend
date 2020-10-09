@@ -130,11 +130,11 @@
   <div class="container-fluid">
     <!--<div class="jumbotron">
        <img class="mx-auto d-block" src="../../assets/logo.png"/> -->
-      <div class="jumbotron jumbotron-fluid bg-primary text-white text-center">
-        <div class="container">
-          <p class="lead">A guiding light for the less enlightened...</p>
-        </div>
+    <div class="jumbotron jumbotron-fluid bg-primary text-white text-center">
+      <div class="container">
+        <p class="lead">A guiding light for the less enlightened...</p>
       </div>
+    </div>
     <!--</div>-->
     <div class="row">
       <ng-template #content let-modal>
@@ -187,6 +187,7 @@
                   <th scope="col">Model</th>
                   <th scope="col">SAPS Flagged</th>
                   <th scope="col">Duplicate</th>
+                  <th scope="col">Damage</th>
                   <th scope="col"></th>
                 </tr>
               </thead>
@@ -200,6 +201,7 @@
                   <td class="model">{{ i.model }}</td>
                   <td class="flag">{{ i.saps_flagged }}</td>
                   <td class="duplicate">{{ i.license_plate_duplicate }}</td>
+                  <td class="duplicate">{{ i.damage }}</td>
                   <td class="edit">
                     <button class="btn btn-primary" (click)="openEdit(i)">
                       Edit
@@ -316,6 +318,7 @@
                   <th scope="col">Model</th>
                   <th scope="col">SAPS Flagged</th>
                   <th scope="col">Duplicate</th>
+                  <th scope="col">Damage</th>
                   <!-- <th scope="col">Custom Flagged</th> -->
                 </tr>
               </thead>
@@ -327,6 +330,7 @@
                   <td class="model">{{ i.model }}</td>
                   <td class="flag">{{ i.saps_flagged }}</td>
                   <td class="duplicate">{{ i.license_plate_duplicate }}</td>
+                  <td class="duplicate">{{ i.damage }}</td>
                   <!-- <td class="customFlag">{{i.</td> -->
                 </tr>
               </tbody>
@@ -359,6 +363,8 @@
             <form class="form-group" (submit)="markVehicle()" [formGroup]="MarkAddForm">
               <input type="text" id="search-field" class="form-control" formControlName="numPlateMarked"
                 placeholder="License" required />
+              <input type="text" id="search-field" class="form-control" formControlName="reason" placeholder="Reason"
+                required />
               <button type="submit" class="btn btn-primary">Mark</button>
             </form>
             <br />
@@ -559,48 +565,85 @@
                  <tr>
                     <th scope="col">License Plate:</th>
                   </tr>-->
-                <tr id="box0" class="box" *ngFor="let i of answer">
-                  <td class="numPlate">{{ i.payload[0].license_plate }}</td>
+                <tr id="box0" class="box">
+                  <td *ngIf="license" class="numPlate">{{ license }}</td>
                   <!-- </tr>
                   <tr>
                     <th scope="col">Make:</th>
                   </tr>
                   <tr id="box0" class="box" *ngFor="let i of answer">-->
-                  <td class="numPlate">{{ i.payload[0].make }}</td>
+                  <td *ngIf="make" class="numPlate">{{ make }}</td>
                   <!-- </tr>
                   <tr>
                     <th scope="col">Model:</th>
                   </tr>
                   <tr id="box0" class="box" *ngFor="let i of answer">-->
-                  <td class="numPlate">{{ i.payload[0].model }}</td>
+                  <td *ngIf="model" class="numPlate">{{ model }}</td>
                   <!-- </tr>
                   <tr>
                     <th scope="col">Color:</th>
                   </tr>
                   <tr id="box0" class="box" *ngFor="let i of answer">-->
-                  <td class="numPlate">{{ i.payload[0].color }}</td>
+                  <td *ngIf="color" class="numPlate">{{ color }}</td>
                   <!--</tr>
                   <tr>
                     <th scope="col">SAPS flagged:</th>
                   </tr>
                   <tr id="box0" class="box" *ngFor="let i of answer">-->
-                  <td class="numPlate">{{ i.payload[0].saps_flagged }}</td>
+                  <td *ngIf="saps" class="numPlate">{{ saps }}</td>
                   <!--</tr>
                   <tr>
                     <th scope="col">Duplicate:</th>
                   </tr>
                   <tr id="box0" class="box" *ngFor="let i of answer">-->
-                  <td class="numPlate">
-                    {{ i.payload[0].license_plate_duplicate }}
+                  <td *ngIf="dup" class="numPlate">
+                    {{ dup }}
                   </td>
                   <!--</tr>
                   <tr id="box0" class="box" *ngFor="let i of answer">-->
-                  <td class="image">
+                  <td *ngIf="answer" class="image">
                     <img [src]="imgURL" height="150" *ngIf="imgURL" />
                   </td>
                 </tr>
               </tbody>
             </table>
+            <div *ngIf="imgU">
+              <table align="center">
+                <!-- <th align="center">Damage Detection: {{ dvalue }}</th> -->
+                <tr>
+                  <td align="center" valign="center">
+                    <b>Damage Detection: {{ dvalue }}</b>
+                    <br />
+                    <br />
+                    <img class="carImg" [src]="imgU" height="200" *ngIf="imgU" align="center" valign="center" />
+                  </td>
+                </tr>
+                <hr />
+                <br />
+                <br />
+
+                <tr>
+                  <td align="center" valign="center">
+                    <b>Colour Detection: {{ cvalue }}</b>
+                    <br />
+                    <br />
+                    <img class="carImg" [src]="imgU1" height="200" *ngIf="imgU1" align="center" valign="center" />
+                  </td>
+                </tr>
+                <hr />
+                <br />
+                <br />
+
+                <tr>
+                  <td align="center" valign="center">
+                    <b>Make/Model Detection: {{ mvalue }}</b>
+                    <br />
+                    <br />
+                    <img class="carImg" [src]="imgU2" height="200" *ngIf="imgU2" align="center" valign="center" />
+                  </td>
+                </tr>
+              </table>
+            </div>
           </div>
         </div>
         <div class="modal-footer">
@@ -675,97 +718,97 @@
     </div>
 
     <!-- The Function/Card containers -->
-    <div id="cardSection" class="row center">
-      <!-- <div class="center d-flex flex-column"> -->
-      <div class="col-md-6 col-lg-2">
-        <div class="card p-3">
-          <img src="../../assets/img/web_search.svg" class="card-img-top img-fluid" alt="">
-          <div class="card-block">
-            <div id="detailTitleM">
-              <p class="font-weight-bold">Search</p>
-              <p>Perform a generic search. Enter a keyword and get results based
-                on that keyword.</p>
-            </div>
-            <div class="p-3 mb-4">
-              <div class="text-center">
-                <button id="homeBtn" class="btn btn-primary" (click)="open(content,'lg')">Quick
-                  Search</button>
-              </div>
+    <div class="row center">
+    <!-- <div class="center d-flex flex-column"> -->
+    <div class="col-md-6 col-lg-2">
+      <div class="card p-3">
+        <img src="../../assets/img/web_search.svg" class="card-img-top img-fluid" alt="">
+        <div class="card-block">
+          <div id="detailTitleM">
+            <p class="font-weight-bold">Search</p>
+            <p>Perform a generic search. Enter a keyword and get results based
+              on that keyword.</p>
+          </div>
+          <div class="p-3 mb-4">
+            <div class="text-center">
+              <button id="homeBtn" class="btn btn-primary" (click)="open(content,'lg')">Quick
+                Search</button>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-md-6 col-lg-2">
-        <div class="card p-3">
-          <img src="../../assets/img/my_car.svg" class="card-img-top img-fluid" alt="">
-          <div class="card-block">
-            <div id="detailTitleM">
-              <p class="font-weight-bold">Detailed search</p>
-              <p>Perform a detailed search with different parameters based on a
-                list of keywords.</p>
-            </div>
-            <div class="p-3 mb-4">
-              <div class="text-center">
-                <button id="homeBtn" class="btn btn-primary" (click)="open(contentTwo,'lg')">Detailed
-                  Search</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-2">
-        <div class="card p-3">
-          <img src="../../assets/img/challenge.svg" class="card-img-top img-fluid" alt="">
-          <div class="card-block">
-            <div id="detailTitleM">
-              <p class="font-weight-bold">Marked Vehicles</p>
-              <p>Flag or unflag a suspicious vehicle using the vehicle's license plate</p>
-            </div>
-            <div class="p-3 mb-4">
-              <div class="text-center">
-                <button id="homeBtn" class="btn btn-primary" (click)="open(contentNine,'lg')">Mark
-                  Vehicle</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-2">
-        <div class="card p-3">
-          <img src="../../assets/img/upload.svg" class="card-img-top img-fluid" alt="">
-          <div class="card-block">
-            <div id="detailTitleM">
-              <p class="font-weight-bold">Upload</p>
-              <p>Upload an image and retrieve the license plate or a video and also detects cars</p>
-            </div>
-            <div class="p-3 mb-4">
-              <div class="text-center">
-                <button id="homeBtn" class="btn btn-primary" (click)="open(contentEight,'lg')">Upload</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-2">
-        <div class="card p-3">
-          <img src="../../assets/img/mapD.svg" class="card-img-top img-fluid" alt="">
-          <div class="card-block">
-            <div id="detailTitleM">
-              <p class="font-weight-bold">Map View</p>
-              <p>See pins on a map of where a vehicle has travelled by entering the license plate</p>
-            </div>
-            <div class="p-3 mb-4">
-              <div class="text-center">
-                <button id="homeBtn" class="btn btn-primary" (click)="open(contentTen,'lg')">Map
-                  View</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- </div>
-      </div>-->
     </div>
+    <div class="col-md-6 col-lg-2">
+      <div class="card p-3">
+        <img src="../../assets/img/my_car.svg" class="card-img-top img-fluid" alt="">
+        <div class="card-block">
+          <div id="detailTitleM">
+            <p class="font-weight-bold">Detailed search</p>
+            <p>Perform a detailed search with different parameters based on a
+              list of keywords.</p>
+          </div>
+          <div class="p-3 mb-4">
+            <div class="text-center">
+              <button id="homeBtn" class="btn btn-primary" (click)="open(contentTwo,'lg')">Detailed
+                Search</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-2">
+      <div class="card p-3">
+        <img src="../../assets/img/challenge.svg" class="card-img-top img-fluid" alt="">
+        <div class="card-block">
+          <div id="detailTitleM">
+            <p class="font-weight-bold">Marked Vehicles</p>
+            <p>Flag or unflag a suspicious vehicle using the vehicle's license plate</p>
+          </div>
+          <div class="p-3 mb-4">
+            <div class="text-center">
+              <button id="homeBtn" class="btn btn-primary" (click)="open(contentNine,'lg')">Mark
+                Vehicle</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-2">
+      <div class="card p-3">
+        <img src="../../assets/img/upload.svg" class="card-img-top img-fluid" alt="">
+        <div class="card-block">
+          <div id="detailTitleM">
+            <p class="font-weight-bold">Upload</p>
+            <p>Upload an image and retrieve the license plate or a video and also detects cars</p>
+          </div>
+          <div class="p-3 mb-4">
+            <div class="text-center">
+              <button id="homeBtn" class="btn btn-primary" (click)="open(contentSix,'lg')">Upload</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-2">
+      <div class="card p-3">
+        <img src="../../assets/img/mapD.svg" class="card-img-top img-fluid" alt="">
+        <div class="card-block">
+          <div id="detailTitleM">
+            <p class="font-weight-bold">Map View</p>
+            <p>See pins on a map of where a vehicle has travelled by entering the license plate</p>
+          </div>
+          <div class="p-3 mb-4">
+            <div class="text-center">
+              <button id="homeBtn" class="btn btn-primary" (click)="open(contentTen,'lg')">Map
+                View</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- </div>
+      </div>-->
+  </div>
   </div>
   <!--================ start footer Area =================-->
   <footer class="footer-area">
