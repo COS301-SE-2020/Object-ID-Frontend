@@ -38,6 +38,8 @@ export class HomeComponent implements OnInit {
   public formUpload: FormGroup;
   public mapView: FormGroup;
   public authForm: FormGroup;
+  public show:boolean = false;
+  public buttonName:any = 'Show Image';
 
   dvalue: any;
   cvalue: any;
@@ -348,7 +350,7 @@ export class HomeComponent implements OnInit {
               this.submitUploadImageID = data["payload"]["id"];
               console.log(data);
 
-              this.license = data["payload"]["license_plate"];
+              
               this.make = data["payload"]["make"];
               this.model = data["payload"]["model"];
               this.color = data["payload"]["color"];
@@ -359,6 +361,10 @@ export class HomeComponent implements OnInit {
               if (data["payload"]["license_plate_duplicate"] == false) {
                 this.dup = "false";
               } else this.dup = "true";
+
+              if (data["payload"]["license_plate"] == "") {
+                this.license="N/a";
+              } else this.license = data["payload"]["license_plate"];
 
               this.searchButtonText = "Submit";
             });
@@ -646,6 +652,18 @@ export class HomeComponent implements OnInit {
       });
     }
   }
+//-----------------------Toogle Button show image--------------------------------
+  toggle() {
+    this.show = !this.show;
+
+    // CHANGE THE NAME OF THE BUTTON.
+    if(this.show)  
+      this.buttonName = "Hide Image";
+    else
+      this.buttonName = "Show Image";
+  }
+
+
 
   clearVariables() {
     this.message = null;
