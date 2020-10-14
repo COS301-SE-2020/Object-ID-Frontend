@@ -397,9 +397,7 @@ export class HomeComponent implements OnInit {
     });
     console.log(this.submitUploadImageID);
     this.accuracy(this.submitUploadImageID);
-    // this.dvalue = (Math.random() * (70.0 - 90.0) + 90.0).toFixed(2) + "%";
-    // this.cvalue = (Math.random() * (70.0 - 90.0) + 90.0).toFixed(2) + "%";
-    // this.mvalue = (Math.random() * (70.0 - 90.0) + 90.0).toFixed(2) + "%";
+
   }
 
   accuracy(Vid) {
@@ -649,12 +647,59 @@ export class HomeComponent implements OnInit {
     if (this.selectedOption == "Flagged") {
       this.api.filterFlagged(this.selectedOption).subscribe((FilterData) => {
         this.answer = FilterData;
+        if (this.answer["payload"].length > 0) {
+          this.answer["payload"].forEach((vehicle) => {
+            this.api
+              .damageSearch(vehicle.license_plate)
+              .subscribe((FilterData) => {
+                let helper = "";
+
+                if (FilterData["payload"].length > 0) {
+                  FilterData["payload"].forEach((element) => {
+                    if (element.location != null || element.location != "") {
+                      helper += element.location + ", ";
+                    }
+                  });
+                  helper = helper.substr(0, helper.length - 2);
+                } else {
+                  helper = "None";
+                }
+
+                this.searchAnswer.push({ ...vehicle, damage: helper });
+                console.log(this.searchAnswer);
+              });
+          });
+        }
+        
       });
     }
     //filter by duplicates
     else if (this.selectedOption == "Duplicate") {
       this.api.filterDuplicate(this.selectedOption).subscribe((FilterData) => {
         this.answer = FilterData;
+        if (this.answer["payload"].length > 0) {
+          this.answer["payload"].forEach((vehicle) => {
+            this.api
+              .damageSearch(vehicle.license_plate)
+              .subscribe((FilterData) => {
+                let helper = "";
+
+                if (FilterData["payload"].length > 0) {
+                  FilterData["payload"].forEach((element) => {
+                    if (element.location != null || element.location != "") {
+                      helper += element.location + ", ";
+                    }
+                  });
+                  helper = helper.substr(0, helper.length - 2);
+                } else {
+                  helper = "None";
+                }
+
+                this.searchAnswer.push({ ...vehicle, damage: helper });
+                console.log(this.searchAnswer);
+              });
+          });
+        }
       });
     }
   }
