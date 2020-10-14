@@ -128,8 +128,8 @@
   </ng-template>
   <!-----Isaaacs Header------->
   <div class="container-fluid">
-    <!--<div class="jumbotron">
-       <img class="mx-auto d-block" src="../../assets/logo.png"/> -->
+    <div class="jumbotron">
+       <!--<img class="mx-auto d-block" src="../../assets/logo.png"/> -->
     <div class="jumbotron jumbotron-fluid bg-primary text-white text-center">
       <div class="container">
         <p class="lead">A guiding light for the less enlightened...</p>
@@ -301,12 +301,16 @@
                   placeholder="SAPS flag*" />
                 <input type="text" id="search-field" class="form-control" formControlName="damage"
                   placeholder="Damage*" />
-                <button type="submit" class="Dsearch-button" id="search-btn">
+               <!-- <button type="submit" class="Dsearch-button" id="search-btn">
                   <i class="fa fa-search"></i>
-                </button>
+                </button>-->
               </div>
             </div>
+            <button type="submit" id="homeBtn" class="btn btn-primary">
+              <i class="fa fa-search"></i>
+            </button>
           </form>
+          
           <hr />
           <div class="box_container">
             <table class="table table-striped" *ngIf="answer != null">
@@ -613,9 +617,17 @@
                 <tr>
                   <td align="center" valign="center">
                     <b>Damage Detection: {{ dvalue }}</b>
-                    <br />
-                    <br />
-                    <img class="carImg" [src]="imgU" height="200" *ngIf="imgU" align="center" valign="center" />
+                    <!-- <br />
+                    <br />-->
+                    <button (click)="toggle()" id="bt">
+                      {{buttonName}}
+                  </button>
+                  
+                  <ng-container *ngIf="show">
+                      <div style="margin: 0 auto;text-align: left;">
+                        <img class="carImg" [src]="imgU" height="200" *ngIf="imgU" align="center" valign="center" />
+                      </div>
+                  </ng-container>
                   </td>
                 </tr>
                 <hr />
@@ -625,9 +637,18 @@
                 <tr>
                   <td align="center" valign="center">
                     <b>Colour Detection: {{ cvalue }}</b>
-                    <br />
-                    <br />
-                    <img class="carImg" [src]="imgU1" height="200" *ngIf="imgU1" align="center" valign="center" />
+                     <!-- <br />
+                    <br />-->
+                    <button (click)="toggle()" id="bt">
+                      {{buttonName}}
+                  </button>
+                  
+                  <ng-container *ngIf="show">
+                      <div style="margin: 0 auto;text-align: left;">
+                        <img class="carImg" [src]="imgU1" height="200" *ngIf="imgU1" align="center" valign="center" />
+                      </div>
+                  </ng-container>
+                  
                   </td>
                 </tr>
                 <hr />
@@ -637,9 +658,17 @@
                 <tr>
                   <td align="center" valign="center">
                     <b>Make/Model Detection: {{ mvalue }}</b>
-                    <br />
-                    <br />
-                    <img class="carImg" [src]="imgU2" height="200" *ngIf="imgU2" align="center" valign="center" />
+                    <!-- <br />
+                    <br />-->
+                    <button (click)="toggle()" id="bt">
+                      {{buttonName}}
+                  </button>
+                  
+                  <ng-container *ngIf="show">
+                      <div style="margin: 0 auto;text-align: left;">
+                        <img class="carImg" [src]="imgU2" height="200" *ngIf="imgU2" align="center" valign="center" />
+                      </div>
+                  </ng-container>
                   </td>
                 </tr>
               </table>
@@ -806,8 +835,8 @@
         </div>
       </div>
     </div>
-    <!-- </div>
-      </div>-->
+    <!-- </div>-->
+      </div>
   </div>
   </div>
   <!--================ start footer Area =================-->
