@@ -1002,7 +1002,8 @@ ul {
 }
 
 .Dsearch-button {
-  right: 4px;
+  vertical-align: middle;
+  align-items: center;
   top: 5px;
   margin-top: 5px;
   background-color: #007bff;
@@ -1012,7 +1013,6 @@ ul {
   width: 35px;
   height: 35px;
   outline: 0;
-  float: left;
 }
 
 #map {

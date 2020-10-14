@@ -129,7 +129,7 @@
   <!-----Isaaacs Header------->
   <div class="container-fluid">
     <div class="jumbotron">
-      <!-- <img class="mx-auto d-block" src="../../assets/logo.png"/> -->
+       <!--<img class="mx-auto d-block" src="../../assets/logo.png"/> -->
     <div class="jumbotron jumbotron-fluid bg-primary text-white text-center">
       <div class="container">
         <p class="lead">A guiding light for the less enlightened...</p>
@@ -192,7 +192,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr id="box0" class="box" *ngFor="let i of answer.payload">
+                <tr id="box0" class="box" *ngFor="let i of searchAnswer">
                   <td class="numPlate">
                     {{ i.license_plate }}
                   </td>
@@ -301,12 +301,16 @@
                   placeholder="SAPS flag*" />
                 <input type="text" id="search-field" class="form-control" formControlName="damage"
                   placeholder="Damage*" />
-                <button type="submit" class="Dsearch-button" id="search-btn">
+               <!-- <button type="submit" class="Dsearch-button" id="search-btn">
                   <i class="fa fa-search"></i>
-                </button>
+                </button>-->
               </div>
             </div>
+            <button type="submit" id="homeBtn" class="btn btn-primary">
+              <i class="fa fa-search"></i>
+            </button>
           </form>
+          
           <hr />
           <div class="box_container">
             <table class="table table-striped" *ngIf="answer != null">
@@ -323,7 +327,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr id="box0" class="box" *ngFor="let i of answer.payload">
+                <tr id="box0" class="box" *ngFor="let i of searchAnswer">
                   <td class="numPlate">{{ i.license_plate }}</td>
                   <td class="color">{{ i.color }}</td>
                   <td class="make">{{ i.make }}</td>
@@ -331,10 +335,50 @@
                   <td class="flag">{{ i.saps_flagged }}</td>
                   <td class="duplicate">{{ i.license_plate_duplicate }}</td>
                   <td class="duplicate">{{ i.damage }}</td>
+                  <td class="edit">
+                    <button class="btn btn-primary" (click)="openEdit(i)">
+                      Edit
+                    </button>
+                  </td>
+                  <td class="image">
+                    <button class="btn btn-primary" (click)="openImage(i.id)">
+                      View
+                    </button>
+                  </td>
                   <!-- <td class="customFlag">{{i.</td> -->
                 </tr>
               </tbody>
             </table>
+            <div *ngIf="vehicles != null">
+              <form class="form-group" *ngFor="let vehicle of vehicles" (submit)="editVehicle()"
+                [formGroup]="vehicleForm">
+                <div class="row center">
+                  <div class="form-inline center">
+                    <input type="hidden" id="search-field" class="form-control" formControlName="vehicle_id"
+                      [(ngModel)]="vehicle.id" />
+                    <input type="text" id="search-field" class="form-control" formControlName="make"
+                      [(ngModel)]="vehicle.make" />
+                    <input type="text" id="search-field" class="form-control" formControlName="color"
+                      [(ngModel)]="vehicle.color" />
+                    <input type="text" id="search-field" class="form-control" formControlName="model"
+                      [(ngModel)]="vehicle.model" />
+                  </div>
+                  <div class="row center">
+                    <div class="form-inline center">
+                      <input type="text" id="search-field" class="form-control" formControlName="license_plate"
+                        [(ngModel)]="vehicle.license_plate" />
+                      <input type="text" id="search-field" class="form-control" formControlName="saps_flagged"
+                        [(ngModel)]="vehicle.saps_flagged" />
+                      <input type="text" id="search-field" class="form-control"
+                        formControlName="license_plate_duplicate" [(ngModel)]="vehicle.license_plate_duplicate" />
+                    </div>
+                    <button type="submit" class="Dsearch-button" id="search-btn">
+                      <i class="fa fa-check-circle-o"></i>
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
         <div class="modal-footer">
@@ -383,7 +427,7 @@
         </div>
       </ng-template>
       <!-- Remove mark -->
-      <ng-template #contentFour let-modal>
+      <!-- <ng-template #contentFour let-modal>
         <div class="modal-header">
           <h4 class="modal-title" id="modal-basic-title">
             Remove Marked Vehicle
@@ -420,7 +464,7 @@
             Close
           </button>
         </div>
-      </ng-template>
+      </ng-template> -->
       <!-- View marked -->
       <ng-template #contentFive let-modal>
         <div class="modal-header">
@@ -434,10 +478,19 @@
         <div class="modal-body">
           <div class="form-inline center">
             <p class="h7">
-              Here is a list of all the vehicles that you have marked for
-              some reason eg. suspicious or damaged. Only you can see these
-              marked vehicles.
+              Enter a vehicle license number in the text box and click mark
+              to mark a specific vehicle for some reason eg. suspicious or
+              damaged. Click remove to remove the marked vehicle.
             </p>
+            <hr />
+            <br />
+            <form class="form-group" (submit)="markVehicle()" [formGroup]="MarkAddForm">
+              <input type="text" id="search-field" class="form-control" formControlName="numPlateMarked"
+                placeholder="License" required />
+              <input type="text" id="search-field" class="form-control" formControlName="reason" placeholder="Reason"
+                required />
+              <button type="submit" class="btn btn-primary">Mark</button>
+            </form>
             <hr />
             <br />
             <table class="table table-striped" *ngIf="answer != null">
@@ -450,7 +503,8 @@
               <tbody>
                 <tr id="box0" class="box" *ngFor="let i of answer.payload">
                   <td class="numPlate">{{ i.license_plate }}</td>
-                  <td class="color">{{ i.marked_by }}</td>
+                  <td class="color">{{ i.reason }}</td>
+                  <button type="submit" (click)="removeMarkedVehicle(i.license_plate)" class="btn btn-primary">Unmark</button>
                 </tr>
               </tbody>
             </table>
@@ -463,7 +517,7 @@
         </div>
       </ng-template>
       <!-- Upload video -->
-      <ng-template #contentSeven let-modal>
+      <!-- <ng-template #contentSeven let-modal>
         <div class="modal-header">
           <h4 class="modal-title" id="modal-basic-title">Upload Video</h4>
           <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
@@ -486,9 +540,9 @@
             Close
           </button>
         </div>
-      </ng-template>
+      </ng-template> -->
       <!-- Upload -->
-      <ng-template #contentEight let-modal>
+      <!-- <ng-template #contentEight let-modal>
         <div class="modal-header">
           <h4 class="modal-title" id="modal-basic-title">Upload</h4>
           <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
@@ -507,7 +561,7 @@
             Close
           </button>
         </div>
-      </ng-template>
+      </ng-template> -->
       <!-- Upload image -->
       <ng-template #contentSix let-modal>
         <div class="modal-header">
@@ -613,33 +667,58 @@
                 <tr>
                   <td align="center" valign="center">
                     <b>Damage Detection: {{ dvalue }}</b>
-                    <br />
-                    <br />
-                    <img class="carImg" [src]="imgU" height="200" *ngIf="imgU" align="center" valign="center" />
+                    <!-- <br />
+                    <br />-->
+                    <button (click)="toggle()" id="bt">
+                      {{buttonName}}
+                  </button>
+                  
+                  <ng-container *ngIf="show">
+                      <div style="margin: 0 auto;text-align: left;">
+                        <img class="carImg" [src]="imgU" height="200" *ngIf="imgU" align="center" valign="center" />
+                      </div>
+                  </ng-container>
                   </td>
-                <!--</tr>-->
+                </tr>
                 <hr />
                 <br />
                 <br />
 
-                <!--<tr>-->
+                <tr>
                   <td align="center" valign="center">
                     <b>Colour Detection: {{ cvalue }}</b>
-                    <br />
-                    <br />
-                    <img class="carImg" [src]="imgU1" height="200" *ngIf="imgU1" align="center" valign="center" />
+                     <!-- <br />
+                    <br />-->
+                    <button (click)="toggle()" id="bt">
+                      {{buttonName}}
+                  </button>
+                  
+                  <ng-container *ngIf="show">
+                      <div style="margin: 0 auto;text-align: left;">
+                        <img class="carImg" [src]="imgU1" height="200" *ngIf="imgU1" align="center" valign="center" />
+                      </div>
+                  </ng-container>
+                  
                   </td>
-                <!--</tr>-->
+                </tr>
                 <hr />
                 <br />
                 <br />
 
-                <!--<tr>-->
+                <tr>
                   <td align="center" valign="center">
                     <b>Make/Model Detection: {{ mvalue }}</b>
-                    <br />
-                    <br />
-                    <img class="carImg" [src]="imgU2" height="200" *ngIf="imgU2" align="center" valign="center" />
+                    <!-- <br />
+                    <br />-->
+                    <button (click)="toggle()" id="bt">
+                      {{buttonName}}
+                  </button>
+                  
+                  <ng-container *ngIf="show">
+                      <div style="margin: 0 auto;text-align: left;">
+                        <img class="carImg" [src]="imgU2" height="200" *ngIf="imgU2" align="center" valign="center" />
+                      </div>
+                  </ng-container>
                   </td>
                 </tr>
               </table>
@@ -647,13 +726,20 @@
           </div>
         </div>
         <div class="modal-footer">
+          <button
+          type="button"
+          class="btn btn-outline-dark"
+          (click)="viewDetails()"
+        >
+          Details
+        </button>
           <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">
             Close
           </button>
         </div>
       </ng-template>
       <!-- Mark -->
-      <ng-template #contentNine let-modal>
+      <!-- <ng-template #contentNine let-modal>
         <div class="modal-header">
           <h4 class="modal-title" id="modal-basic-title">
             Mark/Unmark Vehicles
@@ -675,7 +761,7 @@
             Close
           </button>
         </div>
-      </ng-template>
+      </ng-template> -->
       <!-- Map -->
       <ng-template #contentTen let-modal>
         <div class="modal-header">
@@ -766,7 +852,7 @@
           </div>
           <div class="p-3 mb-4">
             <div class="text-center">
-              <button id="homeBtn" class="btn btn-primary" (click)="open(contentNine,'lg')">Mark
+              <button id="homeBtn" class="btn btn-primary" (click)="openSearched(contentFive)">Mark
                 Vehicle</button>
             </div>
           </div>
@@ -816,7 +902,7 @@
       <div class="row">
         <div class="col-lg-4 col-md-6">
           <div class="single-footer-widget">
-            <h6>Userful Links</h6>
+            <h6>Useful Links</h6>
             <div class="row">
               <div class="col-lg-6">
                 <ul class="footer-nav">
@@ -826,7 +912,7 @@
                   </li>
                   <li>
                     <i class="ti-angle-right"></i>
-                    <a routerLink="/home">about us</a>
+                    <a routerLink="/about">about us</a>
                   </li>
                   <li>
                     <i class="ti-angle-right"></i>
