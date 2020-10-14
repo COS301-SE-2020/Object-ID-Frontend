@@ -427,7 +427,7 @@
         </div>
       </ng-template>
       <!-- Remove mark -->
-      <ng-template #contentFour let-modal>
+      <!-- <ng-template #contentFour let-modal>
         <div class="modal-header">
           <h4 class="modal-title" id="modal-basic-title">
             Remove Marked Vehicle
@@ -464,7 +464,7 @@
             Close
           </button>
         </div>
-      </ng-template>
+      </ng-template> -->
       <!-- View marked -->
       <ng-template #contentFive let-modal>
         <div class="modal-header">
@@ -478,10 +478,19 @@
         <div class="modal-body">
           <div class="form-inline center">
             <p class="h7">
-              Here is a list of all the vehicles that you have marked for
-              some reason eg. suspicious or damaged. Only you can see these
-              marked vehicles.
+              Enter a vehicle license number in the text box and click mark
+              to mark a specific vehicle for some reason eg. suspicious or
+              damaged. Click remove to remove the marked vehicle.
             </p>
+            <hr />
+            <br />
+            <form class="form-group" (submit)="markVehicle()" [formGroup]="MarkAddForm">
+              <input type="text" id="search-field" class="form-control" formControlName="numPlateMarked"
+                placeholder="License" required />
+              <input type="text" id="search-field" class="form-control" formControlName="reason" placeholder="Reason"
+                required />
+              <button type="submit" class="btn btn-primary">Mark</button>
+            </form>
             <hr />
             <br />
             <table class="table table-striped" *ngIf="answer != null">
@@ -495,6 +504,7 @@
                 <tr id="box0" class="box" *ngFor="let i of answer.payload">
                   <td class="numPlate">{{ i.license_plate }}</td>
                   <td class="color">{{ i.reason }}</td>
+                  <button type="submit" (click)="removeMarkedVehicle(i.license_plate)" class="btn btn-primary">Unmark</button>
                 </tr>
               </tbody>
             </table>
@@ -507,7 +517,7 @@
         </div>
       </ng-template>
       <!-- Upload video -->
-      <ng-template #contentSeven let-modal>
+      <!-- <ng-template #contentSeven let-modal>
         <div class="modal-header">
           <h4 class="modal-title" id="modal-basic-title">Upload Video</h4>
           <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
@@ -530,9 +540,9 @@
             Close
           </button>
         </div>
-      </ng-template>
+      </ng-template> -->
       <!-- Upload -->
-      <ng-template #contentEight let-modal>
+      <!-- <ng-template #contentEight let-modal>
         <div class="modal-header">
           <h4 class="modal-title" id="modal-basic-title">Upload</h4>
           <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
@@ -551,7 +561,7 @@
             Close
           </button>
         </div>
-      </ng-template>
+      </ng-template> -->
       <!-- Upload image -->
       <ng-template #contentSix let-modal>
         <div class="modal-header">
@@ -729,7 +739,7 @@
         </div>
       </ng-template>
       <!-- Mark -->
-      <ng-template #contentNine let-modal>
+      <!-- <ng-template #contentNine let-modal>
         <div class="modal-header">
           <h4 class="modal-title" id="modal-basic-title">
             Mark/Unmark Vehicles
@@ -751,7 +761,7 @@
             Close
           </button>
         </div>
-      </ng-template>
+      </ng-template> -->
       <!-- Map -->
       <ng-template #contentTen let-modal>
         <div class="modal-header">
@@ -842,7 +852,7 @@
           </div>
           <div class="p-3 mb-4">
             <div class="text-center">
-              <button id="homeBtn" class="btn btn-primary" (click)="open(contentNine,'lg')">Mark
+              <button id="homeBtn" class="btn btn-primary" (click)="openSearched(contentFive)">Mark
                 Vehicle</button>
             </div>
           </div>

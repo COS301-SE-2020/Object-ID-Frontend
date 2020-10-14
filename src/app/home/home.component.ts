@@ -468,6 +468,7 @@ export class HomeComponent implements OnInit {
   //-----------------------Mark----------------------------------------------
   markVehicle() {
     this.clearVariables();
+   
 
     this.api
       .markVehicle(
@@ -480,27 +481,32 @@ export class HomeComponent implements OnInit {
         if (markData["success"] == true) {
           this.type = true;
           this.message = "Vehicle was successfully marked";
+          this.retrieveMarkedVehicles();
         } else {
           this.type = false;
           this.message = "Error occurred";
         }
       });
+      
+
   }
 
-  removeMarkVehicle() {
+  removeMarkedVehicle(license) {
     this.clearVariables();
 
     this.api
-      .removeMarked(this.MarkRemoveForm.value.numPlateRemove)
+      .removeMarked(license)
       .subscribe((data) => {
         if (data["success"] == true) {
           this.type = true;
           this.message = "Vehicle was successfully removed";
+          this.retrieveMarkedVehicles();
         } else {
           this.type = false;
           this.message = "Error occurred";
         }
       });
+     
   }
 
   retrieveMarkedVehicles() {
