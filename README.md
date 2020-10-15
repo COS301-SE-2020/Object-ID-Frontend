@@ -1,5 +1,13 @@
 # Object-ID Frontend
 
+Team Members
+------------
+Stephen du Plesis: stephendups@gmail.com
+Johannes Wolmarans: u17043540@tuks.co.za
+Luke Greenberg: lukegreen.pc@gmail.com
+Zoe Schnetler: zoe.schnetler@gmail.com
+Thembinkosi Isaac Mtsweni: u16205457@tuks.co.za
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.7.
 
 ## Development server
