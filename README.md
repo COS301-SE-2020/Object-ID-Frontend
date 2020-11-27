@@ -10,7 +10,7 @@ Luke Greenberg: lukegreen.pc@gmail.com
 
 Zoe Schnetler: zoe.schnetler@gmail.com
 
-Thembinkosi Isaac Mtsweni: u16205457@tuks.co.za
+Thembinkosi Isaac Mtsweni: isc.mtsweni@tuks.co.za
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.7.
 
